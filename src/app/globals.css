@@ -3,13 +3,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --black_primary: #0C1C2E;
+  --black_secondary: #212121;
+  --black_tertiary: #0C1C2E;
+  --white_primary: #FFFFFF;
+  --white_secondary: #DEDEDE;
+  --white_tertiary: #F7E4E7;
+  --cyan_primary: #6FDBD4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-black_primary: var(--black_primary);
+  --color-black_secondary: var(--black_secondary);
+  --color-black_tertiary: var(--black_tertiary);
+  --color-white_primary: var(--white_primary);
+  --color-white_secondary: var(--white_secondary);
+  --color-white_tertiary: var(--white_tertiary);
+  --color-cyan_primary: var(--cyan_primary);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +34,59 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+
+@layer components {
+  .h1 {
+    @apply font-bold text-[48px] md:text-[56px];
+  }
+
+  .h2 {
+    @apply font-bold text-[36px] md:text-[43px];
+  }
+
+  .h3 {
+    @apply text-[24px] md:text-[32px];
+  }
+
+  .h4 {
+    @apply font-semibold text-[20px] md:text-[30px];
+  }
+
+  .h5 {
+    @apply font-semibold text-[14px] md:text-[20px];
+  }
+
+  .p1 {
+    @apply text-[18px] md:text-[36px] font-light;
+  }
+
+  .p2 {
+    @apply text-[14px] md:text-[18px];
+  }
+
+  .p3 {
+    @apply text-[12px] md:text-[14px];
+  }
+
+  .p4 {
+    @apply text-[12px];
+  }
+
+  .btn-text {
+    @apply font-semibold text-[16px];
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
 }
