@@ -5,7 +5,7 @@ export default function BackgroundElements() {
     <div className="absolute top-0 left-0 w-full h-full">
       {/* Left side curved lines */}
       <Image
-        src="/decorative-lines-left.png"
+        src="/images/features/left_design.svg"
         alt=""
         width={400}
         height={600}
@@ -13,7 +13,7 @@ export default function BackgroundElements() {
       />
       {/* Right side curved lines */}
       <Image
-        src="/decorative-lines-right.png"
+        src="/images/features/right_design.svg"
         alt=""
         width={400}
         height={600}

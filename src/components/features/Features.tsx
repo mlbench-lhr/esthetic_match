@@ -5,7 +5,7 @@ const leftFeatures = [
     icon: "/images/features/filter.svg",
     title: "Ultra-Precise Filters",
     description: "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry.",
-    className: "mt-24 items-start"
+    className: "items-start"
   },
   {
     icon: "/images/features/hand.svg",
@@ -20,7 +20,7 @@ const rightFeatures = [
     icon: "/images/features/users.svg",
     title: "Rich Practitioner Profiles",
     description: "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place.",
-    className: "text-right items-end"
+    className: "text-right items-end mt-30"
   },
   {
     icon: "/images/features/shield.svg",
@@ -32,7 +32,7 @@ const rightFeatures = [
 
 export default function Features() {
   return (
-    <div className="relative flex justify-center items-start w-full max-w-7xl mx-auto mt-16">
+    <div className="relative flex justify-center items-start w-full max-w-7xl mx-auto ">
 
       {/* Left side features */}
       <div className="absolute left-0 top-0 space-y-16 w-80">
@@ -77,7 +77,7 @@ export default function Features() {
 
 function FeatureCard({ icon, title, description, className = "" }:{ icon: string, title: string, description: string, className?: string }) {
   return (
-    <div className={`flex flex-col space-x-4 ${className} `}>
+    <div className={`flex flex-col space-x-4 ${className} max-w-[250px]`}>
       <div className="mt-1">
         <div className="w-full h-full  bg-opacity-20 rounded flex items-center ">
           <Image src={icon} alt="" width={40} height={40} className="" />
@@ -85,7 +85,7 @@ function FeatureCard({ icon, title, description, className = "" }:{ icon: string
       </div>
       <div>
         <h5 className="h5 text-white_primary font-semibold mb-3">{title}</h5>
-        <p className="p3 text-white_secondary  leading-relaxed">
+        <p className="p3 text-white_secondary font-normal leading-relaxed">
           {description}
         </p>
       </div>
