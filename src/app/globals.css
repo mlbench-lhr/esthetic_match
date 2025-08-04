@@ -3,13 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --black_primary: #0C1C2E;
+  --black_primary: #0c1c2e;
   --black_secondary: #212121;
-  --black_tertiary: #0C1C2E;
-  --white_primary: #FFFFFF;
-  --white_secondary: #DEDEDE;
-  --white_tertiary: #F7E4E7;
-  --cyan_primary: #6FDBD4;
+  --black_tertiary: #0c1c2e;
+  --white_primary: #ffffff;
+  --white_secondary: #dedede;
+  --white_tertiary: #f7e4e7;
+  --cyan_primary: #6fdbd4;
+  --grey_primary: #f7e4e7;
+  --grey_secondary: #a5aea8;
 }
 
 @theme inline {
@@ -22,13 +24,8 @@
   --color-white_secondary: var(--white_secondary);
   --color-white_tertiary: var(--white_tertiary);
   --color-cyan_primary: var(--cyan_primary);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-grey_primary: var(--grey_primary);
+  --color-grey_secondary: var(--grey_secondary);
 }
 
 body {
@@ -39,7 +36,7 @@ body {
 
 @layer components {
   .h1 {
-    @apply font-bold text-[48px] md:text-[56px];
+    @apply font-bold text-[42px] md:text-[56px];
   }
 
   .h2 {
@@ -88,5 +85,17 @@ body {
     scrollbar-width: none;
     /* Firefox */
   }
+  .swiper-pagination {
+          position: absolute !important;
+          bottom: 32px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: auto !important;
+          display: flex !important;
+          justify-content: center !important;
+          gap: 8px !important;
+          z-index: 10 !important;
+        }
 
+  
 }

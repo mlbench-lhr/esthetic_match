@@ -4,7 +4,7 @@ export default function StoreButtons({ href, icon, topText, bottomText }: { href
   return (
     <a 
       href={href} 
-      className="inline-flex items-center bg-white  px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors"
+      className="inline-flex items-center bg-white  md:px-6 md:py-3 px-2 py-1 rounded-lg hover:bg-gray-900 transition-colors"
     >
       <Image src={icon} alt={icon} width={24} height={24} className="w-6 h-6 mr-2" />
       <div>

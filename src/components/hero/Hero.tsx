@@ -1,12 +1,9 @@
-import Image from 'next/image'
-import PhoneMockup from './PhoneMockup'
 import DownloadButton from './DownloadButton'
-import MedicalScene from './MedicalScene'
 import PhoneWithScroll from './PhoneWithScroll'
 
 export default function Hero() {
     return (
-        <div className="relative h-screen bg-white">
+        <div id="home" className="relative md:h-screen min-h-screen bg-white">
             {/* Background Medical Scene Image */}
             <div
                 className="absolute inset-0  bg-center bg-no-repeat opacity-60 z-0"

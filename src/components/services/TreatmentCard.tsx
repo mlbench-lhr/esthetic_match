@@ -1,58 +1,54 @@
 interface TreatmentCardProps {
   imageSrc: string;
   title: string;
-  subtitle?: string;
-  bgColor?: string;
+  detail: string;
 }
 
 // components/TreatmentCard.tsx
-import Image from 'next/image';
+import Image from "next/image";
 
 const TreatmentCard: React.FC<TreatmentCardProps> = ({
   imageSrc,
   title,
-  subtitle,
-  bgColor = "bg-black/20"
+  detail,
 }) => {
   return (
-    <div className="relative w-[300px] h-[560px] rounded-2xl overflow-hidden group cursor-pointer">
-      <Image
-        src={imageSrc}
-        alt={title}
-        fill
-        className="object-cover"
-      />
+    <div className="relative md:w-[300px] md:h-[560px] w-[280px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+      <Image src={imageSrc} alt={title} fill className="object-cover" />
 
       {/* Overlay */}
-      <div className={`absolute inset-0 ${bgColor}`} />
-
+      <div className="absolute inset-0 bg-black/50 transition-opacity group-hover:opacity-70" />
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col justify-between p-6 text-white">
+      <div className="absolute inset-0 flex flex-col justify-between p-6 text-white group overflow-hidden">
         {/* Top label */}
         <div className="flex flex-col justify-start">
-          <span className="p4 font-bold uppercase ">
-            Treatments
-          </span>
+          <span className="p4 font-bold uppercase">Treatments</span>
           <div className="space-y-4">
-            <div className='text-[30px] font-light'>
-              <h3 className=" leading-tight">
-                {title}
-              </h3>
-              {subtitle && (
-                <p className="">
-                  {subtitle}
-                </p>
-              )}
+            <div className="text-[30px] font-light">
+              <h3 className="leading-tight">{title}</h3>
             </div>
-
-            <button className="text-xs font-medium tracking-wider uppercase bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
-              Details
-            </button>
           </div>
         </div>
 
-        {/* Bottom content */}
-
+        {/* Bottom section */}
+        <div className="relative h-[80px] ">
+          {/* Content that slides up on hover - includes both Details label and detail text */}
+          <div
+            className="
+        absolute left-0 right-0 bottom-0 text-center
+        translate-y-0 transition-all duration-500
+        group-hover:-translate-y-6
+        px-2 space-y-2
+      "
+          >
+            <p className="text-sm font-semibold uppercase tracking-widest">
+              Details
+            </p>
+            <div className="text-xs hidden group-hover:block transition-opacity duration-500">
+              {detail}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

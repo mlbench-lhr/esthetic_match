@@ -1,47 +1,44 @@
 "use client";
-import Navbar from './Navbar';
-import React, { useEffect } from 'react';
 
+import React, { useEffect } from 'react';
+import Navbar from './Navbar';
 
 const Navbarin: React.FC = () => {
     useEffect(() => {
-        // The debounce function receives our function as a parameter
-        const debounce = (fn: Function) => {
-            // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+        const debounce = <Args extends unknown[]>(fn: (...args: Args) => void): ((...args: Args) => void) => {
             let frame: number;
-            // The debounce function returns a new function that can receive a variable number of arguments
-            return (...params: any[]) => {
-                // If the frame variable has been defined, clear it now, and queue for next frame
+
+            return (...args: Args) => {
                 if (frame) {
                     cancelAnimationFrame(frame);
                 }
-                // Queue our function call for the next frame
+
                 frame = requestAnimationFrame(() => {
-                    // Call our function and pass any params we received
-                    fn(...params);
+                    fn(...args);
                 });
-            }
+            };
         };
 
-        // Reads out the scroll position and stores it in the data attribute
-        // so we can use it in our stylesheets
-        const storeScroll = () => {
+        const storeScroll = (): void => {
             document.documentElement.dataset.scroll = window.scrollY.toString();
-        }
+        };
 
-        // Listen for new scroll events, here we debounce our `storeScroll` function
-        document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+        const debouncedStoreScroll = debounce(storeScroll);
 
-        // Update scroll position for first time
+        document.addEventListener('scroll', debouncedStoreScroll, { passive: true });
+
         storeScroll();
-    }, [])
+
+        return () => {
+            document.removeEventListener('scroll', debouncedStoreScroll);
+        };
+    }, []);
+
     return (
-        <>
-            <div className='bg-navbar'>
-                <Navbar />
-            </div>
-        </>
+        <div className="bg-navbar">
+            <Navbar />
+        </div>
     );
-}
+};
 
 export default Navbarin;

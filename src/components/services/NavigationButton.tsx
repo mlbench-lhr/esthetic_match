@@ -1,19 +1,22 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+import Image from 'next/image';
 
 export interface NavigationButtonProps {
-  direction: 'left' | 'right';
-  onClick: () => void;
+  src: string;
+  className: string;
 }
-const NavigationButton: React.FC<NavigationButtonProps> = ({ direction, onClick }) => {
-  const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
+const NavigationButton: React.FC<NavigationButtonProps> = ({src, className }) => {
   
   return (
     <button
-      onClick={onClick}
-      className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:shadow-xl transition-shadow border border-gray-100"
-      aria-label={`Navigate ${direction}`}
+      className={`w-12 h-12 rounded-full  shadow-lg flex items-center justify-center hover:shadow-xl transition-shadow border border-gray-100 ${className}`}
     >
-      <Icon size={20} className="text-gray-600" />
+      <Image
+      src={src}
+      alt={src}
+      width={60}
+      height={60}
+      className="text-gray-600" />
     </button>
   );
 };

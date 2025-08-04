@@ -5,13 +5,13 @@ const leftFeatures = [
     icon: "/images/features/filter.svg",
     title: "Ultra-Precise Filters",
     description: "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry.",
-    className: "items-start"
+    className: "md:items-start text-center md:text-left items-center"
   },
   {
     icon: "/images/features/hand.svg",
     title: "Swipe, Match & Geolocate",
     description: "A swipe-based interface with geolocation helps you find the best practitioners near you. Connections are — fast, easy, and personalized.",
-    className: "items-start"
+    className: "md:items-start md:text-left text-center items-center"
   }
 ]
 
@@ -20,35 +20,35 @@ const rightFeatures = [
     icon: "/images/features/users.svg",
     title: "Rich Practitioner Profiles",
     description: "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place.",
-    className: "text-right items-end mt-30"
+    className: "md:text-right md:items-end text-center items-center md:mt-30 mt-10"
   },
   {
     icon: "/images/features/shield.svg",
     title: "Online Medical Opinion",
     description: "Request a remote medical opinion before booking — to gain clarity, ask questions, and confirm your perfect match with confidence.",
-    className: "text-right items-end"
+    className: "md:text-right md:items-end text-center items-center"
   }
 ]
 
 export default function Features() {
   return (
-    <div className="relative flex justify-center items-start w-full max-w-7xl mx-auto ">
+    <div className="relative flex md:flex-row flex-col justify-center md:items-start items-center w-full max-w-7xl mx-auto ">
 
       {/* Left side features */}
-      <div className="absolute left-0 top-0 space-y-16 w-80">
+      <div className="md:absolute left-0 top-0 md:space-y-16 space-y-10 w-80 flex flex-col items-center md:block">
         {leftFeatures.map((feature, index) => (
           <FeatureCard
             key={`left-${index}`}
             icon={feature.icon}
             title={feature.title}
             description={feature.description}
-            className={index === 1 ? "mt-24" : ""}
+            className={`${feature.className ?? ""} ${index === 1 ? "md:mt-24" : ""}`}
           />
         ))}
       </div>
 
       {/* Center phone mockup */}
-      <div className="relative z-20">
+      <div className="relative z-20 hidden md:block">
         <Image
           src="/images/features/mobile.svg"
           alt="Aesthetic Match App Interface"
@@ -60,7 +60,7 @@ export default function Features() {
       </div>
 
       {/* Right side features */}
-      <div className="absolute right-0 top-0 space-y-16 w-80">
+      <div className="md:absolute right-0 top-0 md:space-y-16 space-y-10 w-80 flex flex-col items-center md:block">
         {rightFeatures.map((feature, index) => (
           <FeatureCard
             key={`right-${index}`}

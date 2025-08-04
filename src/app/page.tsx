@@ -1,11 +1,12 @@
+import FAQSection from "@/components/FAQ/FAQSection";
 import FeatureIndex from "@/components/features/FeatureIndex";
+import FooterIndex from "@/components/footer/FooterIndex";
 import Hero from "@/components/hero/Hero";
 import Navbarin from "@/components/Navbar";
 import Need from "@/components/need/Need";
-import Swiper from "@/components/Review/Swiper";
+import { testimonialsData } from "@/components/Review/data/testimonialContent";
+import TestimonialSlider from "@/components/Review/TestimonialSlider";
 import Services from "@/components/services/Services";
-import TreatmentCarousel from "@/components/services/TreatmentCarousel";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -15,7 +16,9 @@ export default function Home() {
       <Need />
       <FeatureIndex />
       <Services />
-      {/* <Swiper /> */}
+      <TestimonialSlider testimonials={testimonialsData} />
+      <FAQSection />
+      <FooterIndex />
     </div>
   );
 }
