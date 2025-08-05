@@ -62,7 +62,7 @@ const Navbar = () => {
 
     return (
         <div className="fixed top-6 z-50 max-w-[1440px] mx-auto w-full flex items-center justify-center">
-            <div className="bg-white shadow-md rounded-full w-full max-w-7xl">
+            <div className="bg-white shadow-md rounded-full w-full lg:max-w-7xl max-w-4xl ">
                 <div className="px-6 lg:px-8">
                     <div className="relative flex items-center justify-between">
                         <div className="flex flex-1 items-center justify-between py-2">
@@ -100,7 +100,7 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <DownloadButton text="Download App" className="hidden lg:inline-flex" />
+                            <DownloadButton text="Download App" className="hidden lg:inline-flex py-2.5 rounded-full" />
                         </div>
 
                         {/* Drawer (Mobile) */}

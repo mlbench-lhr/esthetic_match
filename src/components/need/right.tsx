@@ -18,7 +18,7 @@ function Right() {
       </div>
 
       {/* Mobile App Screenshot */}
-      <div className="absolute -left-20 -bottom-20 bg-[#E5CDB9] rounded-3xl p-2 shadow-2xl max-w-md overflow-visible hidden md:block">
+      <div className="absolute -left-20 -bottom-20 bg-[#E5CDB9] rounded-3xl p-2 shadow-2xl max-w-md overflow-visible hidden lg:block">
         <div className="relative">
           <Image
             src="/images/need/mobile.svg"

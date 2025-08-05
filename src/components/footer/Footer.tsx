@@ -1,22 +1,29 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
 const Footer: React.FC = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <footer className=" text-white max-w-[1230px] mx-auto">
       <div className="container mx-auto px-6 py-5">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* App Section */}
           <div>
             <h3 className="h2 font-light ">App</h3>
             <h4 className="h2 font-light mb-8">Learn</h4>
             <div className="space-y-4 flex flex-col">
-              <a href="#" className="p2">
+              <span onClick={() => scrollToSection("faqs")} className="p2 cursor-pointer">
                 FAQs
-              </a>
-              <a href="#" className="p2">
+              </span>
+              <span onClick={() => scrollToSection("about")} className="p2 cursor-pointer">
                 About
-              </a>
+              </span>
             </div>
           </div>
 
@@ -30,7 +37,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Logo Section */}
-          <div className="flex justify-start md:justify-end">
+          <div className="flex justify-start lg:justify-end">
             <div className="text-right">
               <div className="flex items-center gap-2 ">
                 <Image
@@ -45,12 +52,12 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative mt-16 mb-8 md:px-6 max-w-screen-xl mx-auto grid md:grid-cols-3 items-center">
+        <div className="relative mt-16 mb-8 lg:px-6 max-w-screen-xl mx-auto grid lg:grid-cols-3 items-center">
           {/* Left placeholder (can be empty) */}
           <div></div>
 
           {/* Social Media Icons - Center Column */}
-          <div className="flex md:justify-center gap-6">
+          <div className="flex lg:justify-center gap-6">
             {["instagram", "twitter", "facebook", "youtube", "tiktok"].map(
               (platform) => (
                 <a
@@ -71,7 +78,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Copyright - Right Column */}
-          <div className="md:text-right md:mt-0 mt-5">
+          <div className="lg:text-right lg:mt-0 mt-5">
             <p className="text-sm whitespace-nowrap">
               © Esthetic Match Inc, all rights reserved.
             </p>

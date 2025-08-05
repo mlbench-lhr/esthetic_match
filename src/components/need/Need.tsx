@@ -4,7 +4,7 @@ import Right from './right'
 
 function Need() {
   return (
-    <div id='about' className='bg-[#F7F6F2] py-30 md:px-20 px-10 flex md:flex-row flex-col justify-between gap-15 overflow-hidden'>
+    <div id='about' className='bg-[#F7F6F2] py-30 lg:px-20 px-10 flex lg:flex-row flex-col justify-between gap-15 overflow-hidden'>
       <Left />
       <Right />
     </div>

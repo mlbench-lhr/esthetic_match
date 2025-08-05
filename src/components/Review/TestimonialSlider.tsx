@@ -19,7 +19,7 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
   testimonials,
 }) => {
   return (
-    <div className="relative md:min-h-[800px] min-h-[1000px] bg-black_primary">
+    <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}

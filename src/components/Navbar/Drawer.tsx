@@ -20,11 +20,11 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
     >
       <section
         className={
-          "w-270 max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +
+          "w-95 max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +
           (isOpen ? "translate-x-0" : "-translate-x-full")
         }
       >
-        <article className="relative w-100 pb-10 flex flex-col space-y-6 h-full">
+        <article className="relative w-95 pb-10 flex flex-col space-y-6 h-full">
           <header className="p-4 flex items-center justify-between">
             <div className="flex items-center">
               <div className="flex items-center w-8 h-8 mr-2">

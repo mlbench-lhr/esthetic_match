@@ -6,9 +6,9 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative">
       <div className="relative z-10 container py-20 px-6 max-w-[1230px] mx-auto">
-        <div className="md:h-full ">
+        <div className="lg:h-full ">
           {/* Hero Image Container */}
-          <div className="relative rounded-3xl overflow-hidden mb-8 shadow-2xl h-[400px] md:h-full">
+          <div className="relative rounded-3xl overflow-hidden mb-8 shadow-2xl h-[400px] lg:h-full">
             <Image
               src="/images/footer/pic.svg" // Replace with your actual image path
               alt="Skincare consultation"
@@ -18,11 +18,11 @@ const HeroSection: React.FC = () => {
             />
 
             {/* Overlay Content */}
-            <div className="absolute inset-0  bg-opacity-20 flex flex-col justify-end items-start md:p-8 p-4 ">
+            <div className="absolute inset-0  bg-opacity-20 flex flex-col justify-end items-start lg:p-8 p-4 ">
               <h1 className="text-white h1 font-bold mb-4">
                 Smart Choices, Beautiful Results.
               </h1>
-              <div className="flex md:flex-row flex-col justify-between w-full">
+              <div className="flex lg:flex-row flex-col justify-between w-full">
                 <p className="text-white tp2 max-w-lg font-normal">
                 Connect with experts and take control of your skin journey — all
                 in one smart app.

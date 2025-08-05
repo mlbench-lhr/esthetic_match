@@ -40,7 +40,7 @@ const FAQSection: React.FC = () => {
   ];
 
   return (
-    <div id='faqs' className="max-w-[1280px] mx-auto px-4 md:py-32 py-16">
+    <div id='faqs' className="max-w-[1280px] mx-auto px-4 lg:py-32 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Left Column */}
         <div className="space-y-8">

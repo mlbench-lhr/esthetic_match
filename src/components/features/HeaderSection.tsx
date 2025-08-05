@@ -1,7 +1,7 @@
 export default function HeaderSection() {
   return (
     <div className="text-center mb-8">
-      <p className="text-[#4ade80] text-xs font-medium tracking-widest uppercase mb-8">
+      <p className="text-cyan_primary text-xs font-medium tracking-widest uppercase mb-8">
         WHY ESTHETIC MATCH?
       </p>
       

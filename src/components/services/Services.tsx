@@ -65,7 +65,7 @@ function Services() {
     <div id="services" className="min-h-[950px] bg-gray-50 py-20">
       <div className="max-w-[1480px] mx-auto px-8">
         {/* Header */}
-        <div className="mb-16 flex md:flex-row flex-col justify-between items-center">
+        <div className="mb-16 flex lg:flex-row flex-col justify-between items-center">
           <h1 className="h1 font-light text-black_primary mb-4">
             All Aesthetic Universes in one App
           </h1>

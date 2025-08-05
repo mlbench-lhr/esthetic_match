@@ -76,7 +76,7 @@ const Data = () => {
               </span>
             ))}
             <div className="mt-4"></div>
-            <DownloadButton text="Download App" className="" />
+            <DownloadButton text="Download App" className="py-4 rounded-full" />
           </div>
         </div>
       </div>

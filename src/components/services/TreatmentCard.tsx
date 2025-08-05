@@ -13,7 +13,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
   detail,
 }) => {
   return (
-    <div className="relative md:w-[300px] md:h-[560px] w-[280px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+    <div className="relative lg:w-[300px] lg:h-[560px] w-[280px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
       <Image src={imageSrc} alt={title} fill className="object-cover" />
 
       {/* Overlay */}

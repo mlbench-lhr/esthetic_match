@@ -18,7 +18,7 @@ const TreatmentCarousel = ({ treatments }: { treatments: Treatment[] }) => {
   return (
     <div className="relative w-full">
       {/* Custom Navigation Buttons */}
-      <div className="md:px-4">
+      <div className="lg:px-4">
         <Swiper
           modules={[Navigation]}
           slidesPerView="auto"
@@ -29,7 +29,7 @@ const TreatmentCarousel = ({ treatments }: { treatments: Treatment[] }) => {
           }}
         >
           {treatments.map((treatment) => (
-            <SwiperSlide key={treatment.id} className="md:!w-[300px] !w-[280px]">
+            <SwiperSlide key={treatment.id} className="lg:!w-[300px] !w-[280px]">
               <TreatmentCard
                 imageSrc={treatment.imageSrc}
                 title={treatment.title}

@@ -9,7 +9,7 @@ export default function BackgroundElements() {
         alt=""
         width={400}
         height={600}
-        className="absolute md:top-0 top-50 left-0 opacity-40"
+        className="absolute lg:top-0 top-50 left-0 opacity-40"
       />
       {/* Right side curved lines */}
       <Image

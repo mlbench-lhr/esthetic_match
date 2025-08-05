@@ -3,7 +3,7 @@ import PhoneWithScroll from './PhoneWithScroll'
 
 export default function Hero() {
     return (
-        <div id="home" className="relative md:h-screen min-h-screen bg-white">
+        <div id="home" className="relative lg:h-screen lg:min-h-[1240px] min-h-screen bg-white">
             {/* Background Medical Scene Image */}
             <div
                 className="absolute inset-0  bg-center bg-no-repeat opacity-60 z-0"
@@ -27,7 +27,7 @@ export default function Hero() {
                         see real results—all in one app.
                     </p>
 
-                    <DownloadButton text={"DOWNLOAD NOW"} />
+                    <DownloadButton text={"DOWNLOAD NOW"} className='py-4 items-center rounded-full'/>
                     {/* <PhoneWithScroll /> */}
                 </div>
             </div>
