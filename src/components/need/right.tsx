@@ -19,15 +19,16 @@ function Right() {
 
       {/* Mobile App Screenshot */}
       <div className="absolute -left-40 -bottom-20 rounded-3xl p-2 max-w-md overflow-visible hidden lg:block">
-        <div className="relative">
+        <div className="relative w-[80%] max-w-[360px] aspect-[360/435]">
           <Image
             src="/images/need/mobile.webp"
             alt="Mobile app interface"
-            width={560}
-            height={535}
-            className="relative -mb-24 w-full h-auto object-cover rounded-2xl"
+            fill
+            className="object-cover rounded-2xl"
           />
         </div>
+
+
       </div>
     </div>
   );
