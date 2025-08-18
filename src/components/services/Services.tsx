@@ -13,49 +13,49 @@ function Services() {
   const treatments: Treatment[] = [
     {
       id: 1,
-      imageSrc: "/images/services/image1.png", // Replace with actual image paths
+      imageSrc: "/images/services/image1.webp", // Replace with actual image paths
       title: "Aesthetic Medicine",
       detail: "Facial, body, and intimate treatments for beautification and rejuvenation — from injectables to skin boosters and advanced energy-based technologies."
     },
     {
       id: 2,
-      imageSrc: "/images/services/image2.png",
+      imageSrc: "/images/services/image2.webp",
       title: "Aesthetic Surgery",
       detail: "Surgical procedures designed to restore harmony between body and mind — boosting self-confidence through personalized body contouring, breast surgery, rhinoplasty, and more."
     },
     {
       id: 3,
-      imageSrc: "/images/services/image3.png",
+      imageSrc: "/images/services/image3.webp",
       title: "Weight Loss & Metabolic Health",
       detail: "From medical weight-loss treatments and appetite-regulating therapies to access to dietitians and bariatric surgery guidance — everything to support sustainable results."
     },
     {
       id: 4,
-      imageSrc: "/images/services/image4.png",
+      imageSrc: "/images/services/image4.webp",
       title: "IV Therapy & Wellness Boosts",
       detail: "From medical weight-loss treatments and appetite-regulating therapies to access to dietitians and bariatric surgery guidance — everything to support sustainable results."
     },
     {
       id: 5,
-      imageSrc: "/images/services/image5.png",
+      imageSrc: "/images/services/image5.webp",
       title: "Aesthetic Dentistry",
       detail: "Smile makeovers made easy: veneers, teeth whitening, invisible aligners, and more — all to help you smile with confidence."
     },
     {
       id: 6,
-      imageSrc: "/images/services/image6.png",
+      imageSrc: "/images/services/image6.webp",
       title: "Hair Restoration & Scalp Health",
       detail: "Hair transplants, anti-hair loss treatments, and regenerative therapies for hair growth — tailored to both men and women."
     },
     {
       id: 7,
-      imageSrc: "/images/services/image7.png",
+      imageSrc: "/images/services/image7.webp",
       title: "Laser Hair Removal",
       detail: "Permanent hair reduction for face, body, and hairline sculpting — using the latest technologies suited to every skin type."
     },
     {
       id: 8,
-      imageSrc: "/images/services/image8.png",
+      imageSrc: "/images/services/image8.webp",
       title: "Body Shaping & Muscle Toning",
       detail: "Sculpt your body with non-invasive muscle stimulation technologies — for a stronger, more defined physique without the gym."
     },

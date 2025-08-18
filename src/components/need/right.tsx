@@ -8,7 +8,7 @@ function Right() {
       <div className="relative mb-8">
         <div className="rounded-2xl overflow-hidden shadow-2xl">
           <Image
-            src="/images/need/right_pic.svg"
+            src="/images/need/right_pic.webp"
             alt="Patient receiving aesthetic treatment"
             width={500}
             height={350}
@@ -18,10 +18,10 @@ function Right() {
       </div>
 
       {/* Mobile App Screenshot */}
-      <div className="absolute -left-20 -bottom-20 bg-[#E5CDB9] rounded-3xl p-2 shadow-2xl max-w-md overflow-visible hidden lg:block">
+      <div className="absolute -left-40 -bottom-20 rounded-3xl p-2 max-w-md overflow-visible hidden lg:block">
         <div className="relative">
           <Image
-            src="/images/need/mobile.svg"
+            src="/images/need/mobile.webp"
             alt="Mobile app interface"
             width={560}
             height={535}

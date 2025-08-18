@@ -22,7 +22,7 @@ const PhoneWithScroll = () => {
             >
                 <div className="w-full h-full ">
                     <Image
-                        src="/images/hero/content.png"
+                        src="/images/hero/content.webp"
                         alt="Scrolling content"
                         width={226}
                         height={1000}

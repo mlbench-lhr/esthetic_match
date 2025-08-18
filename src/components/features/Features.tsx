@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const leftFeatures = [
   {
-    icon: "/images/features/filter.svg",
+    icon: "/images/features/filter.webp",
     title: "Ultra-Precise Filters",
     description: "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry.",
     className: "lg:items-start text-center lg:text-left items-center"
@@ -17,13 +17,13 @@ const leftFeatures = [
 
 const rightFeatures = [
   {
-    icon: "/images/features/users.svg",
+    icon: "/images/features/users.webp",
     title: "Rich Practitioner Profiles",
     description: "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place.",
     className: "lg:text-right lg:items-end text-center items-center lg:mt-30 mt-10"
   },
   {
-    icon: "/images/features/shield.svg",
+    icon: "/images/features/shield.webp",
     title: "Online Medical Opinion",
     description: "Request a remote medical opinion before booking — to gain clarity, ask questions, and confirm your perfect match with confidence.",
     className: "lg:text-right lg:items-end text-center items-center"
@@ -50,7 +50,7 @@ export default function Features() {
       {/* Center phone mockup */}
       <div className="relative z-20 hidden lg:block">
         <Image
-          src="/images/features/mobile.svg"
+          src="/images/features/mobile.webp"
           alt="Aesthetic Match App Interface"
           width={350}
           height={700}

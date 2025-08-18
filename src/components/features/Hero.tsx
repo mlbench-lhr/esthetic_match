@@ -12,8 +12,8 @@ export default function Hero() {
         <HeaderSection />
         <Features />
         <div className="flex flex-row gap-4 lg:mt-0 mt-10">
-          <StoreButtons href="#" icon="images/features/playstore.svg" topText="GET IT ON" bottomText="Google Play" />
-          <StoreButtons href="#" icon="images/features/apple.svg" topText="Download on the" bottomText="App Store" />
+          <StoreButtons href="#" icon="/images/features/playstore.webp" topText="GET IT ON" bottomText="Google Play" />
+          <StoreButtons href="#" icon="/images/features/apple.webp" topText="Download on the" bottomText="App Store" />
         </div>
       </div>
     </div>

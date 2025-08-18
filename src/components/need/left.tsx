@@ -17,7 +17,7 @@ function Left() {
                 <div>
                     <div>
                         <Image
-                            src="/images/need/patient.svg"
+                            src="/images/need/patient.webp"
                             width={30}
                             height={30}
                             alt="Patient"
@@ -30,7 +30,7 @@ function Left() {
                 <div>
                     <div>
                         <Image
-                            src="/images/need/practitioner.svg"
+                            src="/images/need/practitioner.webp"
                             width={30}
                             height={30}
                             alt="practitioner"

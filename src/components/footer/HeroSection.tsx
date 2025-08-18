@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
           {/* Hero Image Container */}
           <div className="relative rounded-3xl overflow-hidden mb-8 shadow-2xl h-[400px] lg:h-full">
             <Image
-              src="/images/footer/pic.svg" // Replace with your actual image path
+              src="/images/footer/pic.webp" // Replace with your actual image path
               alt="Skincare consultation"
               width={800}
               height={600}
@@ -30,13 +30,13 @@ const HeroSection: React.FC = () => {
               <div className="flex flex-row gap-4">
                 <StoreButtons
                   href="#"
-                  icon="images/features/playstore.svg"
+                  icon="/images/features/playstore.webp"
                   topText="GET IT ON"
                   bottomText="Google Play"
                 />
                 <StoreButtons
                   href="#"
-                  icon="images/features/apple.svg"
+                  icon="/images/features/apple.webp"
                   topText="Download on the"
                   bottomText="App Store"
                 />

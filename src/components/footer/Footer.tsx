@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                   className="w-8 h-8 hover:opacity-70 transition-opacity"
                 >
                   <Image
-                    src={`/images/footer/${platform}.svg`}
+                    src={`/images/footer/${platform}.webp`}
                     alt={platform}
                     width={32}
                     height={32}
