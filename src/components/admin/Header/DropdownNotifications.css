@@ -1,0 +1,21 @@
+.modal-body-custom {
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
+}
+
+.modal-body-custom::-webkit-scrollbar {
+    width: 5px;
+}
+
+.modal-body-custom::-webkit-scrollbar-track {
+    background: #F8F8F8;
+}
+
+.modal-body-custom::-webkit-scrollbar-thumb {
+    background: #c9c2c2;
+    border-radius: 30px;
+}
+
+.modal-content {
+    border: none;
+}

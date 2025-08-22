@@ -1,15 +1,8 @@
 "use client";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-// import { UserContext } from "@/context/UserContext";
 import { useSidebar } from "@/context/SidebarContext";
 import CloseButton from "@/components/ui/CloseButton";
 
@@ -20,11 +13,6 @@ type NavItem = {
   path?: string;
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
-
-interface User {
-  username: string;
-  email: string;
-}
 
 const navItems: NavItem[] = [
   {
@@ -227,7 +215,6 @@ const AppSidebar: React.FC = () => {
     }
   }, [openSubmenu]);
 
-  // Close mobile sidebar when clicking on a link
   const handleLinkClick = () => {
     if (isMobileOpen) {
       toggleMobileSidebar();
@@ -444,45 +431,6 @@ const AppSidebar: React.FC = () => {
               {renderMenuItems(navItems, "main")}
               {othersItems.length > 0 && renderMenuItems(othersItems, "others")}
             </div>
-
-            {/* User Profile Section */}
-            {/* <div className="mt-auto pb-4">
-              <div
-                className={`flex items-center gap-3 p-3 transition-colors hover:bg-gray-50 rounded-lg ${
-                  !isExpanded && !isHovered && !isMobileOpen
-                    ? "lg:justify-center"
-                    : "lg:justify-start"
-                }`}
-              >
-                <div className="flex flex-shrink-0 justify-center items-center bg-primary rounded-full w-8 h-8">
-                  <span className="font-semibold text-white text-lg">
-                    {user?.avatar ? (
-                      <img
-                        src={user.avatar}
-                        alt="User Avatar"
-                        className="rounded-full w-full h-full object-cover"
-                      />
-                    ) : (
-                      <span className="text-2xl">
-                        {user?.username
-                          ? user.username.charAt(0).toUpperCase()
-                          : "U"}
-                      </span>
-                    )}
-                  </span>
-                </div>
-                {(isExpanded || isHovered || isMobileOpen) && (
-                  <div className="flex flex-col flex-1 min-w-0">
-                    <span className="font-medium text-gray-900 truncate">
-                      {user ? user.username : ""}
-                    </span>
-                    <span className="text-gray-500 text-sm truncate">
-                      {user ? user.email : ""}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div> */}
           </div>
         </nav>
       </div>
