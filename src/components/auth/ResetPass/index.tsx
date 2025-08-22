@@ -1,26 +1,80 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormValues = {
-  email: string;
-  password: string;
+  email?: string;
+  newPassword: string;
+  confirmPassword: string;
 };
 
 const ResetPassword = () => {
   const router = useRouter();
+  const [savedEmail, setSavedEmail] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Login form submitted:", data);
+  useEffect(() => {
+    try {
+      const e = localStorage.getItem("reset_email");
+      if (e) setSavedEmail(e);
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
+    if (savedEmail) return;
+    try {
+      const match = document.cookie.match(/(?:^|; )reset_email=([^;]+)/);
+      if (match) setSavedEmail(decodeURIComponent(match[1]));
+    } catch {
+      // ignore
+    }
+  }, [savedEmail]);
+
+  const onSubmit = async (data: FormValues) => {
+    const email = data.email || savedEmail;
+    if (!email)
+      return toast.error(
+        "Missing email — start the forgot-password flow first"
+      );
+    if (!data.newPassword || !data.confirmPassword)
+      return toast.error("Please enter and confirm your new password");
+    if (data.newPassword !== data.confirmPassword)
+      return toast.error("Passwords do not match");
+    if (data.newPassword.length < 6)
+      return toast.error("Password should be at least 6 characters");
+
+    try {
+      const res = await fetch("/api/auth/resetpass", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: data.newPassword }),
+      });
+      const json = await res.json();
+      if (!res.ok) return toast.error(json.error || "Failed to reset password");
+      toast.success("Password updated — please login with your new password");
+      // cleanup
+      try {
+        localStorage.removeItem("reset_email");
+      } catch {
+        /* ignore */
+      }
+      setTimeout(() => router.push("/password"), 1200);
+    } catch (err) {
+      console.error(err);
+      toast.error("Server error");
+    }
   };
 
   return (
@@ -64,18 +118,18 @@ const ResetPassword = () => {
                 New Password
               </label>
               <Input
-                id="password"
+                id="newPassword"
                 type="password"
                 placeholder="Enter your new password"
-                {...register("password", {
+                {...register("newPassword", {
                   required: "Password is required",
                 })}
                 withIcon
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
-              {errors.password && (
+              {errors.newPassword && (
                 <p className="text-red-500 text-sm">
-                  {errors.password.message}
+                  {errors.newPassword.message}
                 </p>
               )}
             </div>
@@ -86,18 +140,18 @@ const ResetPassword = () => {
                 Confirm New Password
               </label>
               <Input
-                id="password"
+                id="confirmPassword"
                 type="password"
-                placeholder="Enter your new password"
-                {...register("password", {
+                placeholder="Confirm your new password"
+                {...register("confirmPassword", {
                   required: "Confirm Password is required",
                 })}
                 withIcon
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
-              {errors.password && (
+              {errors.confirmPassword && (
                 <p className="text-red-500 text-sm">
-                  {errors.password.message}
+                  {errors.confirmPassword.message}
                 </p>
               )}
             </div>
@@ -105,11 +159,11 @@ const ResetPassword = () => {
             <Button
               type="submit"
               variant="primary"
-              onClick={() => router.push("/password")}
               className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-20 w-full text-[#F4E9DC] transition-colors cursor-pointer"
             >
               Continue
             </Button>
+            <ToastContainer />
           </form>
         </div>
       </div>
