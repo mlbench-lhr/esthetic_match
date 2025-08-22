@@ -5,6 +5,11 @@ import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormValues = {
   email: string;
@@ -18,12 +23,29 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Login form submitted:", data);
+  const auth = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const router = useRouter();
+
+  const onSubmit = async (data: FormValues) => {
+    setErrorMsg(null);
+    setLoading(true);
+    try {
+      await auth.login(data.email, data.password);
+      toast.success("Login successful", { position: "top-right" });
+      router.push("/admin/dashboard");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setErrorMsg(message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex h-screen">
+      <ToastContainer />
       {/* Left Panel */}
       <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-10 w-1/2 text-white">
         <div className="text-center">
@@ -105,12 +127,13 @@ const Login = () => {
             </div>
 
             {/* Login Button */}
+            {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
             <Button
               type="submit"
               variant="primary"
               className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
             >
-              Login
+              {loading ? "Signing in..." : "Login"}
             </Button>
           </form>
         </div>

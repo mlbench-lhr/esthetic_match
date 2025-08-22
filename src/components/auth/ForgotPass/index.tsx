@@ -1,11 +1,13 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type FormValues = {
   email: string;
@@ -14,6 +16,9 @@ type FormValues = {
 
 const ForgotPassword = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
+  const [emailValue, setEmailValue] = useState("");
+  const [resendDisabled, setResendDisabled] = useState(false);
+  const [resendTimer, setResendTimer] = useState(0);
 
   const router = useRouter();
 
@@ -44,7 +49,50 @@ const ForgotPassword = () => {
   } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
-    console.log("Login form submitted:", data);
+    // send OTP
+    setEmailValue(data.email);
+    fetch("/api/auth/otp/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email }),
+    }).then(async (res) => {
+      const json = await res.json();
+      if (!res.ok) {
+        toast.error(json.error || "Failed to send OTP");
+        if (json.nextAllowedIn) {
+          setResendTimer(json.nextAllowedIn);
+          setResendDisabled(true);
+        }
+        return;
+      }
+      toast.success("OTP sent to your email (check console if in dev)");
+      setResendDisabled(true);
+      setResendTimer(json.resendCooldown || 60);
+    });
+  };
+
+  useEffect(() => {
+    if (!resendDisabled) return;
+    if (resendTimer <= 0) {
+      setResendDisabled(false);
+      return;
+    }
+    const t = setInterval(() => setResendTimer((s) => s - 1), 1000);
+    return () => clearInterval(t);
+  }, [resendDisabled, resendTimer]);
+
+  const handleVerify = async () => {
+    const code = otp.join("");
+    if (code.length !== 6) return toast.error("Enter full 6-digit OTP");
+    const res = await fetch("/api/auth/otp/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: emailValue, otp: code }),
+    });
+    const json = await res.json();
+    if (!res.ok) return toast.error(json.error || "OTP verify failed");
+    toast.success("OTP verified — you can now reset your password");
+    router.push("/resetpassword");
   };
 
   return (
@@ -82,8 +130,8 @@ const ForgotPassword = () => {
             link to reset your password.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Email Input */}
+          {/* Email Input */}
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="block mb-2 font-bold text-[#000000] text-sm">
                 Email Address
@@ -93,6 +141,8 @@ const ForgotPassword = () => {
                 type="email"
                 placeholder="Enter your email"
                 {...register("email", { required: "Email is required" })}
+                // value={emailValue}
+                // onChange={(e) => setEmailValue(e.target.value)}
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
               {errors.email && (
@@ -102,50 +152,54 @@ const ForgotPassword = () => {
 
             {/* Send Otp */}
             <div className="text-left">
-              <Link
-                href="/forgotpassword"
-                className="text-[#16263D] text-sm underline"
+              <button
+                type="submit"
+                disabled={resendDisabled}
+                className={`text-[#16263D] text-sm cursor-pointer underline ${
+                  resendDisabled ? "opacity-50 pointer-events-none" : ""
+                }`}
               >
-                Send OTP
-              </Link>
+                {resendDisabled ? `Resend in ${resendTimer}s` : "Send OTP"}
+              </button>
             </div>
-
-            <div className="flex justify-center gap-2 md:gap-4 mb-4 md:mb-6">
-              {otp.map((digit, i) => (
-                <input
-                  key={i}
-                  ref={(el) => {
-                    if (el) inputRefs.current[i] = el;
-                  }}
-                  type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  maxLength={1}
-                  value={digit}
-                  onChange={(e) =>
-                    handleChange(e.target.value.replace(/[^0-9]/g, ""), i)
-                  }
-                  onKeyDown={(e) => {
-                    if (e.key === "Backspace" && !otp[i] && i > 0) {
-                      inputRefs.current[i - 1]?.focus();
-                    }
-                  }}
-                  onPaste={handlePaste}
-                  className="mt-6 mb-12 border border-[#0D0F2B1A] focus:border-[#2A2A2A] rounded-lg md:rounded-2xl focus:outline-none w-[32px] md:w-[40px] h-[32px] md:h-[40px] text-[#0D0F2B80] text-[12px] md:text-[19px] text-center"
-                />
-              ))}
-            </div>
-
-            {/* Verify Button */}
-            <Button
-              type="submit"
-              variant="primary"
-              onClick={() => router.push("/resetpassword")}
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
-            >
-              Verify
-            </Button>
           </form>
+
+          <div className="flex justify-center gap-2 md:gap-4 mb-4 md:mb-6">
+            {otp.map((digit, i) => (
+              <input
+                key={i}
+                ref={(el) => {
+                  if (el) inputRefs.current[i] = el;
+                }}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={1}
+                value={digit}
+                onChange={(e) =>
+                  handleChange(e.target.value.replace(/[^0-9]/g, ""), i)
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Backspace" && !otp[i] && i > 0) {
+                    inputRefs.current[i - 1]?.focus();
+                  }
+                }}
+                onPaste={handlePaste}
+                className="mt-6 mb-12 border border-[#0D0F2B1A] focus:border-[#2A2A2A] rounded-lg md:rounded-2xl focus:outline-none w-[32px] md:w-[40px] h-[32px] md:h-[40px] text-[#0D0F2B80] text-[12px] md:text-[19px] text-center"
+              />
+            ))}
+          </div>
+
+          {/* Verify Button */}
+          <Button
+            type="button"
+            variant="primary"
+            onClick={handleVerify}
+            className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+          >
+            Verify
+          </Button>
+          <ToastContainer />
         </div>
       </div>
     </div>
