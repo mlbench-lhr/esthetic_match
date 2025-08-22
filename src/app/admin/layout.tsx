@@ -6,7 +6,7 @@ import Backdrop from "@/layout/Backdrop";
 import HamburgerMenu from "@/components/ui/HamburgerMenu";
 import { usePathname } from "next/navigation";
 import React from "react";
-import Header from "@/layout/Header";
+import Header from "@/components/admin/Header";
 
 export default function AdminLayout({
   children,
@@ -46,12 +46,15 @@ export default function AdminLayout({
       )}
 
       <main
-        className={`flex-1 transition-all duration-300 ease-in-out ${sidebarMargin} px-4 md:px-6 ${
-          shouldHideSidebar ? "pt-0" : "pt-16 lg:pt-0"
-        } bg-[#FAFAFA]`}
+        className={`flex-1 transition-all duration-300 ease-in-out ${sidebarMargin} ${
+          shouldHideSidebar ? "pt-0" : "pt-0 lg:pt-0"
+        } bg-[#F4E9DC]`}
       >
         <div className="flex justify-center min-h-screen">
-          <div className="w-full max-w-screen-xl">{children}</div>
+          <div className="w-full">
+            <Header />
+            {children}
+          </div>
         </div>
       </main>
     </div>

@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   email: string;
   password: string;
 };
 
-const Login = () => {
+const ResetPassword = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -50,40 +51,25 @@ const Login = () => {
       <div className="flex justify-center items-center bg-[#F4E9DF] w-full md:w-1/2">
         <div className="bg-white shadow-md p-8 rounded-md w-[490px]">
           <h2 className="mt-6 mb-4 font-semibold text-4xl text-center">
-            Sign In
+            Reset Password?
           </h2>
           <p className="mb-10 text-gray-500 text-sm text-center">
-            Please enter your details.
+            Enter your new password & confirm password to reset your password
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Email Input */}
             <div>
               <label className="block mb-2 font-bold text-[#000000] text-sm">
-                Email Address
-              </label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                {...register("email", { required: "Email is required" })}
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-              )}
-            </div>
-
-            {/* Password Input */}
-            <div>
-              <label className="block mb-2 font-bold text-[#000000] text-sm">
-                Password
+                New Password
               </label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
-                {...register("password", { required: "Password is required" })}
+                placeholder="Enter your new password"
+                {...register("password", {
+                  required: "Password is required",
+                })}
                 withIcon
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
@@ -94,23 +80,35 @@ const Login = () => {
               )}
             </div>
 
-            {/* Forgot Password */}
-            <div className="text-left">
-              <Link
-                href="/forgotpassword"
-                className="mt-5 text-[#16263D] text-sm hover:underline"
-              >
-                Forgot Password?
-              </Link>
+            {/* Password Input */}
+            <div>
+              <label className="block mb-2 font-bold text-[#000000] text-sm">
+                Confirm New Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your new password"
+                {...register("password", {
+                  required: "Confirm Password is required",
+                })}
+                withIcon
+                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
-            {/* Login Button */}
             <Button
               type="submit"
               variant="primary"
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+              onClick={() => router.push("/password")}
+              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-20 w-full text-[#F4E9DC] transition-colors cursor-pointer"
             >
-              Login
+              Continue
             </Button>
           </form>
         </div>
@@ -119,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;
