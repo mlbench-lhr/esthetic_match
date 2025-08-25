@@ -5,7 +5,7 @@ import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type FormValues = {
@@ -78,10 +78,10 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex md:flex-row flex-col w-full h-screen">
       {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-10 w-1/2 text-white">
-        <div className="text-center">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-6 lg:px-10 w-full md:w-1/2 text-white">
+        <div className="max-w-md text-center">
           {/* Logo */}
           <div className="flex justify-center items-center mb-6">
             <Image
@@ -91,10 +91,10 @@ const ResetPassword = () => {
               height={120}
             />
           </div>
-          <h1 className="mb-2 font-bold text-4xl">
+          <h1 className="mb-2 font-bold text-2xl sm:text-3xl lg:text-4xl">
             Welcome to Esthetic Match!
           </h1>
-          <p className="max-w-md text-[#FAF9F780] text-[14px] md:text-[16px]">
+          <p className="text-[#FAF9F780] text-sm sm:text-base">
             Access your Esthetic Match dashboard to easily view and manage
             patient, clinic, and doctor profiles.
           </p>
@@ -102,19 +102,22 @@ const ResetPassword = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex justify-center items-center bg-[#F4E9DF] w-full md:w-1/2">
-        <div className="bg-white shadow-md p-8 rounded-md w-[490px]">
-          <h2 className="mt-6 mb-4 font-semibold text-4xl text-center">
+      <div className="flex justify-center items-center bg-[#F4E9DF] px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
+        <div className="bg-white shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
+          <h2 className="mt-4 sm:mt-6 mb-3 sm:mb-4 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center">
             Reset Password?
           </h2>
-          <p className="mb-10 text-gray-500 text-sm text-center">
+          <p className="mb-6 sm:mb-10 text-gray-500 text-xs sm:text-sm text-center">
             Enter your new password & confirm password to reset your password
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Email Input */}
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 sm:space-y-6"
+          >
+            {/* New Password Input */}
             <div>
-              <label className="block mb-2 font-bold text-[#000000] text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
                 New Password
               </label>
               <Input
@@ -128,15 +131,15 @@ const ResetPassword = () => {
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
               {errors.newPassword && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-xs sm:text-sm">
                   {errors.newPassword.message}
                 </p>
               )}
             </div>
 
-            {/* Password Input */}
+            {/* Confirm Password Input */}
             <div>
-              <label className="block mb-2 font-bold text-[#000000] text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
                 Confirm New Password
               </label>
               <Input
@@ -150,7 +153,7 @@ const ResetPassword = () => {
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
               {errors.confirmPassword && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-xs sm:text-sm">
                   {errors.confirmPassword.message}
                 </p>
               )}
@@ -159,11 +162,10 @@ const ResetPassword = () => {
             <Button
               type="submit"
               variant="primary"
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-20 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-10 sm:mt-16 lg:mt-20 w-full text-[#F4E9DC] transition-colors cursor-pointer"
             >
               Continue
             </Button>
-            <ToastContainer />
           </form>
         </div>
       </div>

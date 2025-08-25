@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type FormValues = {
@@ -44,11 +44,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <ToastContainer />
+    <div className="flex md:flex-row flex-col w-full h-screen">
       {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-10 w-1/2 text-white">
-        <div className="text-center">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-6 lg:px-10 w-full md:w-1/2 text-white">
+        <div className="max-w-md text-center">
           {/* Logo */}
           <div className="flex justify-center items-center mb-6">
             <Image
@@ -58,10 +57,10 @@ const Login = () => {
               height={120}
             />
           </div>
-          <h1 className="mb-2 font-bold text-4xl">
+          <h1 className="mb-2 font-bold text-2xl sm:text-3xl lg:text-4xl">
             Welcome to Esthetic Match!
           </h1>
-          <p className="max-w-md text-[#FAF9F780] text-[14px] md:text-[16px]">
+          <p className="text-[#FAF9F780] text-sm sm:text-base">
             Access your Esthetic Match dashboard to easily view and manage
             patient, clinic, and doctor profiles.
           </p>
@@ -69,19 +68,22 @@ const Login = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex justify-center items-center bg-[#F4E9DF] w-full md:w-1/2">
-        <div className="bg-white shadow-md p-8 rounded-md w-[490px]">
-          <h2 className="mt-6 mb-4 font-semibold text-4xl text-center">
+      <div className="flex justify-center items-center bg-[#F4E9DF] px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
+        <div className="bg-white shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
+          <h2 className="mt-4 sm:mt-6 mb-3 sm:mb-4 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center">
             Sign In
           </h2>
-          <p className="mb-10 text-gray-500 text-sm text-center">
+          <p className="mb-6 sm:mb-10 text-gray-500 text-xs sm:text-sm text-center">
             Please enter your details.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 sm:space-y-6"
+          >
             {/* Email Input */}
             <div>
-              <label className="block mb-2 font-bold text-[#000000] text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
                 Email Address
               </label>
               <Input
@@ -92,13 +94,15 @@ const Login = () => {
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                <p className="text-red-500 text-xs sm:text-sm">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
             {/* Password Input */}
             <div>
-              <label className="block mb-2 font-bold text-[#000000] text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
                 Password
               </label>
               <Input
@@ -110,7 +114,7 @@ const Login = () => {
                 className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
               />
               {errors.password && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-xs sm:text-sm">
                   {errors.password.message}
                 </p>
               )}
@@ -120,18 +124,22 @@ const Login = () => {
             <div className="text-left">
               <Link
                 href="/forgotpassword"
-                className="mt-5 text-[#16263D] text-sm hover:underline"
+                className="mt-3 sm:mt-5 text-[#16263D] text-xs sm:text-sm hover:underline"
               >
                 Forgot Password?
               </Link>
             </div>
 
+            {/* Error Message */}
+            {errorMsg && (
+              <p className="text-red-500 text-xs sm:text-sm">{errorMsg}</p>
+            )}
+
             {/* Login Button */}
-            {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
             <Button
               type="submit"
               variant="primary"
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-6 sm:mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
             >
               {loading ? "Signing in..." : "Login"}
             </Button>
