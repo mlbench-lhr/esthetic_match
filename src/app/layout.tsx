@@ -4,6 +4,8 @@ import { SidebarProvider } from "@/context/SidebarContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { Geist, Geist_Mono, Raleway } from "next/font/google";
 import { NotificationProvider } from "@/context/NotificationContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Esthetic Match",
@@ -40,6 +42,7 @@ export default function RootLayout({
             <body
               className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} antialiased`}
             >
+              <ToastContainer />
               {children}
             </body>
           </AuthProvider>
