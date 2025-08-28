@@ -55,7 +55,15 @@ const ForgotPassword = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: data.email }),
     }).then(async (res) => {
-      const json = await res.json();
+      let json;
+      try {
+        json = await res.json();
+      } catch {
+        toast.error(
+          "Server error - please ensure the development server is running"
+        );
+        return;
+      }
       if (!res.ok) {
         toast.error(json.error || "Failed to send OTP");
         if (json.nextAllowedIn) {
@@ -88,7 +96,14 @@ const ForgotPassword = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: emailValue, otp: code }),
     });
-    const json = await res.json();
+    let json;
+    try {
+      json = await res.json();
+    } catch {
+      return toast.error(
+        "Server error - please ensure the development server is running"
+      );
+    }
     if (!res.ok) return toast.error(json.error || "OTP verify failed");
     toast.success("OTP verified — you can now reset your password");
     router.push("/resetpassword");
