@@ -42,7 +42,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await res.json();
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      // If response is not JSON (e.g., HTML error page), throw a generic error
+      throw new Error(
+        "Server error - please ensure the development server is running"
+      );
+    }
+
     if (!res.ok) throw new Error(data.error || "Login failed");
 
     setUser(data.user);

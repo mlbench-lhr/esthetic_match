@@ -61,7 +61,14 @@ const ResetPassword = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: data.newPassword }),
       });
-      const json = await res.json();
+      let json;
+      try {
+        json = await res.json();
+      } catch {
+        return toast.error(
+          "Server error - please ensure the development server is running"
+        );
+      }
       if (!res.ok) return toast.error(json.error || "Failed to reset password");
       toast.success("Password updated — please login with your new password");
       // cleanup
