@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Ecommerce() {
   return (
-    <div className="gap-4 md:gap-6 grid grid-cols-12 p-4">
+    <div className="gap-4 md:gap-6 grid grid-cols-12">
       <Text as="h1" className="text-primary_black">
         Dashboard
       </Text>

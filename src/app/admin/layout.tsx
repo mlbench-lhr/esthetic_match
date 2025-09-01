@@ -51,7 +51,7 @@ export default function AdminLayout({
         } bg-primary`}
       >
         <div className="flex justify-center min-h-screen">
-          <div className="w-full">
+          <div className="px-4 sm:px-6 w-full">
             <Header />
             {children}
           </div>
