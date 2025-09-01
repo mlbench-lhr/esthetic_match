@@ -8,33 +8,33 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title:
-    "Next.js E-commerce Dashboard | TailAdmin - Next.js Dashboard Template",
-  description: "This is Next.js Home for TailAdmin Dashboard Template",
+  title: "Esthetic Match - Dashboard",
+  description: "This is the dashboard for Esthetic Match",
 };
 
 export default function Ecommerce() {
   return (
-    <div className="gap-4 md:gap-6 grid grid-cols-12">
-      <div className="space-y-6 col-span-12 xl:col-span-7">
+    <div className="gap-4 md:gap-6 grid grid-cols-12 p-4">
+      <h1>Dashboard</h1>
+      <div className="space-y-6 col-span-12">
         <EcommerceMetrics />
 
-        <MonthlySalesChart />
+        {/* <MonthlySalesChart /> */}
       </div>
 
-      <div className="col-span-12 xl:col-span-5">
+      {/* <div className="col-span-12 xl:col-span-5">
         <MonthlyTarget />
-      </div>
+      </div> */}
 
       <div className="col-span-12">
         <StatisticsChart />
       </div>
 
       <div className="col-span-12 xl:col-span-5">
-        <DemographicCard />
+        {/* <DemographicCard /> */}
       </div>
 
-      <div className="col-span-12 xl:col-span-7">
+      <div className="col-span-12">
         <RecentOrders />
       </div>
     </div>

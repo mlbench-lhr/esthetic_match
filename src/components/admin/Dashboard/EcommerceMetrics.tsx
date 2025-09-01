@@ -1,17 +1,15 @@
 "use client";
 import React from "react";
 import Badge from "@/components/ui/badge/Badge";
-import { ArrowDownIcon, ArrowUpIcon, Box, GroupIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon, Box, Users } from "lucide-react";
 
 export const EcommerceMetrics = () => {
   return (
     <div className="gap-4 md:gap-6 grid grid-cols-1 sm:grid-cols-2">
       {/* <!-- Metric Item Start --> */}
-      <div className="bg-white dark:bg-white/[0.03] p-5 md:p-6 border border-gray-200 dark:border-gray-800 rounded-2xl">
-        <div className="flex justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-xl w-12 h-12">
-          <GroupIcon
-          // className="size-6 text-gray-800 dark:text-white/90"
-          />
+      <div className="bg-[#F6F1EB] p-5 md:p-6 border border-gray-200 dark:border-gray-800 rounded-2xl">
+        <div className="flex justify-center items-center bg-gray-100 rounded-full w-12 h-12">
+          <Users className="size-6 text-gray-800" />
         </div>
 
         <div className="flex justify-between items-end mt-5">
@@ -33,8 +31,8 @@ export const EcommerceMetrics = () => {
 
       {/* <!-- Metric Item Start --> */}
       <div className="bg-white dark:bg-white/[0.03] p-5 md:p-6 border border-gray-200 dark:border-gray-800 rounded-2xl">
-        <div className="flex justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-xl w-12 h-12">
-          <Box className="text-gray-800 dark:text-white/90" />
+        <div className="flex justify-center items-center bg-gray-100 rounded-full w-12 h-12">
+          <Box className="text-gray-800" />
         </div>
         <div className="flex justify-between items-end mt-5">
           <div>

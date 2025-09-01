@@ -48,7 +48,7 @@ export default function AdminLayout({
       <main
         className={`flex-1 transition-all duration-300 ease-in-out ${sidebarMargin} ${
           shouldHideSidebar ? "pt-0" : "pt-0 lg:pt-0"
-        } bg-[#F4E9DC]`}
+        } bg-primary`}
       >
         <div className="flex justify-center min-h-screen">
           <div className="w-full">

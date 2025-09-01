@@ -112,7 +112,7 @@ const ForgotPassword = () => {
   return (
     <div className="flex md:flex-row flex-col w-full h-screen">
       {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-6 lg:px-10 w-full md:w-1/2 text-white">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[url('/images/login/login-bg.png')] bg-cover bg-center px-6 lg:px-10 w-full md:w-1/2 text-white">
         <div className="max-w-md text-center">
           {/* Logo */}
           <div className="flex justify-center items-center mb-6">
@@ -126,7 +126,7 @@ const ForgotPassword = () => {
           <h1 className="mb-2 font-bold text-2xl sm:text-3xl lg:text-4xl">
             Welcome to Esthetic Match!
           </h1>
-          <p className="text-[#FAF9F780] text-sm sm:text-base">
+          <p className="text-primary_skin text-sm sm:text-base">
             Access your Esthetic Match dashboard to easily view and manage
             patient, clinic, and doctor profiles.
           </p>
@@ -134,12 +134,12 @@ const ForgotPassword = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex justify-center items-center bg-[#F4E9DF] px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
-        <div className="bg-white shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
+      <div className="flex justify-center items-center bg-primary px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
+        <div className="bg-white_primary shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
           <h2 className="mt-4 sm:mt-6 mb-3 sm:mb-4 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center">
             Forgot Password?
           </h2>
-          <p className="mb-6 sm:mb-10 text-gray-500 text-xs sm:text-sm text-center">
+          <p className="mb-6 sm:mb-10 text-grey_secondary text-xs sm:text-sm text-center">
             Enter the email address linked to your account, and we’ll send you a
             link to reset your password.
           </p>
@@ -147,7 +147,7 @@ const ForgotPassword = () => {
           {/* Email Input */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-primary_black text-xs sm:text-sm">
                 Email Address
               </label>
               <Input
@@ -155,10 +155,10 @@ const ForgotPassword = () => {
                 type="email"
                 placeholder="Enter your email"
                 {...register("email", { required: "Email is required" })}
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+                className="border-black_secondary/10 rounded-full w-full text-secondary_black/80 placeholder:text-secondary_black/80"
               />
               {errors.email && (
-                <p className="text-red-500 text-xs sm:text-sm">
+                <p className="text-red text-xs sm:text-sm">
                   {errors.email.message}
                 </p>
               )}
@@ -169,7 +169,7 @@ const ForgotPassword = () => {
               <button
                 type="submit"
                 disabled={resendDisabled}
-                className={`text-[#16263D] text-xs sm:text-sm cursor-pointer underline ${
+                className={`text-secondary text-xs sm:text-sm cursor-pointer underline ${
                   resendDisabled ? "opacity-50 pointer-events-none" : ""
                 }`}
               >
@@ -200,7 +200,7 @@ const ForgotPassword = () => {
                   }
                 }}
                 onPaste={handlePaste}
-                className="mt-6 mb-8 sm:mb-12 border border-[#0D0F2B1A] focus:border-[#2A2A2A] rounded-lg sm:rounded-xl md:rounded-2xl focus:outline-none w-[32px] sm:w-[36px] md:w-[40px] h-[32px] sm:h-[36px] md:h-[40px] text-[#0D0F2B80] text-[12px] sm:text-[16px] md:text-[19px] text-center"
+                className="mt-6 mb-8 sm:mb-12 border border-black_secondary/10 focus:border-black_secondary rounded-lg sm:rounded-xl md:rounded-2xl focus:outline-none w-[32px] sm:w-[36px] md:w-[40px] h-[32px] sm:h-[36px] md:h-[40px] text-[12px] text-secondary_black/80 sm:text-[16px] md:text-[19px] text-center"
               />
             ))}
           </div>
@@ -210,7 +210,7 @@ const ForgotPassword = () => {
             type="button"
             variant="primary"
             onClick={handleVerify}
-            className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-6 sm:mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+            className="bg-black_secondary hover:bg-black_tertiary mt-6 sm:mt-9 w-full text-primary transition-colors cursor-pointer"
           >
             Verify
           </Button>
