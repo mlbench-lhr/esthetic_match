@@ -39,15 +39,15 @@ const Text = forwardRef<HTMLHeadingElement | HTMLParagraphElement, Props>(
     const baseClasses = "font-raleway text-primary font-semibold";
 
     const variants = {
-      h1: "text-[42px] md:text-[56px] font-semibold",
-      h2: "text-[36px] md:text-[43px] font-semibold",
-      h3: "text-[24px] md:text-[32px] font-semibold",
-      h4: "text-[20px] md:text-[30px] font-semibold",
-      h5: "text-[14px] md:text-[20px] font-semibold",
-      p: "text-[12px] font-medium",
-      p1: "text-[18px] md:text-[36px] font-medium",
-      p2: "text-[14px] md:text-[18px] font-medium",
-      p3: "text-[12px] md:text-[14px] font-medium",
+      h1: "text-[28px] md:text-[32px] font-bold",
+      h2: "text-[24px] md:text-[28px] font-bold",
+      h3: "text-[18px] md:text-[20px] font-semibold",
+      h4: "text-[16px] md:text-[18px] font-semibold",
+      h5: "text-[14px] md:text-[16px] font-semibold",
+      p: "text-[16px] md:text-[18px] font-medium",
+      p1: "text-[14px] md:text-[16px] font-medium",
+      p2: "text-[12px] md:text-[14px] font-medium",
+      p3: "text-[10px] md:text-[12px] font-medium",
     };
 
     const Component = as === "p1" || as === "p2" || as === "p3" ? "p" : as;

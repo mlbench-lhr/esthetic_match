@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <div className="flex md:flex-row flex-col w-full h-screen">
       {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-6 lg:px-10 w-full md:w-1/2 text-white">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[url('/images/login/login-bg.png')] bg-cover bg-center px-6 lg:px-10 w-full md:w-1/2 text-white">
         <div className="max-w-md text-center">
           {/* Logo */}
           <div className="flex justify-center items-center mb-6">
@@ -60,7 +60,7 @@ const Login = () => {
           <h1 className="mb-2 font-bold text-2xl sm:text-3xl lg:text-4xl">
             Welcome to Esthetic Match!
           </h1>
-          <p className="text-[#FAF9F780] text-sm sm:text-base">
+          <p className="text-tertiary_skin/50 text-sm sm:text-base">
             Access your Esthetic Match dashboard to easily view and manage
             patient, clinic, and doctor profiles.
           </p>
@@ -68,7 +68,7 @@ const Login = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex justify-center items-center bg-[#F4E9DF] px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
+      <div className="flex justify-center items-center bg-primary px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
         <div className="bg-white shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
           <h2 className="mt-4 sm:mt-6 mb-3 sm:mb-4 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center">
             Sign In
@@ -83,7 +83,7 @@ const Login = () => {
           >
             {/* Email Input */}
             <div>
-              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-primary_black text-xs sm:text-sm">
                 Email Address
               </label>
               <Input
@@ -91,10 +91,10 @@ const Login = () => {
                 type="email"
                 placeholder="Enter your email"
                 {...register("email", { required: "Email is required" })}
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+                className="border-primary_black/10 rounded-full w-full text-secondary_black/80 placeholder:text-secondary_black/80"
               />
               {errors.email && (
-                <p className="text-red-500 text-xs sm:text-sm">
+                <p className="text-red text-xs sm:text-sm">
                   {errors.email.message}
                 </p>
               )}
@@ -102,7 +102,7 @@ const Login = () => {
 
             {/* Password Input */}
             <div>
-              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-primary_black text-xs sm:text-sm">
                 Password
               </label>
               <Input
@@ -111,10 +111,10 @@ const Login = () => {
                 placeholder="Enter your password"
                 {...register("password", { required: "Password is required" })}
                 withIcon
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+                className="border-primary_black/10 rounded-full w-full text-secondary_black/80 placeholder:text-secondary_black/80"
               />
               {errors.password && (
-                <p className="text-red-500 text-xs sm:text-sm">
+                <p className="text-red text-xs sm:text-sm">
                   {errors.password.message}
                 </p>
               )}
@@ -124,7 +124,7 @@ const Login = () => {
             <div className="text-left">
               <Link
                 href="/forgotpassword"
-                className="mt-3 sm:mt-5 text-[#16263D] text-xs sm:text-sm hover:underline"
+                className="mt-3 sm:mt-5 text-secondary text-xs sm:text-sm hover:underline"
               >
                 Forgot Password?
               </Link>
@@ -132,14 +132,14 @@ const Login = () => {
 
             {/* Error Message */}
             {errorMsg && (
-              <p className="text-red-500 text-xs sm:text-sm">{errorMsg}</p>
+              <p className="text-red text-xs sm:text-sm">{errorMsg}</p>
             )}
 
             {/* Login Button */}
             <Button
               type="submit"
               variant="primary"
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-6 sm:mt-9 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+              className="bg-secondary hover:bg-secondary/80 mt-6 sm:mt-9 w-full text-white_primary transition-colors cursor-pointer"
             >
               {loading ? "Signing in..." : "Login"}
             </Button>

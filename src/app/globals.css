@@ -3,6 +3,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #f4e9dc;
+  --secondary: #16263d;
+  --tertiary: #efdacd;
+  --primary_black: #000000;
+  --secondary_black: #000000cc;
+  --primary_skin: #f4e9dc99;
+  --secondary_skin: #f6f1eb;
+  --tertiary_skin: #fdfbf8;
+  --green: #166534;
+  --red: #ea5655;
   --black_primary: #0c1c2e;
   --black_secondary: #212121;
   --black_tertiary: #0c1c2e;
@@ -16,6 +26,16 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-primary_black: var(--primary_black);
+  --color-secondary_black: var(--secondary_black);
+  --color-primary_skin: var(--primary_skin);
+  --color-secondary_skin: var(--secondary_skin);
+  --color-tertiary_skin: var(--tertiary_skin);
+  --color-green: var(--green);
+  --color-red: var(--red);
   --color-foreground: var(--foreground);
   --color-black_primary: var(--black_primary);
   --color-black_secondary: var(--black_secondary);
@@ -56,7 +76,7 @@ body {
   }
 
   .p1 {
-    @apply text-[18px] md:text-[36px] font-light;
+    @apply font-light text-[18px] md:text-[36px];
   }
 
   .p2 {
@@ -86,16 +106,14 @@ body {
     /* Firefox */
   }
   .swiper-pagination {
-          position: absolute !important;
-          bottom: 32px !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
-          width: auto !important;
-          display: flex !important;
-          justify-content: center !important;
-          gap: 8px !important;
-          z-index: 10 !important;
-        }
-
-  
+    position: absolute !important;
+    bottom: 32px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    z-index: 10 !important;
+  }
 }

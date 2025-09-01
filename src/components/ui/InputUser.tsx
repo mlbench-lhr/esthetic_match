@@ -49,7 +49,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={`mt-1 block w-full px-4 py-3 border shadow-sm outline-none focus:outline-none pr-10 ${
             className || ""
           } ${
-            isPassword ? "h-11 md:h-11" : "h-11 md:h-11"
+            isPassword ? "h-[30px] md:h-[40px]" : "h-[30px] md:h-[40px]"
           } text-[12px] md:text-[14px]`}
         />
 

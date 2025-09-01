@@ -87,7 +87,7 @@ const ResetPassword = () => {
   return (
     <div className="flex md:flex-row flex-col w-full h-screen">
       {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#1C2431] px-6 lg:px-10 w-full md:w-1/2 text-white">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[url('/images/login/login-bg.png')] bg-cover bg-center px-6 lg:px-10 w-full md:w-1/2 text-white">
         <div className="max-w-md text-center">
           {/* Logo */}
           <div className="flex justify-center items-center mb-6">
@@ -101,7 +101,7 @@ const ResetPassword = () => {
           <h1 className="mb-2 font-bold text-2xl sm:text-3xl lg:text-4xl">
             Welcome to Esthetic Match!
           </h1>
-          <p className="text-[#FAF9F780] text-sm sm:text-base">
+          <p className="text-primary_skin text-sm sm:text-base">
             Access your Esthetic Match dashboard to easily view and manage
             patient, clinic, and doctor profiles.
           </p>
@@ -109,12 +109,12 @@ const ResetPassword = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="flex justify-center items-center bg-[#F4E9DF] px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
-        <div className="bg-white shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
+      <div className="flex justify-center items-center bg-primary px-4 sm:px-6 lg:px-8 w-full md:w-1/2 h-full">
+        <div className="bg-white_primary shadow-md p-6 sm:p-8 rounded-md w-full max-w-md">
           <h2 className="mt-4 sm:mt-6 mb-3 sm:mb-4 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center">
             Reset Password?
           </h2>
-          <p className="mb-6 sm:mb-10 text-gray-500 text-xs sm:text-sm text-center">
+          <p className="mb-6 sm:mb-10 text-grey_secondary text-xs sm:text-sm text-center">
             Enter your new password & confirm password to reset your password
           </p>
 
@@ -124,7 +124,7 @@ const ResetPassword = () => {
           >
             {/* New Password Input */}
             <div>
-              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-primary_black text-xs sm:text-sm">
                 New Password
               </label>
               <Input
@@ -135,10 +135,10 @@ const ResetPassword = () => {
                   required: "Password is required",
                 })}
                 withIcon
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+                className="border-black_secondary/10 rounded-full w-full text-secondary_black/80 placeholder:text-secondary_black/80"
               />
               {errors.newPassword && (
-                <p className="text-red-500 text-xs sm:text-sm">
+                <p className="text-red text-xs sm:text-sm">
                   {errors.newPassword.message}
                 </p>
               )}
@@ -146,7 +146,7 @@ const ResetPassword = () => {
 
             {/* Confirm Password Input */}
             <div>
-              <label className="block mb-1 sm:mb-2 font-bold text-[#000000] text-xs sm:text-sm">
+              <label className="block mb-1 sm:mb-2 font-bold text-primary_black text-xs sm:text-sm">
                 Confirm New Password
               </label>
               <Input
@@ -157,10 +157,10 @@ const ResetPassword = () => {
                   required: "Confirm Password is required",
                 })}
                 withIcon
-                className="border-[#0000001A] rounded-full w-full text-[#00000080] placeholder:text-[#00000080]"
+                className="border-black_secondary/10 rounded-full w-full text-secondary_black/80 placeholder:text-secondary_black/80"
               />
               {errors.confirmPassword && (
-                <p className="text-red-500 text-xs sm:text-sm">
+                <p className="text-red text-xs sm:text-sm">
                   {errors.confirmPassword.message}
                 </p>
               )}
@@ -169,7 +169,7 @@ const ResetPassword = () => {
             <Button
               type="submit"
               variant="primary"
-              className="bg-[#2A2A2A] hover:bg-[#1C2431] mt-10 sm:mt-16 lg:mt-20 w-full text-[#F4E9DC] transition-colors cursor-pointer"
+              className="bg-black_secondary hover:bg-black_tertiary mt-10 sm:mt-16 lg:mt-20 w-full text-primary transition-colors cursor-pointer"
             >
               Continue
             </Button>
