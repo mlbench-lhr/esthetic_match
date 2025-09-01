@@ -20,7 +20,7 @@ export default function UserDropdown() {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
+        className="flex items-center text-[color:var(--primary_black)]"
       >
         <span className="mr-3 rounded-full w-11 h-11 overflow-hidden">
           <Image
@@ -36,7 +36,7 @@ export default function UserDropdown() {
         </span>
 
         <svg
-          className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
+          className={`transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
           width="18"
@@ -48,6 +48,7 @@ export default function UserDropdown() {
           <path
             d="M4.3125 8.65625L9 13.3437L13.6875 8.65625"
             stroke="currentColor"
+            className="stroke-[color:var(--secondary_black)]"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -58,27 +59,27 @@ export default function UserDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="right-0 absolute flex flex-col bg-white dark:bg-gray-dark shadow-theme-lg mt-[17px] p-3 border border-gray-200 dark:border-gray-800 rounded-2xl w-[260px]"
+        className="right-0 absolute flex flex-col bg-[color:var(--tertiary_skin)] shadow-theme-lg mt-[17px] p-3 border border-[color:var(--border_muted)] rounded-2xl w-[260px]"
       >
         <div>
-          <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
+          <span className="block font-medium text-[color:var(--primary_black)] text-theme-sm">
             Deborah Levy
           </span>
-          <span className="block mt-0.5 text-gray-500 text-theme-xs dark:text-gray-400">
+          <span className="block mt-0.5 text-[color:var(--secondary_black)]/80 text-theme-xs">
             mlbenchpvtltd@gmail.com
           </span>
         </div>
 
-        <ul className="flex flex-col gap-1 pt-4 pb-3 border-gray-200 dark:border-gray-800 border-b">
+        <ul className="flex flex-col gap-1 pt-4 pb-3 border-[color:var(--border_muted)] border-b">
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
               href="/#"
-              className="group flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-white/5 px-3 py-2 rounded-lg font-medium text-gray-700 text-theme-sm hover:text-gray-700 dark:hover:text-gray-300 dark:text-gray-400"
+              className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
             >
               <svg
-                className="fill-gray-500 dark:fill-gray-400 dark:group-hover:fill-gray-300 group-hover:fill-gray-700"
+                className="fill-[color:var(--secondary_black)] group-hover:fill-[color:var(--primary_black)]"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -95,12 +96,13 @@ export default function UserDropdown() {
               Edit profile
             </DropdownItem>
           </li>
+
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
               href="/#"
-              className="group flex justify-start items-center gap-3 hover:bg-gray-100 dark:hover:bg-white/5 px-3 py-2 rounded-lg font-medium text-gray-700 text-theme-sm hover:text-gray-700 dark:hover:text-gray-300 dark:text-gray-400"
+              className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
             >
               <Image
                 width={20}
@@ -112,12 +114,13 @@ export default function UserDropdown() {
             </DropdownItem>
           </li>
         </ul>
+
         <Link
           href="/login"
-          className="group flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-white/5 mt-3 px-3 py-2 rounded-lg font-medium text-gray-700 text-theme-sm hover:text-gray-700 dark:hover:text-gray-300 dark:text-gray-400"
+          className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] mt-3 px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
         >
           <svg
-            className="fill-gray-500 dark:group-hover:fill-gray-300 group-hover:fill-gray-700"
+            className="fill-[color:var(--secondary_black)] group-hover:fill-[color:var(--primary_black)]"
             width="24"
             height="24"
             viewBox="0 0 24 24"

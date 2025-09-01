@@ -4,6 +4,7 @@ import MonthlySalesChart from "@/components/admin/Dashboard/MonthlySalesChart";
 import MonthlyTarget from "@/components/admin/Dashboard/MonthlyTarget";
 import RecentOrders from "@/components/admin/Dashboard/RecentOrders";
 import StatisticsChart from "@/components/admin/Dashboard/StatisticsChart";
+import Text from "@/components/ui/TextUser";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -15,7 +16,9 @@ export const metadata: Metadata = {
 export default function Ecommerce() {
   return (
     <div className="gap-4 md:gap-6 grid grid-cols-12 p-4">
-      <h1>Dashboard</h1>
+      <Text as="h1" className="text-primary_black">
+        Dashboard
+      </Text>
       <div className="space-y-6 col-span-12">
         <EcommerceMetrics />
 

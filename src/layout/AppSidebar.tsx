@@ -244,7 +244,7 @@ const AppSidebar: React.FC = () => {
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
-              className={`group w-full flex items-center justify-center gap-4 p-3 transition-colors cursor-pointer hover:bg-[#16263D99] rounded-lg ${
+              className={`group w-full flex items-center justify-center gap-4 p-3 transition-colors cursor-pointer hover:bg-secondary rounded-lg ${
                 !isExpanded && !isHovered && !isMobileOpen
                   ? "lg:justify-center"
                   : "lg:justify-start"
@@ -254,7 +254,7 @@ const AppSidebar: React.FC = () => {
                 className={`transition-all duration-200 ${
                   openSubmenu?.type === menuType && openSubmenu?.index === index
                     ? "text-primary"
-                    : "text-[#F4E9DC99]"
+                    : "text-primary_skin"
                 }`}
               >
                 {nav.icon}
@@ -265,7 +265,7 @@ const AppSidebar: React.FC = () => {
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
                       ? "text-primary"
-                      : "text-[#F4E9DC99]"
+                      : "text-primary_skin"
                   }`}
                 >
                   {nav.name}
@@ -281,7 +281,7 @@ const AppSidebar: React.FC = () => {
                   !isExpanded && !isHovered && !isMobileOpen
                     ? "lg:justify-center"
                     : "lg:justify-start"
-                } hover:bg-[#16263D99] ${
+                } hover:bg-secondary ${
                   isActive(nav.path) ? "bg-primary/5" : ""
                 }`}
               >
@@ -291,7 +291,7 @@ const AppSidebar: React.FC = () => {
                 {(isExpanded || isHovered || isMobileOpen) && (
                   <span
                     className={`font-medium transition-colors ${
-                      isActive(nav.path) ? "text-primary" : "text-[#F4E9DC99]"
+                      isActive(nav.path) ? "text-primary" : "text-primary_skin"
                     }`}
                   >
                     {nav.name}
@@ -319,7 +319,7 @@ const AppSidebar: React.FC = () => {
                     <Link
                       href={subItem.path}
                       onClick={handleLinkClick}
-                      className={`flex items-center justify-between px-3 py-2 text-sm transition-colors hover:bg-[#16263D99] rounded-md ${
+                      className={`flex items-center justify-between px-3 py-2 text-sm transition-colors hover:bg-secondary rounded-md ${
                         isActive(subItem.path) ? "bg-gray-50" : ""
                       }`}
                     >
@@ -369,7 +369,7 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed flex flex-col top-0 left-0 bg-[#16263D] text-[#F4E9DC] h-screen transition-all duration-300 ease-in-out z-40 border-r border-gray-200 
+      className={`fixed flex flex-col top-0 left-0 bg-secondary text-primary h-screen transition-all duration-300 ease-in-out z-40 border-r border-gray-200
         ${
           isMobileOpen
             ? "w-[290px] translate-x-0"
