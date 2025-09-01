@@ -40,22 +40,16 @@ const AppHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="top-0 z-99999 sticky flex bg-[#F4E9DC] border-[#D9D9D94D] lg:border-b w-full">
-      <div className="flex lg:flex-row flex-col justify-between items-center lg:px-6 grow">
-        <div className="flex justify-between lg:justify-normal items-center gap-2 sm:gap-4 px-3 lg:px-0 py-3 lg:py-4 border-gray-200 dark:border-gray-800 border-b lg:border-b-0 w-full">
+    <header className="top-0 z-99999 sticky flex bg-primary border-primary lg:border-b w-full">
+      <div className="flex lg:flex-row flex-col justify-between items-center grow">
+        <div className="flex justify-between lg:justify-normal items-center gap-2 sm:gap-4 px-3 lg:px-0 py-3 lg:py-4 border-secondary_black border-b lg:border-b-0 w-full">
           <button
-            className="z-99999 lg:flex justify-center items-center lg:border border-gray-200 dark:border-gray-800 rounded-lg w-10 lg:w-11 h-10 lg:h-11 text-gray-500 dark:text-gray-400"
+            className="z-99999 lg:flex justify-center items-center lg:border border-secondary_black rounded-lg w-10 lg:w-11 h-10 lg:h-11 text-secondary_black"
             onClick={handleToggle}
             aria-label="Toggle Sidebar"
           >
             {isMobileOpen ? (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -64,13 +58,7 @@ const AppHeader: React.FC = () => {
                 />
               </svg>
             ) : (
-              <svg
-                width="16"
-                height="12"
-                viewBox="0 0 16 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -79,21 +67,12 @@ const AppHeader: React.FC = () => {
                 />
               </svg>
             )}
-            {/* Cross Icon */}
           </button>
 
           <Link href="/" className="lg:hidden">
             <Image
               width={32}
               height={32}
-              className="dark:hidden"
-              src="/images/admin/header/logo.svg"
-              alt="Logo"
-            />
-            <Image
-              width={32}
-              height={32}
-              className="hidden dark:block"
               src="/images/admin/header/logo.svg"
               alt="Logo"
             />
@@ -101,15 +80,9 @@ const AppHeader: React.FC = () => {
 
           <button
             onClick={toggleApplicationMenu}
-            className="lg:hidden z-99999 flex justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg w-10 h-10 text-gray-700 dark:text-gray-400"
+            className="lg:hidden z-99999 flex justify-center items-center hover:bg-primary_skin rounded-lg w-10 h-10 text-primary_black"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -119,10 +92,11 @@ const AppHeader: React.FC = () => {
             </svg>
           </button>
         </div>
+
         <div
           className={`${
             isApplicationMenuOpen ? "flex" : "hidden"
-          } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
+          } items-center justify-between w-full gap-4 px-5 py-4 lg:flex lg:justify-end lg:px-0`}
         >
           <div className="flex items-center gap-2 2xsm:gap-3">
             <NotificationDropdown />
