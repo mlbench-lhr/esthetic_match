@@ -47,7 +47,7 @@ export default function NotificationDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="-right-[240px] lg:right-0 absolute flex flex-col bg-tertiary_skin shadow-theme-lg mt-[17px] p-3 border border-secondary_skin rounded-2xl w-[350px] sm:w-[361px] h-[480px]"
+        className="-right-[240px] lg:right-0 z-60 absolute flex flex-col bg-tertiary_skin shadow-theme-lg mt-[17px] p-3 border border-secondary_skin rounded-2xl w-[350px] sm:w-[361px] h-[480px]"
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-3 pb-3 border-secondary_skin border-b">

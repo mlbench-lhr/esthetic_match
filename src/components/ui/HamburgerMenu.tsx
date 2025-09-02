@@ -12,10 +12,10 @@ const HamburgerMenu: React.FC = () => {
   return (
     <button
       onClick={toggleMobileSidebar}
-      className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-white shadow-md border border-gray-200 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+      className="hidden top-4 left-4 z-50 fixed bg-white hover:bg-gray-50 shadow-md p-2 border border-gray-200 rounded-md transition-colors duration-200 cursor-pointer"
       aria-label="Open menu"
     >
-      <FaBars className="h-6 w-6 text-primary" />
+      <FaBars className="w-6 h-6 text-primary" />
     </button>
   );
 };

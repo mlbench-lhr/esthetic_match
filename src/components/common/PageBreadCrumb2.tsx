@@ -66,6 +66,7 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
 
   return (
     <div className="flex flex-wrap justify-between items-center gap-3 mt-6 mb-6">
+      {/* <div className="flex sm:flex-row gap-3 mt-4 mb-4"> */}
       <div>
         <Text as="h1" className="font-semibold text-primary_black text-xl">
           {pageTitle}
@@ -76,16 +77,18 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
       </div>
 
       <nav>
-        <ol className="flex items-center gap-3">
+        {/* <ol className="flex items-center gap-3"> */}
+        <ol className="flex sm:flex-row flex-col sm:items-center gap-2 w-full sm:w-auto">
           <Button
             variant="primary"
             onClick={() => setOpenAdd(true)}
-            className="bg-secondary hover:bg-secondary/80 rounded-md min-w-[150px] text-white_primary"
+            // className="bg-secondary hover:bg-secondary/80 rounded-md w-auto max-w-[150px] text-white_primary"
+            className="bg-secondary hover:bg-secondary/80 rounded-md w-full sm:w-auto sm:min-w-[150px] text-white_primary"
           >
             Add Doctors
           </Button>
 
-          <div className="relative">
+          <div className="relative w-full sm:w-[220]">
             <Input
               id="search"
               name="q"
@@ -94,7 +97,7 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
               defaultValue={defaultSearch} // avoids hydration mismatch
               onChange={handleChange}
               onKeyDown={handleKeyDown}
-              className="bg-white border-primary_black/10 rounded-md w-[260px] min-w-sm text-secondary_black/80 placeholder:text-secondary_black/80"
+              className="bg-white border-primary_black/10 rounded-md w-auto max-w-sm text-secondary_black/80 placeholder:text-secondary_black/80"
             />
             {isPending && (
               <span className="top-1/2 right-2 absolute text-gray-500 text-xs -translate-y-1/2">
