@@ -40,11 +40,11 @@ const AppHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="top-0 z-99999 sticky flex bg-primary border-primary lg:border-b w-full">
+    <header className="top-0 sticky flex bg-primary border-primary lg:border-b w-full">
       <div className="flex lg:flex-row flex-col justify-between items-center grow">
         <div className="flex justify-between lg:justify-normal items-center gap-2 sm:gap-4 px-3 lg:px-0 py-3 lg:py-4 border-secondary_black border-b lg:border-b-0 w-full">
           <button
-            className="z-99999 lg:flex justify-center items-center lg:border border-secondary_black rounded-lg w-10 lg:w-11 h-10 lg:h-11 text-secondary_black"
+            className="lg:flex justify-center items-center lg:border border-secondary_black rounded-lg w-10 lg:w-11 h-10 lg:h-11 text-secondary_black"
             onClick={handleToggle}
             aria-label="Toggle Sidebar"
           >
@@ -80,7 +80,7 @@ const AppHeader: React.FC = () => {
 
           <button
             onClick={toggleApplicationMenu}
-            className="lg:hidden z-99999 flex justify-center items-center hover:bg-primary_skin rounded-lg w-10 h-10 text-primary_black"
+            className="lg:hidden flex justify-center items-center hover:bg-primary_skin rounded-lg w-10 h-10 text-primary_black"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
@@ -96,7 +96,7 @@ const AppHeader: React.FC = () => {
         <div
           className={`${
             isApplicationMenuOpen ? "flex" : "hidden"
-          } items-center justify-between w-full gap-4 px-5 py-4 lg:flex lg:justify-end lg:px-0`}
+          } items-center w-full gap-4 px-5 py-4 lg:flex justify-end lg:px-0`}
         >
           <div className="flex items-center gap-2 2xsm:gap-3">
             <NotificationDropdown />

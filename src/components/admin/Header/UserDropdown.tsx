@@ -17,7 +17,7 @@ export default function UserDropdown() {
     setIsOpen(false);
   }
   return (
-    <div className="relative">
+    <div className="z-50 relative">
       <button
         onClick={toggleDropdown}
         className="flex items-center text-[color:var(--primary_black)]"
@@ -59,7 +59,7 @@ export default function UserDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="right-0 absolute flex flex-col bg-[color:var(--tertiary_skin)] shadow-theme-lg mt-[17px] p-3 border border-[color:var(--border_muted)] rounded-2xl w-[260px]"
+        className="right-0 z-[2000] absolute flex flex-col bg-[color:var(--tertiary_skin)] shadow-theme-lg mt-[17px] p-3 border border-[color:var(--border_muted)] rounded-2xl w-[260px]"
       >
         <div>
           <span className="block font-medium text-[color:var(--primary_black)] text-theme-sm">
