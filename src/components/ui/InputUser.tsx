@@ -7,7 +7,9 @@ interface InputProps {
   name: string;
   type?: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   placeholder?: string;
   className?: string;
   withIcon?: boolean;
@@ -21,7 +23,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       name,
       type = "text",
       value,
+      defaultValue,
       onChange,
+      onKeyDown,
       placeholder,
       className,
       withIcon = false,
@@ -42,11 +46,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           name={name}
           type={finalType}
           value={value}
+          defaultValue={defaultValue}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           readOnly={readOnly}
           onFocus={(e) => e.target.removeAttribute("readonly")}
-          className={`mt-1 block w-full px-4 py-3 border shadow-sm outline-none focus:outline-none pr-10 ${
+          className={` block w-full px-4 py-3 border shadow-sm outline-none focus:outline-none pr-10 ${
             className || ""
           } ${
             isPassword ? "h-[30px] md:h-[40px]" : "h-[30px] md:h-[40px]"

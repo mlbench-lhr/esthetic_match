@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
 
     const now = new Date();
-    const resendCooldown = 60; // seconds
+    const resendCooldown = 60;
     if (user.otpSentAt) {
       const diff = (now.getTime() - new Date(user.otpSentAt).getTime()) / 1000;
       if (diff < resendCooldown) {
@@ -32,18 +32,44 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // generate 6-digit OTP
     const otp = String(Math.floor(100000 + Math.random() * 900000));
     const hashed = await bcrypt.hash(otp, 10);
-    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
     await prisma.user.update({
       where: { email },
       data: { otp: hashed, otpExpiresAt: expiresAt, otpSentAt: now },
     });
 
-    // send email if config exists
+    const html = `
+    <!DOCTYPE html>
+    <html lang="en-US">
+    <head>
+      <meta charset="utf-8" />
+    </head>
+    <body>
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
+    <h2 style="text-align: center; color: #333;">Reset Your Esthetic Match Password</h2>
+    <p>Hi <strong>${user.name || "User"}</strong>,</p>
+    <p>We received a request to reset your password for <strong>Esthetic Match</strong>. To proceed, please use the One-Time Password (OTP) below:</p>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <p style="font-size: 18px; margin-bottom: 10px;">Your OTP Is</p>
+      <div style="display: inline-block; background: #f4f4f4; padding: 15px 25px; font-size: 28px; font-weight: bold; border-radius: 8px; border: 1px solid #ccc; letter-spacing: 5px;">
+        ${otp}
+      </div>
+    </div>
+    
+    <p>Thank you for joining Esthetic Match — we're excited to have you on board!</p>
+    <hr style="margin: 20px 0;" />
+    <p>Contact Support:<br>
+    Email: <a href="mailto:estheticmatch@gmail.com">estheticmatch@gmail.com</a></p>
+  </div>
+  </body>
+    </html>
+  `;
     const { EMAIL_USER, EMAIL_PASS } = process.env;
+
     if (EMAIL_USER && EMAIL_PASS) {
       try {
         const transporter = nodemailer.createTransport({
@@ -53,14 +79,13 @@ export async function POST(request: NextRequest) {
         await transporter.sendMail({
           from: EMAIL_USER,
           to: email,
-          subject: "Your OTP code",
-          text: `Your OTP: ${otp} (valid 10 minutes)`,
+          subject: "Reset Your Esthetic Match Password",
+          html,
         });
       } catch (e) {
         console.error("Email send failed:", e);
       }
     } else {
-      // fallback: log OTP to server console (for dev)
       console.log(`OTP for ${email}: ${otp}`);
     }
 

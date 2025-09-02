@@ -23,3 +23,72 @@ model User {
 
   @@map("admin")
 }
+
+
+// ---------- Doctors (maps to the "doctors" collection) ----------
+
+model Doctor {
+  id                     String   @id @map("_id") @default(auto()) @db.ObjectId
+  firstName              String
+  lastName               String
+  email                  String   @unique
+  password               String
+  bio                    String?
+  experience             Int?     @default(0)
+  location               String?
+  lat                    Float?
+  lng                    Float?
+  specializations        String[]
+  medicalSpecialty       String[]
+  procedures             Procedure[]        // embedded array
+  brandTechnique         String[]
+  verificationDocs       VerificationDoc[]  // embedded array
+  image                  String?
+  clinicImage            String?
+  clinicName             String?
+  bookingLink            String?
+  medicalOpinionRequest  Boolean? @default(true)
+  resetPasswordAllowed   Boolean? @default(false)
+  emailVerified          Boolean? @default(false)
+  verified               Int       @default(0) // your data shows 0/1
+  clicks                 Int       @default(5)
+  isSubscribed           Boolean   @default(true)
+  subscriptionType       String    @default("pay_as_you_go")
+  otp                    String?
+  otpExpires             DateTime?
+  otpPurpose             String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@map("doctors")
+}
+
+// ----- Embedded types (MongoDB only) -----
+
+type Zone {
+  zone           String?
+  beforeImageUrl String?
+  afterImageUrl  String?
+}
+
+type BeforeAfterPicture {
+  bodyPart String?
+  zones    Zone[]
+}
+
+type PriceRange {
+  min Int?
+  max Int?
+}
+
+type Procedure {
+  currency            String?
+  procedureType       String?
+  priceRange          PriceRange?
+  beforeAfterPictures BeforeAfterPicture[]
+}
+
+type VerificationDoc {
+  name String?
+  link String?
+}
