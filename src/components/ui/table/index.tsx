@@ -29,6 +29,10 @@ interface TableCellProps {
   children: ReactNode; // Cell content
   isHeader?: boolean; // If true, renders as <th>, otherwise <td>
   className?: string; // Optional className for styling
+  colSpan?: number;
+  rowSpan?: number;
+  scope?: "col" | "row" | "colgroup" | "rowgroup";
+  headers?: string;
 }
 
 // Table Component
@@ -56,9 +60,34 @@ const TableCell: React.FC<TableCellProps> = ({
   children,
   isHeader = false,
   className,
+  colSpan,
+  rowSpan,
+  scope,
+  headers,
 }) => {
-  const CellTag = isHeader ? "th" : "td";
-  return <CellTag className={` ${className}`}>{children}</CellTag>;
+  if (isHeader) {
+    return (
+      <th
+        className={` ${className}`}
+        colSpan={colSpan}
+        rowSpan={rowSpan}
+        scope={scope}
+        headers={headers}
+      >
+        {children}
+      </th>
+    );
+  }
+  return (
+    <td
+      className={` ${className}`}
+      colSpan={colSpan}
+      rowSpan={rowSpan}
+      headers={headers}
+    >
+      {children}
+    </td>
+  );
 };
 
 export { Table, TableHeader, TableBody, TableRow, TableCell };
