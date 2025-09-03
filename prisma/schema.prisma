@@ -24,6 +24,32 @@ model User {
   @@map("admin")
 }
 
+// ------ Patients (your Mongoose User model → "users") -------
+model Patient {
+  id                     String   @id @map("_id") @default(auto()) @db.ObjectId
+  userName               String
+  email                  String   @unique
+  password               String
+  otp                    String?
+  otpExpires             DateTime?
+  verified               Boolean  @default(false)
+  dob                    DateTime?
+  location               String?
+  lat                    Float?
+  lng                    Float?
+  gender                 String?
+  image                  String?
+  resetPasswordAllowed   Boolean  @default(false)
+  otpPurpose             String?
+
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  medicalOpinions        MedicalOpinion[]  // relation back
+
+  @@map("users")  // 👈 matches your Mongo collection
+}
+
 
 // ---------- Doctors (maps to the "doctors" collection) ----------
 
@@ -60,6 +86,8 @@ model Doctor {
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
 
+  medicalOpinions        MedicalOpinion[]
+
   @@map("doctors")
 }
 
@@ -91,4 +119,34 @@ type Procedure {
 type VerificationDoc {
   name String?
   link String?
+}
+
+// ------ Medical Opinion (map + relations) ------
+enum MedicalOpinionStatus {
+  pending
+  accepted
+  rejected
+  completed
+}
+
+model MedicalOpinion {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @db.ObjectId
+  doctorId       String   @db.ObjectId
+  procedure      String
+  note           String
+  images         String[]
+  charges        Int      @default(40)
+  status         MedicalOpinionStatus @default(pending)
+  doctorResponse String?
+  price          Int?
+  respondedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // ✅ Relations
+  user   Patient @relation(fields: [userId], references: [id])
+  doctor Doctor  @relation(fields: [doctorId], references: [id])
+
+  @@map("medicalopinions") // 👈 exact collection name from your screenshot
 }

@@ -54,3 +54,29 @@ export async function getDoctors({
   ]);
   return { data, total, page, pageSize };
 }
+
+export async function getDoctorById(id: string) {
+  // Mongo ObjectId is stored as string in Prisma model
+  const doc = await prisma.doctor.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      image: true,
+      clinicName: true,
+      createdAt: true,
+      clicks: true,
+      verified: true,
+      bio: true,
+      experience: true,
+      location: true,
+      specializations: true,
+      medicalSpecialty: true,
+      brandTechnique: true,
+      verificationDocs: true,
+    },
+  });
+  return doc;
+}

@@ -4,7 +4,6 @@ import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb2";
 import BasicTableOne, { DoctorRow } from "@/components/tables/ReadyTable";
 import { getDoctors, VerifiedValue } from "@/lib/data/doctors";
-import Image from "next/image";
 
 const isVerifiedValue = (v: unknown): v is VerifiedValue =>
   typeof v === "number" && (v === 0 || v === 1 || v === 2 || v === 3);
