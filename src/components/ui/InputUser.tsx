@@ -52,18 +52,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           placeholder={placeholder}
           readOnly={readOnly}
           onFocus={(e) => e.target.removeAttribute("readonly")}
-          className={` block w-full px-4 py-3 border shadow-sm outline-none focus:outline-none pr-10 ${
-            className || ""
-          } ${
-            isPassword ? "h-[30px] md:h-[40px]" : "h-[30px] md:h-[40px]"
-          } text-[12px] md:text-[14px]`}
+          className={`block w-full px-4 border shadow-sm outline-none focus:outline-none ${
+            withIcon && isPassword ? "pr-10" : "pr-4"
+          } h-[40px] md:h-[48px] text-[12px] md:text-[14px] ${className || ""}`}
         />
 
         {withIcon && isPassword && (
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="right-3 absolute text-gray-500"
+            className="top-1/2 right-3 absolute text-gray-500 -translate-y-1/2"
             tabIndex={-1}
           >
             {showPassword ? (

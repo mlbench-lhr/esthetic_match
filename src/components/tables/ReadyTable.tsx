@@ -162,7 +162,10 @@ export default function BasicTableOne({
                 </TableCell>
 
                 <TableCell className="px-4 py-3 text-gray-500 text-theme-sm text-start">
-                  <Link href={`/admin/doctors/${d.id}`} className="underline">
+                  <Link
+                    href={`/admin/alldoctors/${d.id}`}
+                    className="underline"
+                  >
                     View Details
                   </Link>
                 </TableCell>

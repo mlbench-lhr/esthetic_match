@@ -6,6 +6,7 @@ import { Geist, Geist_Mono, Raleway } from "next/font/google";
 import { NotificationProvider } from "@/context/NotificationContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import "antd/dist/reset.css";
 
 export const metadata: Metadata = {
   title: "Esthetic Match",
