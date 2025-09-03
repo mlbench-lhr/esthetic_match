@@ -46,6 +46,8 @@ export default function Page({
       <DoctorHeaderCard
         id={doc.id}
         name={`${doc.firstName} ${doc.lastName}`}
+        firstName={doc.firstName ?? ""}
+        lastName={doc.lastName ?? ""}
         email={doc.email}
         image={doc.image ?? undefined}
         addedOn={doc.createdAt}

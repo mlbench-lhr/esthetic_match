@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
 import { cn } from "@/utils";
 import Text from "@/components/ui/TextUser";
 import Button from "@/components/ui/ButtonUser";
 import VerifyButtons from "./VerifyButtons";
+import { useState } from "react";
+import EditNameModal from "./EditNameModal";
+import { useRouter } from "next/navigation";
 
 export type DoctorHeaderProps = {
   id: string;
@@ -11,9 +15,11 @@ export type DoctorHeaderProps = {
   image?: string | null;
   addedOn?: Date | string;
   className?: string;
+  firstName?: string;
+  lastName?: string;
   onEditHref?: string;
   onEditClick?: () => void;
-  verified?: number; // show extra actions when verified === 1
+  verified?: number;
 };
 
 export default function DoctorHeaderCard({
@@ -23,9 +29,13 @@ export default function DoctorHeaderCard({
   image,
   addedOn,
   className,
+  firstName,
+  lastName,
   onEditClick,
   verified,
 }: DoctorHeaderProps) {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
   const dateStr =
     addedOn && !isNaN(new Date(addedOn).getTime())
       ? new Intl.DateTimeFormat("en-US", {
@@ -108,7 +118,8 @@ export default function DoctorHeaderCard({
             <div className="flex md:flex-row flex-col items-center gap-3">
               <Button
                 type="button"
-                onClick={onEditClick}
+                // onClick={onEditClick}
+                onClick={() => setOpen(true)}
                 aria-label="Edit Profile"
                 className="inline-flex justify-center items-center bg-secondary hover:bg-secondary/90 rounded-md w-[100px] h-9 text-white_primary"
               >
@@ -125,7 +136,8 @@ export default function DoctorHeaderCard({
             <Button
               aria-label="Edit Profile"
               className="inline-flex justify-center items-center bg-secondary hover:bg-secondary/90 rounded-xl w-[120px] h-9 text-white_primary"
-              onClick={onEditClick}
+              // onClick={onEditClick}
+              onClick={() => setOpen(true)}
             >
               <Image
                 src="/images/admin/doctor/edit.svg"
@@ -140,6 +152,15 @@ export default function DoctorHeaderCard({
           )}
         </div>
       </div>
+      <EditNameModal
+        open={open}
+        onClose={() => setOpen(false)}
+        doctorId={id}
+        firstName={firstName ?? ""}
+        lastName={lastName ?? ""}
+        image={image ?? undefined}
+        onSaved={() => router.refresh()}
+      />
     </section>
   );
 }
