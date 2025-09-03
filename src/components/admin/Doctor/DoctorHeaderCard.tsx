@@ -2,6 +2,7 @@ import Image from "next/image";
 import { cn } from "@/utils";
 import Text from "@/components/ui/TextUser";
 import Button from "@/components/ui/ButtonUser";
+import VerifyButtons from "./VerifyButtons";
 
 export type DoctorHeaderProps = {
   id: string;
@@ -16,6 +17,7 @@ export type DoctorHeaderProps = {
 };
 
 export default function DoctorHeaderCard({
+  id,
   name,
   email,
   image,
@@ -117,12 +119,7 @@ export default function DoctorHeaderCard({
                   height={18}
                 />
               </Button>
-              <Button className="bg-black_secondary hover:bg-black_tertiary rounded-md w-full min-w-[100px] text-primary">
-                Accept
-              </Button>
-              <Button className="bg-red hover:bg-black_tertiary rounded-md w-full min-w-[100px] text-primary">
-                Reject
-              </Button>
+              <VerifyButtons id={id} />
             </div>
           ) : (
             <Button

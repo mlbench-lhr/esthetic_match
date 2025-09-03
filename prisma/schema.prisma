@@ -83,6 +83,8 @@ model Doctor {
   otp                    String?
   otpExpires             DateTime?
   otpPurpose             String?
+  rejectionReason        String?
+  rejectedAt             DateTime?
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
 

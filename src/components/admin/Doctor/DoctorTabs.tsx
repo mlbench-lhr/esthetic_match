@@ -172,18 +172,18 @@ export default function DoctorTabs({
             {typeof monthlyClicks === "number" && (
               <div className="flex items-center gap-2">
                 <Text as="p1" className="text-primary_black">
-                  Monthly Clicks
+                  Monthly Clicks :
                 </Text>
                 <Text as="p1" className="text-primary_black">
                   {numFmt.format(monthlyClicks)}
                 </Text>
-                <button
+                {/* <button
                   className="inline-flex justify-center items-center bg-primary rounded-full w-5 h-5 text-primary_black"
                   aria-label="Add"
                   type="button"
                 >
                   +
-                </button>
+                </button> */}
               </div>
             )}
 
