@@ -12,8 +12,8 @@ type Props = {
   doctorId: string;
   firstName: string;
   lastName: string;
-  image?: string | null; // show only (no update)
-  onSaved?: () => void; // e.g. router.refresh
+  image?: string | null;
+  onSaved?: () => void;
 };
 
 export default function EditNameModal({
@@ -110,10 +110,6 @@ export default function EditNameModal({
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* small edit-dot look-alike badge (display only) */}
-            {/* <span className="inline-flex -top-1 -right-1 absolute justify-center items-center bg-secondary rounded-full w-6 h-6 text-[12px] text-white_primary">
-              ✎
-            </span> */}
           </div>
         </div>
 

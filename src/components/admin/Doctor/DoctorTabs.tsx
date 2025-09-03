@@ -16,25 +16,24 @@ import { Pagination } from "antd";
 
 export type DocFile = {
   id: string;
-  name: string; // e.g., "Mymedical Degree.Png"
-  sizeLabel?: string; // e.g., "156kb"
-  href: string; // download/view url
-  icon?: string; // optional icon path
+  name: string;
+  sizeLabel?: string;
+  href: string;
+  icon?: string;
 };
 
 export type AppointmentRow = {
   id: string;
   patientName: string;
-  title: string; // Type (e.g., "Consultation", "Medical Opinion")
+  title: string;
   procedure: string | null;
   status: "booked" | "completed" | "cancelled";
   amount: number;
-  currency?: string; // e.g., "CHF"
+  currency?: string;
   consultationDate: Date;
 };
 
 const numFmt = new Intl.NumberFormat("en-US");
-// dateFmt reserved for future date display
 
 export default function DoctorTabs({
   documents,
@@ -79,7 +78,6 @@ export default function DoctorTabs({
       a.remove();
       URL.revokeObjectURL(url);
     } catch {
-      // Fallback: open in new tab if direct download not allowed (e.g., cross-origin without CORS/headers)
       window.open(f.href, "_blank", "noopener,noreferrer");
     }
   };
@@ -167,7 +165,6 @@ export default function DoctorTabs({
             ))}
           </div>
 
-          {/* Meta (Monthly Clicks + Location) */}
           <div className="space-y-3 mt-5 sm:mt-6">
             {typeof monthlyClicks === "number" && (
               <div className="flex items-center gap-2">
@@ -177,13 +174,6 @@ export default function DoctorTabs({
                 <Text as="p1" className="text-primary_black">
                   {numFmt.format(monthlyClicks)}
                 </Text>
-                {/* <button
-                  className="inline-flex justify-center items-center bg-primary rounded-full w-5 h-5 text-primary_black"
-                  aria-label="Add"
-                  type="button"
-                >
-                  +
-                </button> */}
               </div>
             )}
 

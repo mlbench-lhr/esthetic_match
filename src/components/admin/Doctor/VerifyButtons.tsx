@@ -1,4 +1,3 @@
-// components/admin/Doctor/VerifyButtons.tsx
 "use client";
 
 import React, { useState } from "react";

@@ -31,7 +31,6 @@ export default function DoctorHeaderCard({
   className,
   firstName,
   lastName,
-  onEditClick,
   verified,
 }: DoctorHeaderProps) {
   const [open, setOpen] = useState(false);
@@ -58,12 +57,10 @@ export default function DoctorHeaderCard({
       <div
         className={cn(
           "items-center grid w-full",
-          // image + content + edit
           "grid-cols-[auto_1fr_auto]",
           "gap-4 sm:gap-5 md:gap-6"
         )}
       >
-        {/* Avatar */}
         <div className="row-span-2 sm:row-span-1">
           <div className="rounded-md w-[64px] sm:w-[80px] md:w-[96px] h-[64px] sm:h-[80px] md:h-[96px] overflow-hidden">
             <Image
@@ -77,7 +74,6 @@ export default function DoctorHeaderCard({
           </div>
         </div>
 
-        {/* Name + Email */}
         <div className="pr-2 min-w-0">
           <Text as="h3" className="text-primary_black truncate">
             {name}
@@ -91,11 +87,7 @@ export default function DoctorHeaderCard({
               height={18}
               className="shrink-0"
             />
-            <Text
-              as="p1"
-              className="text-secondary_black/80 truncate"
-              //   title={email}
-            >
+            <Text as="p1" className="text-secondary_black/80 truncate">
               {email}
             </Text>
           </div>
@@ -118,7 +110,6 @@ export default function DoctorHeaderCard({
             <div className="flex md:flex-row flex-col items-center gap-3">
               <Button
                 type="button"
-                // onClick={onEditClick}
                 onClick={() => setOpen(true)}
                 aria-label="Edit Profile"
                 className="inline-flex justify-center items-center bg-secondary hover:bg-secondary/90 rounded-md w-[100px] h-9 text-white_primary"
@@ -136,7 +127,6 @@ export default function DoctorHeaderCard({
             <Button
               aria-label="Edit Profile"
               className="inline-flex justify-center items-center bg-secondary hover:bg-secondary/90 rounded-xl w-[120px] h-9 text-white_primary"
-              // onClick={onEditClick}
               onClick={() => setOpen(true)}
             >
               <Image
