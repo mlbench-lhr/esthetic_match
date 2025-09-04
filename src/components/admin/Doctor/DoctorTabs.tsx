@@ -22,6 +22,26 @@ export type DocFile = {
   icon?: string;
 };
 
+export type GallerySection = {
+  section: string;
+  items: {
+    title?: string | null;
+    before?: string | null;
+    after?: string | null;
+  }[];
+};
+
+export type OverviewData = {
+  clinicName?: string | null;
+  location?: string | null;
+  about?: string | null;
+  documents: DocFile[];
+  medicalSpecialties: string[];
+  top3: string[];
+  proceduresTags: string[];
+  gallery: GallerySection[];
+};
+
 export type AppointmentRow = {
   id: string;
   patientName: string;
@@ -36,29 +56,24 @@ export type AppointmentRow = {
 const numFmt = new Intl.NumberFormat("en-US");
 
 export default function DoctorTabs({
-  documents,
+  overview,
+  // existing props
   appointments,
   totalAppointments,
   page,
   pageSize,
   onPageChange,
-  monthlyClicks,
-  location,
 }: {
-  documents: DocFile[];
+  overview: OverviewData;
   appointments: AppointmentRow[];
   totalAppointments: number;
   page: number;
   pageSize: number;
   onPageChange?: (p: number) => void;
-  monthlyClicks?: number;
-  location?: string | null;
 }) {
-  const [tab, setTab] = useState<"docs" | "appts">("docs");
+  const [tab, setTab] = useState<"over" | "appts">("over");
 
-  const handlePageChange = (p: number) => {
-    onPageChange?.(p);
-  };
+  const handlePageChange = (p: number) => onPageChange?.(p);
 
   const handleDownload = async (
     e: MouseEvent<HTMLAnchorElement>,
@@ -67,7 +82,7 @@ export default function DoctorTabs({
     e.preventDefault();
     try {
       const res = await fetch(f.href, { credentials: "include" });
-      if (!res.ok) throw new Error(`Download failed: ${res.status}`);
+      if (!res.ok) throw new Error();
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -89,14 +104,14 @@ export default function DoctorTabs({
         <button
           className={cn(
             "-mb-px py-2",
-            tab === "docs"
+            tab === "over"
               ? "text-primary_black font-semibold border-b-2 border-secondary"
               : "text-secondary_black/70"
           )}
-          onClick={() => setTab("docs")}
+          onClick={() => setTab("over")}
         >
           <Text as="h4" className="text-inherit">
-            Documents
+            Overview
           </Text>
         </button>
 
@@ -115,82 +130,229 @@ export default function DoctorTabs({
         </button>
       </div>
 
-      {/* Content */}
-      {tab === "docs" ? (
-        <div className="pt-4 sm:pt-5">
-          <div className="space-y-3 sm:space-y-4 max-w-2xl">
-            {documents.map((f) => (
-              <div
-                key={f.id}
-                className="flex justify-between items-center bg-primary_skin p-3 sm:p-4 rounded-xl"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex justify-center items-center bg-secondary rounded-xl w-10 h-10">
-                    <Image
-                      src={f.icon || "/images/admin/doctor/doc.svg"}
-                      alt=""
-                      width={20}
-                      height={20}
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <Text as="p1" className="text-primary_black truncate">
-                      {f.name}
-                    </Text>
-                    {f.sizeLabel && (
-                      <Text as="p2" className="text-secondary_black/70">
-                        {f.sizeLabel}
-                      </Text>
-                    )}
-                  </div>
-                </div>
-
-                <Link
-                  href={f.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  onClick={(e) => handleDownload(e, f)}
-                  className="inline-flex justify-center items-center rounded-xl w-9 h-9"
-                  aria-label="Download"
-                >
-                  <Image
-                    src="/images/admin/doctor/download.svg"
-                    alt="Download"
-                    width={18}
-                    height={18}
-                  />
-                </Link>
-              </div>
-            ))}
+      {tab === "over" ? (
+        <div className="space-y-6 pt-4 sm:pt-5">
+          <div className="flex justify-between items-start mb-4">
+            <Text as="h4" className="text-primary_black">
+              Clinic Info
+            </Text>
           </div>
-
-          <div className="space-y-3 mt-5 sm:mt-6">
-            {typeof monthlyClicks === "number" && (
-              <div className="flex items-center gap-2">
+          {/* Clinic Info card */}
+          <div className="bg-white_primary p-4 sm:p-5 border border-secondary_skin rounded-2xl">
+            {/* Name */}
+            {overview.clinicName && (
+              <div className="mb-2">
                 <Text as="p1" className="text-primary_black">
-                  Monthly Clicks :
-                </Text>
-                <Text as="p1" className="text-primary_black">
-                  {numFmt.format(monthlyClicks)}
+                  <span className="font-semibold">Name:</span>{" "}
+                  {overview.clinicName}
                 </Text>
               </div>
             )}
 
-            {location && (
-              <div className="flex items-center gap-2">
+            {/* Location */}
+            {overview.location && (
+              <div className="mb-4">
                 <Text as="p1" className="text-primary_black">
-                  Location:
+                  <span className="font-semibold">Location:</span>{" "}
+                  {overview.location}
+                </Text>
+              </div>
+            )}
+
+            {/* About */}
+            {overview.about && (
+              <div className="mb-6">
+                <Text as="p1" className="text-primary_black">
+                  <span className="font-semibold">About:</span>
                 </Text>
                 <Text as="p1" className="text-secondary_black/80">
-                  {location}
+                  {overview.about}
                 </Text>
+              </div>
+            )}
+
+            {/* Documents */}
+            {overview.documents.length > 0 && (
+              <div className="mb-6">
+                <Text as="h5" className="mb-3 text-primary_black">
+                  Documents
+                </Text>
+                <div className="space-y-3 max-w-2xl">
+                  {overview.documents.map((f) => (
+                    <div
+                      key={f.id}
+                      className="flex justify-between items-center bg-primary_skin p-3 sm:p-4 rounded-xl"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex justify-center items-center bg-secondary rounded-xl w-10 h-10">
+                          <Image
+                            src={f.icon || "/images/admin/doctor/doc.svg"}
+                            alt=""
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <Text as="p1" className="text-primary_black truncate">
+                            {f.name}
+                          </Text>
+                          {f.sizeLabel && (
+                            <Text as="p2" className="text-secondary_black/70">
+                              {f.sizeLabel}
+                            </Text>
+                          )}
+                        </div>
+                      </div>
+                      <Link
+                        href={f.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        onClick={(e) => handleDownload(e, f)}
+                        className="inline-flex justify-center items-center rounded-xl w-9 h-9"
+                        aria-label="Download"
+                      >
+                        <Image
+                          src="/images/admin/doctor/download.svg"
+                          alt="Download"
+                          width={18}
+                          height={18}
+                        />
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Medical Specialties */}
+            {overview.medicalSpecialties.length > 0 && (
+              <div className="mb-6">
+                <Text as="h5" className="mb-3 text-primary_black">
+                  Medical Specialties
+                </Text>
+                <div className="flex flex-wrap gap-2">
+                  {overview.medicalSpecialties.map((s, i) => (
+                    <span
+                      key={`${s}-${i}`}
+                      className="bg-primary_skin px-3 py-1 rounded-full text-[12px] text-primary_black md:text-[14px]"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* My Top 03 */}
+            {overview.top3.length > 0 && (
+              <div className="mb-6">
+                <Text as="h5" className="mb-3 text-primary_black">
+                  My Top 03
+                </Text>
+                <div className="flex flex-wrap gap-2">
+                  {overview.top3.map((t, i) => (
+                    <span
+                      key={`${t}-${i}`}
+                      className="bg-primary_skin px-3 py-1 rounded-full text-[12px] text-primary_black md:text-[14px]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Procedures tags */}
+            {overview.proceduresTags.length > 0 && (
+              <div className="mb-6">
+                <Text as="h5" className="mb-3 text-primary_black">
+                  Procedures
+                </Text>
+                <div className="flex flex-wrap gap-2">
+                  {overview.proceduresTags.map((p, i) => (
+                    <span
+                      key={`${p}-${i}`}
+                      className="bg-primary_skin px-3 py-1 rounded-full text-[12px] text-primary_black md:text-[14px]"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Gallery */}
+            {overview.gallery.length > 0 && (
+              <div className="mb-2">
+                <Text as="h5" className="mb-3 text-primary_black">
+                  Gallery
+                </Text>
+
+                <div className="space-y-6">
+                  {overview.gallery.map((sec) => (
+                    <div key={sec.section}>
+                      <Text
+                        as="p1"
+                        className="block mb-3 font-semibold text-primary_black"
+                      >
+                        {sec.section}
+                      </Text>
+
+                      <div className="gap-3 sm:gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                        {sec.items.map((it, idx) => (
+                          <div
+                            key={`${sec.section}-${idx}`}
+                            className="bg-primary_skin p-2 rounded-xl"
+                          >
+                            {it.title && (
+                              <Text
+                                as="p2"
+                                className="block mb-2 text-secondary_black/80"
+                              >
+                                {it.title}
+                              </Text>
+                            )}
+
+                            <div className="gap-2 grid grid-cols-2">
+                              {/* before */}
+                              {it.before && (
+                                <div className="bg-white rounded-lg overflow-hidden">
+                                  <Image
+                                    src={it.before}
+                                    alt="Before"
+                                    width={320}
+                                    height={240}
+                                    className="w-full h-[140px] object-cover"
+                                  />
+                                </div>
+                              )}
+                              {/* after */}
+                              {it.after && (
+                                <div className="bg-white rounded-lg overflow-hidden">
+                                  <Image
+                                    src={it.after}
+                                    alt="After"
+                                    width={320}
+                                    height={240}
+                                    className="w-full h-[140px] object-cover"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       ) : (
         <>
+          {/* Appointments table (unchanged) */}
           <div className="pt-4 sm:pt-5">
             <div className="overflow-x-auto">
               <Table>

@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import Button from "@/components/ui/ButtonUser";
 import { useRouter } from "next/navigation";
 import RejectReasonModal from "@/components/admin/Doctor/RejectReasonModal";
+import { useAuth } from "@/context/AuthContext";
 
 export default function VerifyButtons({ id }: { id: string }) {
   const router = useRouter();
+  const { token } = useAuth();
   const [openReject, setOpenReject] = useState(false);
   const [savingAccept, setSavingAccept] = useState(false);
 
@@ -15,7 +17,10 @@ export default function VerifyButtons({ id }: { id: string }) {
       setSavingAccept(true);
       const res = await fetch("/api/admin/doctor/verify", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         credentials: "include",
         body: JSON.stringify({ id, verified: 2 }),
       });
@@ -28,7 +33,10 @@ export default function VerifyButtons({ id }: { id: string }) {
   const rejectWithReason = async (reason: string) => {
     const res = await fetch("/api/admin/doctor/verify", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
       credentials: "include",
       body: JSON.stringify({ id, verified: 3, reason }),
     });

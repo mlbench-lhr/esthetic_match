@@ -1,10 +1,18 @@
-// /app/api/admin/doctor/verify/route.ts (or pages/api/... if using pages router)
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { verifyToken } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
+    // Authorization: Bearer <token>
+    const auth = req.headers.get("authorization") || "";
+    const token = auth?.startsWith("Bearer ") ? auth.slice(7).trim() : null;
+    const decoded = token ? verifyToken(token) : null;
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
     const { id, verified, reason } = (await req.json()) as {
       id: string;
       verified: number; // 2 = accepted, 3 = rejected

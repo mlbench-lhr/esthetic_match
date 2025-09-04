@@ -5,13 +5,14 @@ import Image from "next/image";
 import Text from "@/components/ui/TextUser";
 import Button from "@/components/ui/ButtonUser";
 import Input from "@/components/ui/InputUser";
+import { useAuth } from "@/context/AuthContext";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   doctorId: string;
-  firstName: string;
-  lastName: string;
+  about: string;
+  clinicName: string;
   image?: string | null;
   onSaved?: () => void;
 };
@@ -20,23 +21,24 @@ export default function EditNameModal({
   open,
   onClose,
   doctorId,
-  firstName,
-  lastName,
+  about,
+  clinicName,
   image,
   onSaved,
 }: Props) {
-  const [fname, setFname] = useState(firstName);
-  const [lname, setLname] = useState(lastName);
+  const { token } = useAuth();
+  const [cName, setclinicName] = useState(clinicName);
+  const [aboutt, setabout] = useState(about);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
     if (open) {
-      setFname(firstName);
-      setLname(lastName);
+      setclinicName(clinicName);
+      setabout(about);
       setErr(null);
     }
-  }, [open, firstName, lastName]);
+  }, [open, about, clinicName]);
 
   if (!open) return null;
 
@@ -44,8 +46,13 @@ export default function EditNameModal({
     e.preventDefault();
     setErr(null);
 
-    if (!fname.trim() || !lname.trim()) {
-      setErr("First and last name are required.");
+    if (!cName.trim()) {
+      setErr("clinic name is required.");
+      return;
+    }
+
+    if (!token) {
+      setErr("Not authorized. Please login again.");
       return;
     }
 
@@ -53,12 +60,15 @@ export default function EditNameModal({
       setSaving(true);
       const res = await fetch("/api/admin/doctor/update-name", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         credentials: "include",
         body: JSON.stringify({
           id: doctorId,
-          firstName: fname.trim(),
-          lastName: lname.trim(),
+          about: aboutt.trim(),
+          clinicName: cName.trim(),
         }),
       });
       if (!res.ok) {
@@ -87,7 +97,7 @@ export default function EditNameModal({
             as="h3"
             className="font-bold text-[22px] text-primary_black md:text-[26px]"
           >
-            Edit Profile
+            Edit Info
           </Text>
           <button
             onClick={onClose}
@@ -117,29 +127,30 @@ export default function EditNameModal({
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label className="block mb-2 font-bold text-primary_black text-xs">
-              First Name
+              Clinic Name
             </label>
             <Input
-              id="fname"
-              name="firstName"
+              id="cname"
+              name="clinicName"
               type="text"
-              placeholder="Enter First Name"
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
+              placeholder="Enter clinic name"
+              value={cName}
+              onChange={(e) => setclinicName(e.target.value)}
             />
           </div>
 
           <div>
             <label className="block mb-2 font-bold text-primary_black text-xs">
-              Last Name
+              About
             </label>
-            <Input
-              id="lname"
-              name="lastName"
-              type="text"
-              placeholder="Enter Last Name"
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
+            <textarea
+              id="about"
+              name="aboutt"
+              placeholder="Enter bio/about"
+              value={aboutt}
+              rows={5}
+              className="bg-white_primary p-3 border border-black_secondary/10 rounded-xl focus:outline-none w-full text-secondary_black/90 placeholder:text-secondary_black/60"
+              onChange={(e) => setabout(e.target.value)}
             />
           </div>
 
