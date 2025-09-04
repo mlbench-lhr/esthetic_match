@@ -226,12 +226,12 @@ export default function NotificationDropdown() {
         </ul>
 
         {/* Footer link */}
-        <Link
+        {/* <Link
           href="/"
           className="block bg-tertiary_skin hover:bg-primary_skin mt-3 px-4 py-2 border border-secondary_skin rounded-lg font-medium text-primary_black text-sm text-center"
         >
           View All Notifications
-        </Link>
+        </Link> */}
       </Dropdown>
     </div>
   );

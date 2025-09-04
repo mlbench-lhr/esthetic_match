@@ -17,7 +17,6 @@ export default function Page({
 
   const page = Number(sp.page ?? 1);
   const pageSize = Number(sp.pageSize ?? 10);
-  // const q = (Array.isArray(sp.q) ? sp.q[0] : sp.q) ?? "";
   const q = Array.isArray(sp.q) ? sp.q.join(" ") : sp.q ?? "";
 
   const vStr = Array.isArray(sp.verified) ? sp.verified[0] : sp.verified;

@@ -46,6 +46,7 @@ model Patient {
   updatedAt              DateTime @updatedAt
 
   medicalOpinions        MedicalOpinion[]  // relation back
+  reviews                DoctorReview[]
 
   @@map("users")  // 👈 matches your Mongo collection
 }
@@ -89,6 +90,7 @@ model Doctor {
   updatedAt              DateTime  @updatedAt
 
   medicalOpinions        MedicalOpinion[]
+  reviews                DoctorReview[]
 
   @@map("doctors")
 }
@@ -149,6 +151,29 @@ model MedicalOpinion {
   // ✅ Relations
   user   Patient @relation(fields: [userId], references: [id])
   doctor Doctor  @relation(fields: [doctorId], references: [id])
+  reviews DoctorReview[]
 
   @@map("medicalopinions") // 👈 exact collection name from your screenshot
+}
+
+// ------ Doctor Reviews ------
+model DoctorReview {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  doctorId  String   @db.ObjectId
+  opinionId String?  @db.ObjectId
+
+  rating    Int
+  comment   String
+  hidden    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user    Patient        @relation(fields: [userId], references: [id])
+  doctor  Doctor         @relation(fields: [doctorId], references: [id])
+  opinion MedicalOpinion? @relation(fields: [opinionId], references: [id])
+
+  @@map("doctorreviews")
 }

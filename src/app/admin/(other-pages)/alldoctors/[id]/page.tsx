@@ -1,9 +1,76 @@
 import { use } from "react";
 import DoctorHeaderCard from "@/components/admin/Doctor/DoctorHeaderCard";
 import DoctorTabsClient from "@/components/admin/Doctor/DoctorTabsClient";
-import { getDoctorById } from "@/lib/data/doctors";
+import { getDoctorById, getDoctorRating } from "@/lib/data/doctors";
 import { getMedicalOpinionsByDoctor } from "@/lib/data/medicalOpinions";
 import { notFound } from "next/navigation";
+
+type ProcZone = {
+  zone?: string | null;
+  beforeImageUrl?: string | null;
+  afterImageUrl?: string | null;
+};
+type BeforeAfter = { bodyPart?: string | null; zones?: ProcZone[] };
+type Procedure = {
+  procedureType?: string | null;
+  beforeAfterPictures?: BeforeAfter[];
+};
+
+function buildOverview(
+  doc:
+    | (Awaited<ReturnType<typeof getDoctorById>> & { procedures?: Procedure[] })
+    | null
+) {
+  const documents = (doc?.verificationDocs ?? []).map((d, idx) => ({
+    id: `${doc!.id}-${idx}`,
+    name: d?.name ?? `Document ${idx + 1}`,
+    href: d?.link ?? "#",
+  }));
+
+  const proceduresTags = Array.from(
+    new Set(
+      (doc?.procedures ?? [])
+        .map((p: Procedure) => p?.procedureType)
+        .filter(Boolean) as string[]
+    )
+  );
+
+  const sectionsMap = new Map<
+    string,
+    { title?: string | null; before?: string | null; after?: string | null }[]
+  >();
+
+  (doc?.procedures ?? []).forEach((p: Procedure) => {
+    (p?.beforeAfterPictures ?? []).forEach((bap: BeforeAfter) => {
+      const body = bap?.bodyPart || "Gallery";
+      const arr = sectionsMap.get(body) ?? [];
+      (bap?.zones ?? []).forEach((z: ProcZone) => {
+        arr.push({
+          title: z?.zone ?? null,
+          before: z?.beforeImageUrl ?? null,
+          after: z?.afterImageUrl ?? null,
+        });
+      });
+      sectionsMap.set(body, arr);
+    });
+  });
+
+  const gallery = Array.from(sectionsMap.entries()).map(([section, items]) => ({
+    section,
+    items,
+  }));
+
+  return {
+    clinicName: doc?.clinicName ?? null,
+    location: doc?.location ?? null,
+    about: doc?.bio ?? null,
+    documents,
+    medicalSpecialties: doc?.medicalSpecialty ?? [],
+    top3: (doc?.brandTechnique ?? []).slice(0, 3),
+    proceduresTags,
+    gallery,
+  };
+}
 
 export default function Page({
   params,
@@ -27,18 +94,9 @@ export default function Page({
   const doc = use(getDoctorById(id));
   if (!doc) return notFound();
 
-  const documents = (doc.verificationDocs ?? []).map((d, idx) => ({
-    id: `${doc.id}-${idx}`,
-    name: d?.name ?? `Document ${idx + 1}`,
-    href: d?.link ?? "#",
-  }));
-
+  const rating = use(getDoctorRating(id));
   const opinions = use(
-    getMedicalOpinionsByDoctor({
-      doctorId: id,
-      page,
-      pageSize,
-    })
+    getMedicalOpinionsByDoctor({ doctorId: id, page, pageSize })
   );
 
   return (
@@ -46,16 +104,19 @@ export default function Page({
       <DoctorHeaderCard
         id={doc.id}
         name={`${doc.firstName} ${doc.lastName}`}
-        firstName={doc.firstName ?? ""}
-        lastName={doc.lastName ?? ""}
         email={doc.email}
         image={doc.image ?? undefined}
         addedOn={doc.createdAt}
         verified={doc.verified}
+        about={doc.bio ?? ""}
+        clinicName={doc.clinicName ?? ""}
+        experienceYears={doc.experience ?? 0}
+        ratingValue={rating.avg}
+        ratingCount={rating.count}
       />
 
       <DoctorTabsClient
-        documents={documents}
+        overview={buildOverview(doc)}
         appointments={opinions.rows.map((o) => ({
           id: o.id,
           patientName: o.patientName,
@@ -74,8 +135,6 @@ export default function Page({
         totalAppointments={opinions.total}
         page={opinions.page}
         pageSize={opinions.pageSize}
-        monthlyClicks={doc.clicks ?? 0}
-        location={doc.location ?? null}
       />
     </div>
   );

@@ -1,9 +1,8 @@
-// components/admin/Doctor/RejectReasonModal.tsx
 "use client";
 
 import React, { useState } from "react";
-import Text from "@/components/ui/TextUser"; // your typography wrapper
-import Button from "@/components/ui/ButtonUser"; // your button wrapper
+import Text from "@/components/ui/TextUser";
+import Button from "@/components/ui/ButtonUser";
 import { cn } from "@/utils";
 
 type Props = {
