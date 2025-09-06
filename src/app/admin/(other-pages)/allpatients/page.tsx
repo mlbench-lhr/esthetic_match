@@ -1,29 +1,55 @@
+import { use } from "react";
+import Link from "next/link";
 import ComponentCard from "@/components/common/ComponentCard";
-import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import { Metadata } from "next";
-import React from "react";
-import BasicTableOne from "@/components/tables/BasicTableOne";
-import Text from "@/components/ui/TextUser";
+import PatientBreadcrumb from "@/components/common/PageBreadCrumbPatients";
+import PatientTable, { PatientRow } from "@/components/tables/PatientTable";
+import { getPatients } from "@/lib/data/patients";
 
-export const metadata: Metadata = {
-  title: "Next.js Basic Table | TailAdmin - Next.js Dashboard Template",
-  description:
-    "This is Next.js Basic Table  page for TailAdmin  Tailwind CSS Admin Dashboard Template",
-  // other metadata
-};
+export default function Page({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = use(searchParams);
 
-export default function page() {
+  const page = Number(sp.page ?? 1);
+  const pageSize = Number(sp.pageSize ?? 10);
+  const q = Array.isArray(sp.q) ? sp.q.join(" ") : sp.q ?? "";
+
+  const json = use(getPatients({ page, pageSize, search: q }));
+
+  const rows: PatientRow[] = json.data.map((p) => ({
+    id: p.id,
+    name: p.userName,
+    email: p.email,
+    image: p.image ?? null,
+    createdAt:
+      p.createdAt instanceof Date
+        ? p.createdAt.toISOString()
+        : String(p.createdAt),
+    appointments: p.appointments ?? 0,
+  }));
+
   return (
-    <div>
-      <Text as="h1" className="text-primary_black">
-        All Patients
-      </Text>
-      <PageBreadcrumb pageTitle="Basic Table" />
+    <>
+      <PatientBreadcrumb
+        pageTitle="All Patients"
+        total={json.total}
+        defaultSearch={q}
+        pageSize={String(pageSize)}
+      />
+
+      {/* No tabs and no add button for Patients */}
       <div className="space-y-6">
-        <ComponentCard title="Basic Table 1">
-          <BasicTableOne />
+        <ComponentCard title="All Patients">
+          <PatientTable
+            rows={rows}
+            total={json.total}
+            page={json.page}
+            pageSize={json.pageSize}
+          />
         </ComponentCard>
       </div>
-    </div>
+    </>
   );
 }
