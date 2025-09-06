@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Input from "../ui/InputUser";
 import Button from "../ui/ButtonUser";
+import { useAuth } from "@/context/AuthContext";
 
 type Props = {
   open: boolean;
@@ -20,6 +21,7 @@ type FormValues = {
 
 export default function AddDocModal({ open, onClose }: Props) {
   const router = useRouter();
+  const { token } = useAuth();
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -40,14 +42,15 @@ export default function AddDocModal({ open, onClose }: Props) {
     };
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/doctor/admin-signup`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+      if (!token) throw new Error("Not authorized. Please login again.");
+      const res = await fetch(`/api/admin/doctor/admin-signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
       const body = await res.json().catch(() => ({}));
 

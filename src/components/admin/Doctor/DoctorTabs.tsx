@@ -96,6 +96,11 @@ export default function DoctorTabs({
       window.open(f.href, "_blank", "noopener,noreferrer");
     }
   };
+  function toCloudinaryAttachment(url: string, filename?: string) {
+    if (!url.includes("/upload/")) return url;
+    const name = filename ? `:${encodeURIComponent(filename)}` : "";
+    return url.replace("/upload/", `/upload/fl_attachment${name}/`);
+  }
 
   return (
     <section className="bg-tertiary_skin p-4 sm:p-5 md:p-6 border border-secondary_skin rounded-3xl w-full">
@@ -178,49 +183,55 @@ export default function DoctorTabs({
                   Documents
                 </Text>
                 <div className="space-y-3 max-w-2xl">
-                  {overview.documents.map((f) => (
-                    <div
-                      key={f.id}
-                      className="flex justify-between items-center bg-primary_skin p-3 sm:p-4 rounded-xl"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex justify-center items-center bg-secondary rounded-xl w-10 h-10">
-                          <Image
-                            src={f.icon || "/images/admin/doctor/doc.svg"}
-                            alt=""
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <Text as="p1" className="text-primary_black truncate">
-                            {f.name}
-                          </Text>
-                          {f.sizeLabel && (
-                            <Text as="p2" className="text-secondary_black/70">
-                              {f.sizeLabel}
-                            </Text>
-                          )}
-                        </div>
-                      </div>
-                      <Link
-                        href={f.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download
-                        onClick={(e) => handleDownload(e, f)}
-                        className="inline-flex justify-center items-center rounded-xl w-9 h-9"
-                        aria-label="Download"
+                  {overview.documents.map((f) => {
+                    const downloadHref = toCloudinaryAttachment(f.href, f.name);
+                    return (
+                      <div
+                        key={f.id}
+                        className="flex justify-between items-center bg-primary_skin p-3 sm:p-4 rounded-xl"
                       >
-                        <Image
-                          src="/images/admin/doctor/download.svg"
-                          alt="Download"
-                          width={18}
-                          height={18}
-                        />
-                      </Link>
-                    </div>
-                  ))}
+                        <div className="flex items-center gap-3">
+                          <div className="flex justify-center items-center bg-secondary rounded-xl w-10 h-10">
+                            <Image
+                              src={f.icon || "/images/admin/doctor/doc.svg"}
+                              alt=""
+                              width={20}
+                              height={20}
+                            />
+                          </div>
+                          <div className="min-w-0 max-w-xs overflow-hidden">
+                            <Text
+                              as="p1"
+                              className="text-primary_black truncate"
+                            >
+                              {f.name}
+                            </Text>
+                            {f.sizeLabel && (
+                              <Text as="p2" className="text-secondary_black/70">
+                                {f.sizeLabel}
+                              </Text>
+                            )}
+                          </div>
+                        </div>
+
+                        <Link
+                          href={downloadHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download={f.name}
+                          className="inline-flex justify-center items-center rounded-xl w-9 h-9"
+                          aria-label="Download"
+                        >
+                          <Image
+                            src="/images/admin/doctor/download.svg"
+                            alt="Download"
+                            width={18}
+                            height={18}
+                          />
+                        </Link>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}

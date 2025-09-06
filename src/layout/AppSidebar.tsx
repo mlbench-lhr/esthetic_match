@@ -159,48 +159,43 @@ const AppSidebar: React.FC = () => {
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
+  // const isActive = useCallback(
+  //   (path: string) => {
+  //     if (!path) return false;
+  //     return pathname === path || pathname === `${path}/`;
+  //   },
+  //   [pathname]
+  // );
   const isActive = useCallback(
-    (path: string) => {
+    (path: string, includeChildren = false) => {
       if (!path) return false;
-      return pathname === path || pathname === `${path}/`;
+      const clean = (p: string) => p.replace(/\/+$/, ""); // strip trailing slash
+      const cur = clean(pathname);
+      const base = clean(path);
+      return cur === base || (includeChildren && cur.startsWith(base + "/"));
     },
     [pathname]
   );
-
   useEffect(() => {
     let submenuMatched = false;
 
+    // MAIN section
     navItems.forEach((nav, index) => {
-      if (nav.subItems) {
-        nav.subItems.forEach((subItem) => {
-          if (isActive(subItem.path)) {
-            setOpenSubmenu({
-              type: "main",
-              index,
-            });
-            submenuMatched = true;
-          }
-        });
+      if (nav.subItems?.some((si) => isActive(si.path, true))) {
+        setOpenSubmenu({ type: "main", index });
+        submenuMatched = true;
       }
     });
 
+    // OTHERS section
     othersItems.forEach((nav, index) => {
-      if (nav.subItems) {
-        nav.subItems.forEach((subItem) => {
-          if (isActive(subItem.path)) {
-            setOpenSubmenu({
-              type: "others",
-              index,
-            });
-            submenuMatched = true;
-          }
-        });
+      if (nav.subItems?.some((si) => isActive(si.path, true))) {
+        setOpenSubmenu({ type: "others", index });
+        submenuMatched = true;
       }
     });
 
-    if (!submenuMatched) {
-      setOpenSubmenu(null);
-    }
+    if (!submenuMatched) setOpenSubmenu(null);
   }, [pathname, isActive]);
 
   useEffect(() => {
@@ -274,6 +269,30 @@ const AppSidebar: React.FC = () => {
             </button>
           ) : (
             nav.path && (
+              // <Link
+              //   href={nav.path}
+              //   onClick={handleLinkClick}
+              //   className={`group flex items-center gap-4 w-full p-3 transition-colors rounded-lg ${
+              //     !isExpanded && !isHovered && !isMobileOpen
+              //       ? "lg:justify-center"
+              //       : "lg:justify-start"
+              //   } hover:bg-secondary ${
+              //     isActive(nav.path) ? "bg-primary/5" : ""
+              //   }`}
+              // >
+              //   <span className="transition-all duration-200">
+              //     {isActive(nav.path) ? nav.iconActive : nav.icon}
+              //   </span>
+              //   {(isExpanded || isHovered || isMobileOpen) && (
+              //     <span
+              //       className={`font-medium transition-colors ${
+              //         isActive(nav.path) ? "text-primary" : "text-primary_skin"
+              //       }`}
+              //     >
+              //       {nav.name}
+              //     </span>
+              //   )}
+              // </Link>
               <Link
                 href={nav.path}
                 onClick={handleLinkClick}
@@ -282,16 +301,18 @@ const AppSidebar: React.FC = () => {
                     ? "lg:justify-center"
                     : "lg:justify-start"
                 } hover:bg-secondary ${
-                  isActive(nav.path) ? "bg-primary/5" : ""
+                  isActive(nav.path, true) ? "bg-primary/5" : ""
                 }`}
               >
                 <span className="transition-all duration-200">
-                  {isActive(nav.path) ? nav.iconActive : nav.icon}
+                  {isActive(nav.path, true) ? nav.iconActive : nav.icon}
                 </span>
                 {(isExpanded || isHovered || isMobileOpen) && (
                   <span
                     className={`font-medium transition-colors ${
-                      isActive(nav.path) ? "text-primary" : "text-primary_skin"
+                      isActive(nav.path, true)
+                        ? "text-primary"
+                        : "text-primary_skin"
                     }`}
                   >
                     {nav.name}
