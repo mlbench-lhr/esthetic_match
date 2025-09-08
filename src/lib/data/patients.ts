@@ -64,9 +64,67 @@ export async function getPatientById(id: string) {
       email: true,
       image: true,
       location: true,
+      dob: true,
       createdAt: true,
       updatedAt: true,
     },
   });
   return user;
+}
+
+export type PatientBookingRow = {
+  id: string;
+  type: string;
+  procedure: string | null;
+  requestedOn: Date;
+  appointmentWith: string;
+  status: "Pending" | "Completed" | "Cancelled";
+};
+
+export async function getPatientBookings({
+  patientId,
+  page,
+  pageSize,
+}: {
+  patientId: string;
+  page: number;
+  pageSize: number;
+}) {
+  const skip = Math.max(0, (page - 1) * pageSize);
+
+  // Using MedicalOpinion as booking source
+  const [total, opinions] = await Promise.all([
+    prisma.medicalOpinion.count({ where: { userId: patientId } }),
+    prisma.medicalOpinion.findMany({
+      where: { userId: patientId },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take: pageSize,
+      select: {
+        id: true,
+        createdAt: true,
+        status: true,
+        procedure: true,
+        doctor: { select: { firstName: true, lastName: true } },
+      },
+    }),
+  ]);
+
+  const rows: PatientBookingRow[] = opinions.map((o) => ({
+    id: o.id,
+    type: "Medical Opinion", // static label
+    procedure: o.procedure || null,
+    requestedOn: o.createdAt,
+    appointmentWith:
+      [o.doctor?.firstName, o.doctor?.lastName].filter(Boolean).join(" ") ||
+      "Doctor",
+    status:
+      o.status === "completed"
+        ? "Completed"
+        : o.status === "rejected"
+        ? "Cancelled"
+        : "Pending",
+  }));
+
+  return { rows, total, page, pageSize };
 }
