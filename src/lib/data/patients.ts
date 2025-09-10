@@ -72,6 +72,21 @@ export async function getPatientById(id: string) {
   return user;
 }
 
+export async function getRecentPatients(limit = 5) {
+  const users = await prisma.patient.findMany({
+    orderBy: { createdAt: "desc" },
+    take: limit,
+    select: {
+      id: true,
+      userName: true,
+      email: true,
+      image: true,
+      createdAt: true,
+    },
+  });
+  return users;
+}
+
 export type PatientBookingRow = {
   id: string;
   type: string;
