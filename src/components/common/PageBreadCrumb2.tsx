@@ -37,8 +37,16 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
     const params = new URLSearchParams(sp.toString());
     params.set("page", "1");
     params.set("pageSize", pageSize);
-    verified ? params.set("verified", verified) : params.delete("verified");
-    q ? params.set("q", q) : params.delete("q");
+    if (verified) {
+      params.set("verified", verified);
+    } else {
+      params.delete("verified");
+    }
+    if (q) {
+      params.set("q", q);
+    } else {
+      params.delete("q");
+    }
 
     startTransition(() => {
       router.replace(`${pathname}?${params.toString()}`);
@@ -91,11 +99,11 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
             onKeyDown={handleKeyDown}
             className="bg-white border-primary_black/10 rounded-md w-full text-secondary_black/80 placeholder:text-secondary_black/80"
           />
-          {isPending && (
+          {isPending ? (
             <span className="top-1/2 right-2 absolute text-gray-500 text-xs -translate-y-1/2 pointer-events-none">
               searching…
             </span>
-          )}
+          ) : null}
         </div>
       </nav>
 

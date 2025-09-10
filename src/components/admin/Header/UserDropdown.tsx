@@ -2,11 +2,22 @@
 import { Dropdown } from "@/components/ui/dropdown/Dropdown";
 import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import ChangePasswordModal from "@/components/auth/account/ChangePasswordModal";
+import EditProfileModal from "@/components/auth/account/EditProfileModal";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showChangePass, setShowChangePass] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const { user, logout, updateUser } = useAuth();
+  const router = useRouter();
+
+  const displayName =
+    user?.name || (user?.email ? user.email.split("@")[0] : "User");
+  const displayEmail = user?.email || "";
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation();
@@ -26,13 +37,14 @@ export default function UserDropdown() {
           <Image
             width={44}
             height={44}
-            src="/images/admin/header/owner.jpg"
+            src={user?.image || "/images/admin/header/owner.jpg"}
             alt="User"
+            className="w-11 h-11 object-cover"
           />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">
-          Deborah Levy
+        <span className="block mr-1 max-w-[140px] font-medium text-theme-sm truncate">
+          {displayName}
         </span>
 
         <svg
@@ -62,20 +74,24 @@ export default function UserDropdown() {
         className="right-0 absolute flex flex-col bg-[color:var(--tertiary_skin)] shadow-theme-lg mt-[17px] p-3 border border-[color:var(--border_muted)] rounded-2xl w-[260px]"
       >
         <div>
-          <span className="block font-medium text-[color:var(--primary_black)] text-theme-sm">
-            Deborah Levy
+          <span className="block font-medium text-[color:var(--primary_black)] text-theme-sm truncate">
+            {displayName}
           </span>
-          <span className="block mt-0.5 text-[color:var(--secondary_black)]/80 text-theme-xs">
-            mlbenchpvtltd@gmail.com
-          </span>
+          {displayEmail && (
+            <span className="block mt-0.5 text-[color:var(--secondary_black)]/80 text-theme-xs truncate">
+              {displayEmail}
+            </span>
+          )}
         </div>
 
         <ul className="flex flex-col gap-1 pt-4 pb-3 border-[color:var(--border_muted)] border-b">
           <li>
             <DropdownItem
-              onItemClick={closeDropdown}
-              tag="a"
-              href="/#"
+              onItemClick={() => {
+                setIsOpen(false);
+                setShowEditProfile(true);
+              }}
+              tag="button"
               className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
             >
               <svg
@@ -99,9 +115,12 @@ export default function UserDropdown() {
 
           <li>
             <DropdownItem
-              onItemClick={closeDropdown}
-              tag="a"
-              href="/#"
+              onItemClick={() => {
+                setIsOpen(false);
+                setShowChangePass(true);
+              }}
+              tag="button"
+              // href="/#"
               className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
             >
               <Image
@@ -115,9 +134,14 @@ export default function UserDropdown() {
           </li>
         </ul>
 
-        <Link
-          href="/login"
-          className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] mt-3 px-3 py-2 rounded-lg font-medium text-[color:var(--primary_black)] text-theme-sm"
+        <button
+          type="button"
+          onClick={() => {
+            logout();
+            router.push("/login");
+            closeDropdown();
+          }}
+          className="group flex items-center gap-3 hover:bg-[color:var(--primary_skin)] mt-3 px-3 py-2 rounded-lg w-full font-medium text-[color:var(--primary_black)] text-theme-sm text-left"
         >
           <svg
             className="fill-[color:var(--secondary_black)] group-hover:fill-[color:var(--primary_black)]"
@@ -135,8 +159,77 @@ export default function UserDropdown() {
             />
           </svg>
           Logout
-        </Link>
+        </button>
       </Dropdown>
+
+      <ChangePasswordModal
+        open={showChangePass}
+        onClose={() => setShowChangePass(false)}
+        onSuccess={() => {
+          // optional: force reauth or show toast, etc.
+        }}
+      />
+
+      <EditProfileModal
+        open={showEditProfile}
+        onClose={() => setShowEditProfile(false)}
+        initial={{
+          firstName: (user?.name || "").split(" ")[0] || "",
+          lastName: (user?.name || "").split(" ").slice(1).join(" ") || "",
+          avatarUrl: user?.image || "",
+        }}
+        saving={false}
+        onSubmit={async ({ firstName, lastName, avatarFile, avatarUrl }) => {
+          try {
+            const stored = localStorage.getItem("auth");
+            const token = stored
+              ? (JSON.parse(stored).token as string | null)
+              : null;
+            if (!token) return;
+            const form = new FormData();
+            form.set("firstName", firstName);
+            form.set("lastName", lastName);
+            if (avatarFile) {
+              form.set("avatar", avatarFile);
+            } else if (!avatarUrl) {
+              // if user cleared the image
+              form.set("removeAvatar", "true");
+            }
+
+            const res = await fetch("/api/auth/update-profile", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              body: form,
+            });
+            if (res.ok) {
+              // Update local context storage name for immediate UI reflect
+              const auth = stored ? JSON.parse(stored) : {};
+              const newName = `${firstName} ${lastName}`
+                .replace(/\s+/g, " ")
+                .trim();
+              let newImage: string | undefined = auth.user?.image;
+              try {
+                const data = await res.json();
+                if (data?.user) {
+                  newImage = data.user.image || undefined;
+                }
+              } catch {}
+              if (auth.user) {
+                auth.user.name = newName;
+                if (newImage !== undefined) auth.user.image = newImage;
+              }
+              localStorage.setItem("auth", JSON.stringify(auth));
+              updateUser({ name: newName, image: newImage });
+              setShowEditProfile(false);
+              router.refresh();
+            }
+          } catch {
+            // no-op; could show toast
+          }
+        }}
+      />
     </div>
   );
 }

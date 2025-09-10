@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -53,7 +53,7 @@ export type AppointmentRow = {
   consultationDate: Date;
 };
 
-const numFmt = new Intl.NumberFormat("en-US");
+// const numFmt = new Intl.NumberFormat("en-US");
 
 export default function DoctorTabs({
   overview,
@@ -75,27 +75,27 @@ export default function DoctorTabs({
 
   const handlePageChange = (p: number) => onPageChange?.(p);
 
-  const handleDownload = async (
-    e: MouseEvent<HTMLAnchorElement>,
-    f: DocFile
-  ) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(f.href, { credentials: "include" });
-      if (!res.ok) throw new Error();
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = f.name || "download";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch {
-      window.open(f.href, "_blank", "noopener,noreferrer");
-    }
-  };
+  // const handleDownload = async (
+  //   e: MouseEvent<HTMLAnchorElement>,
+  //   f: DocFile
+  // ) => {
+  //   e.preventDefault();
+  //   try {
+  //     const res = await fetch(f.href, { credentials: "include" });
+  //     if (!res.ok) throw new Error();
+  //     const blob = await res.blob();
+  //     const url = URL.createObjectURL(blob);
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = f.name || "download";
+  //     document.body.appendChild(a);
+  //     a.click();
+  //     a.remove();
+  //     URL.revokeObjectURL(url);
+  //   } catch {
+  //     window.open(f.href, "_blank", "noopener,noreferrer");
+  //   }
+  // };
   function toCloudinaryAttachment(url: string, filename?: string) {
     if (!url.includes("/upload/")) return url;
     const name = filename ? `:${encodeURIComponent(filename)}` : "";

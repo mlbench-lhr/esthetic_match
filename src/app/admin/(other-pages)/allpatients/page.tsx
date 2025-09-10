@@ -1,5 +1,4 @@
 import { use } from "react";
-import Link from "next/link";
 import ComponentCard from "@/components/common/ComponentCard";
 import PatientBreadcrumb from "@/components/common/PageBreadCrumbPatients";
 import PatientTable, { PatientRow } from "@/components/tables/PatientTable";
