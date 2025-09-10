@@ -31,7 +31,11 @@ const PatientBreadcrumb: React.FC<BreadcrumbProps> = ({
     const params = new URLSearchParams(sp.toString());
     params.set("page", "1");
     params.set("pageSize", pageSize);
-    q ? params.set("q", q) : params.delete("q");
+    if (q) {
+      params.set("q", q);
+    } else {
+      params.delete("q");
+    }
 
     startTransition(() => {
       router.replace(`${pathname}?${params.toString()}`);
@@ -77,11 +81,11 @@ const PatientBreadcrumb: React.FC<BreadcrumbProps> = ({
             onKeyDown={handleKeyDown}
             className="bg-white border-primary_black/10 rounded-md w-full text-secondary_black/80 placeholder:text-secondary_black/80"
           />
-          {isPending && (
+          {isPending ? (
             <span className="top-1/2 right-2 absolute text-gray-500 text-xs -translate-y-1/2 pointer-events-none">
               searching…
             </span>
-          )}
+          ) : null}
         </div>
       </nav>
     </div>

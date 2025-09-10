@@ -1,7 +1,4 @@
-import DemographicCard from "@/components/admin/Dashboard/DemographicCard";
 import { EcommerceMetrics } from "@/components/admin/Dashboard/EcommerceMetrics";
-import MonthlySalesChart from "@/components/admin/Dashboard/MonthlySalesChart";
-import MonthlyTarget from "@/components/admin/Dashboard/MonthlyTarget";
 import RecentOrders from "@/components/admin/Dashboard/RecentOrders";
 import StatisticsChart from "@/components/admin/Dashboard/StatisticsChart";
 import Text from "@/components/ui/TextUser";

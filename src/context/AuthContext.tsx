@@ -1,13 +1,14 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-type User = { id: number; email: string; name?: string } | null;
+type User = { id: string; email: string; name?: string; image?: string } | null;
 
 type AuthContextType = {
   user: User;
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateUser: (partial: Partial<NonNullable<User>>) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -54,7 +55,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (!res.ok) throw new Error(data.error || "Login failed");
 
-    setUser(data.user);
+    setUser({
+      id: String(data.user.id),
+      email: data.user.email,
+      name: data.user.name,
+      image: data.user.image,
+    });
     setToken(data.token);
   };
 
@@ -64,8 +70,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("auth");
   };
 
+  const updateUser = (partial: Partial<NonNullable<User>>) => {
+    setUser((prev) => {
+      if (prev) return { ...prev, ...partial };
+      // If no previous user, initialize minimal shape when possible
+      return {
+        id: (partial.id as string) || "",
+        email: (partial.email as string) || "",
+        name: partial.name,
+        image: partial.image,
+      };
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
