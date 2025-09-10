@@ -119,7 +119,7 @@ const navItems: NavItem[] = [
     icon: (
       <Image
         src="/images/sidebar/reviews.svg"
-        alt="Reported Reviews"
+        alt="Hidden Reviews"
         width={24}
         height={24}
       />
@@ -127,13 +127,13 @@ const navItems: NavItem[] = [
     iconActive: (
       <Image
         src="/images/sidebar/active/reviews.svg"
-        alt="Reported Reviews Active"
+        alt="Hidden Reviews Active"
         width={24}
         height={24}
       />
     ),
-    name: "Reported Reviews",
-    path: "/admin/reportedreviews",
+    name: "Hidden Reviews",
+    path: "/admin/hiddenreviews",
   },
 ];
 
