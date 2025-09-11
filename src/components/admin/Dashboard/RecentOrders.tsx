@@ -103,7 +103,7 @@ export default async function RecentOrders() {
                 <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                   <Link
                     href={`/admin/allpatients/${u.id}`}
-                    className="text-primary underline underline-offset-2"
+                    className="text-secondary underline underline-offset-2"
                   >
                     View Details
                   </Link>
