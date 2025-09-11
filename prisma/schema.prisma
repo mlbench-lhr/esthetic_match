@@ -178,3 +178,82 @@ model DoctorReview {
 
   @@map("doctorreviews")
 }
+
+// ---------------- Enums ----------------
+enum SubscriptionStatus {
+  active
+  canceled
+  incomplete
+  incomplete_expired
+  past_due
+  trialing
+  unpaid
+}
+
+enum SubscriptionType {
+  pay_as_you_go
+  annual_50
+}
+
+enum TxType {
+  withdrawal
+  consultation_fee
+}
+
+enum TxStatus {
+  completed
+  incompleted
+}
+
+// ---------------- Collections ----------------
+
+// Doctor already exists in your schema. We’ll just reference it by id.
+// model Doctor { id String @id @map("_id") @default(auto()) @db.ObjectId ... }
+
+// Optional, not needed for the chart but included for completeness
+model Subscription {
+  id                  String             @id @map("_id") @default(auto()) @db.ObjectId
+  doctorId            String             @db.ObjectId
+  stripeCustomerId    String
+  stripeSubscriptionId String            @unique
+  stripePriceId       String
+  stripeProductId     String
+  status              SubscriptionStatus
+  subscriptionType    SubscriptionType
+  currentPeriodStart  DateTime
+  currentPeriodEnd    DateTime
+  cancelAtPeriodEnd   Boolean            @default(false)
+  canceledAt          DateTime?
+  trialStart          DateTime?
+  trialEnd            DateTime?
+  metadata            Json?
+
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  @@unique([doctorId])                   // you had unique per doctor
+  @@map("subscriptions")
+}
+
+model SubscriptionHistory {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  doctorId  String   @db.ObjectId
+  amount    Int
+  clicks    Int
+  createdAt DateTime @default(now())
+
+  @@map("subscriptionhistories")
+  @@index([doctorId])
+}
+
+model TransactionHistory {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  doctorId  String   @db.ObjectId
+  type      TxType
+  amount    Int
+  status    TxStatus @default(incompleted)
+  createdAt DateTime @default(now())
+
+  @@map("transactionhistories")
+  @@index([doctorId, status])
+}
