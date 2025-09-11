@@ -7,6 +7,7 @@ import HamburgerMenu from "@/components/ui/HamburgerMenu";
 import { usePathname } from "next/navigation";
 import React from "react";
 import Header from "@/components/admin/Header";
+import { SWRConfig } from "swr";
 
 export default function AdminLayout({
   children,
@@ -50,12 +51,14 @@ export default function AdminLayout({
           shouldHideSidebar ? "pt-0" : "pt-0 lg:pt-0"
         } bg-primary`}
       >
-        <div className="flex justify-center min-h-screen">
-          <div className="px-4 sm:px-6 w-screen md:w-full">
-            <Header />
-            {children}
+        <SWRConfig value={{ fetcher: (u) => fetch(u).then((r) => r.json()) }}>
+          <div className="flex justify-center min-h-screen">
+            <div className="px-4 sm:px-6 w-screen md:w-full">
+              <Header />
+              {children}
+            </div>
           </div>
-        </div>
+        </SWRConfig>
       </main>
     </div>
   );
