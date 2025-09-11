@@ -1,6 +1,6 @@
 import { EcommerceMetrics } from "@/components/admin/Dashboard/EcommerceMetrics";
 import RecentOrders from "@/components/admin/Dashboard/RecentOrders";
-import StatisticsChart from "@/components/admin/Dashboard/StatisticsChart";
+import PaymentsReceivedChart from "@/components/admin/Dashboard/StatisticsChart";
 import Text from "@/components/ui/TextUser";
 import type { Metadata } from "next";
 import React from "react";
@@ -27,7 +27,7 @@ export default function Ecommerce() {
       </div> */}
 
       <div className="col-span-12">
-        <StatisticsChart />
+        <PaymentsReceivedChart year={2025} />
       </div>
 
       <div className="col-span-12 xl:col-span-5">

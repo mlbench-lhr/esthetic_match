@@ -1,60 +1,3 @@
-// "use client";
-// import React from "react";
-// import Badge from "@/components/ui/badge/Badge";
-// import { ArrowDownIcon, ArrowUpIcon, Box, Users } from "lucide-react";
-
-// export const EcommerceMetrics = () => {
-//   return (
-//     <div className="gap-4 md:gap-6 grid grid-cols-1 sm:grid-cols-2">
-//       {/* <!-- Metric Item Start --> */}
-//       <div className="bg-[#F6F1EB] p-5 md:p-6 border border-gray-200 dark:border-gray-800 rounded-2xl">
-//         <div className="flex justify-center items-center bg-gray-100 rounded-full w-12 h-12">
-//           <Users className="size-6 text-gray-800" />
-//         </div>
-
-//         <div className="flex justify-between items-end mt-5">
-//           <div>
-//             <span className="text-gray-500 dark:text-gray-400 text-sm">
-//               Customers
-//             </span>
-//             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-//               3,782
-//             </h4>
-//           </div>
-//           <Badge color="success">
-//             <ArrowUpIcon />
-//             11.01%
-//           </Badge>
-//         </div>
-//       </div>
-//       {/* <!-- Metric Item End --> */}
-
-//       {/* <!-- Metric Item Start --> */}
-//       <div className="bg-white dark:bg-white/[0.03] p-5 md:p-6 border border-gray-200 dark:border-gray-800 rounded-2xl">
-//         <div className="flex justify-center items-center bg-gray-100 rounded-full w-12 h-12">
-//           <Box className="text-gray-800" />
-//         </div>
-//         <div className="flex justify-between items-end mt-5">
-//           <div>
-//             <span className="text-gray-500 dark:text-gray-400 text-sm">
-//               Orders
-//             </span>
-//             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-//               5,359
-//             </h4>
-//           </div>
-
-//           <Badge color="error">
-//             <ArrowDownIcon className="text-error-500" />
-//             9.05%
-//           </Badge>
-//         </div>
-//       </div>
-//       {/* <!-- Metric Item End --> */}
-//     </div>
-//   );
-// };
-
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { Users, UserSquare2, ArrowUpRight, ArrowDownRight } from "lucide-react";
@@ -105,19 +48,19 @@ function StatCard({
   value: string | number;
   sinceLabel?: string;
   trend: string;
-  trendColorVar: string; // CSS var string
-  lineColorVar: string; // CSS var string
+  trendColorVar: string;
+  lineColorVar: string;
   points: number[];
 }) {
   return (
     <div
-      className="flex flex-col p-5 md:p-6 border rounded-2xl"
+      className="flex justify-between items-center p-5 md:p-6 border rounded-2xl"
       style={{
-        background: `var(--secondary_skin)`, // matches screenshot card tone
+        background: "var(--secondary_skin)",
         borderColor: "rgba(0,0,0,0.06)",
       }}
     >
-      {/* icon */}
+      {/* LEFT: icon + text */}
       <div>
         <div
           className="flex justify-center items-center rounded-full w-10 h-10"
@@ -126,7 +69,6 @@ function StatCard({
           <div className="text-secondary">{icon}</div>
         </div>
 
-        {/* top row: title + value */}
         <div className="mt-4">
           <div className="text-[13px] text-secondary_black/70">{title}</div>
           <div className="mt-1 font-bold text-black_secondary text-2xl">
@@ -138,29 +80,25 @@ function StatCard({
         </div>
       </div>
 
-      <div>
-        {/* mid: sparkline */}
-        <div className="mt-4">
-          <div className="w-full overflow-hidden">
-            <div style={{ color: lineColorVar }}>
-              <Sparkline points={points && points.length ? points : [0]} />
-            </div>
-          </div>
+      {/* RIGHT: sparkline + trend (fixed width, aligned right) */}
+      <div className="flex flex-col justify-center items-end ml-auto min-w-[140px] sm:min-w-[180px]">
+        <div
+          className="w-[140px] sm:w-[180px] h-14 overflow-hidden"
+          style={{ color: lineColorVar }}
+        >
+          <Sparkline points={points && points.length ? points : [0]} />
         </div>
 
-        {/* bottom: trend */}
-        <div className="flex justify-end items-center gap-1 mt-2 text-sm">
-          <span
-            className="inline-flex items-center gap-1 font-medium"
-            style={{ color: trendColorVar }}
-          >
-            {trendColorVar === "var(--green)" ? (
-              <ArrowUpRight className="w-4 h-4" />
-            ) : (
-              <ArrowDownRight className="w-4 h-4" />
-            )}
-            {trend}
-          </span>
+        <div
+          className="flex items-center gap-1 mt-2 text-sm"
+          style={{ color: trendColorVar }}
+        >
+          {trendColorVar === "var(--green)" ? (
+            <ArrowUpRight className="w-4 h-4" />
+          ) : (
+            <ArrowDownRight className="w-4 h-4" />
+          )}
+          {trend}
         </div>
       </div>
     </div>

@@ -3,12 +3,28 @@ import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { useMemo } from "react";
 import type { ApexOptions } from "apexcharts";
-import ChartTab from "@/components/common/ChartTab";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-const fetcher = (u: string) => fetch(u).then((r) => r.json());
+
+// ✅ add a fetcher (or set one globally via <SWRConfig> in layout)
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 type Api = {
   labels: string[];
@@ -16,20 +32,23 @@ type Api = {
   total: number;
   monthOverMonthPct: number;
   year: number;
+  currency?: string;
 };
-
-const money = (n: number) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(n);
 
 export default function PaymentsReceivedChart({ year }: { year?: number }) {
   const { data } = useSWR<Api>(
     `/api/admin/payments/summary${year ? `?year=${year}` : ""}`,
-    fetcher
+    fetcher, // 👈 use the fetcher
+    { revalidateOnFocus: false } // optional: avoid refetch on tab focus
   );
+
+  const currency = data?.currency ?? "CHF";
+  const money = (n: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(n);
 
   const options: ApexOptions = useMemo(
     () => ({
@@ -53,7 +72,7 @@ export default function PaymentsReceivedChart({ year }: { year?: number }) {
         xaxis: { lines: { show: false } },
       },
       xaxis: {
-        categories: data?.labels ?? [],
+        categories: data?.labels ?? MONTHS, // 👈 fallback labels
         axisBorder: { show: false },
         axisTicks: { show: false },
         labels: { style: { fontSize: "12px", colors: "#9ca3af" } },
@@ -61,14 +80,17 @@ export default function PaymentsReceivedChart({ year }: { year?: number }) {
       },
       yaxis: {
         labels: {
-          formatter: (v) => (v >= 1000 ? `$${Math.round(v / 1000)}k` : `$${v}`),
+          formatter: (v) =>
+            v >= 1000
+              ? `${currency}${Math.round(v / 1000)}k`
+              : `${currency}${v}`,
           style: { fontSize: "12px", colors: ["#9ca3af"] },
         },
       },
       tooltip: { y: { formatter: (v) => money(v) } },
       legend: { show: false },
     }),
-    [data?.labels]
+    [data?.labels, currency]
   );
 
   const series = useMemo(
@@ -99,9 +121,6 @@ export default function PaymentsReceivedChart({ year }: { year?: number }) {
           <p className="mt-1 text-gray-500 text-theme-sm">
             Year {data?.year ?? new Date().getFullYear()}
           </p>
-        </div>
-        <div className="flex sm:justify-end items-start gap-3 w-full">
-          <ChartTab />
         </div>
       </div>
 
