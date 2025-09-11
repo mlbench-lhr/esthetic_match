@@ -1,10 +1,11 @@
+// app/api/admin/metrics/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 
 function buildLast12MonthKeys(): { keys: string[]; start: Date } {
   const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth() - 11, 1);
+  const start = new Date(now.getFullYear(), now.getMonth() - 11, 1); // first day 11 months ago
   const keys: string[] = [];
   for (let i = 0; i < 12; i++) {
     const d = new Date(start.getFullYear(), start.getMonth() + i, 1);
@@ -27,60 +28,106 @@ export async function GET(req: NextRequest) {
     }
 
     const { keys, start } = buildLast12MonthKeys();
+    const startYM = start.getFullYear() * 100 + (start.getMonth() + 1); // e.g., 202508
 
-    // Totals (overall)
+    // ---- overall totals
     const [totalPatients, totalMedicalOpinions] = await Promise.all([
       prisma.patient.count(),
       prisma.medicalOpinion.count(),
     ]);
 
-    // Monthly patients counts (last 12 months)
-    const patientsAgg = (await prisma.patient.aggregateRaw({
+    // ---- patients per month (last 12) using numeric ym
+    const patientsAggRaw: unknown = await prisma.patient.aggregateRaw({
       pipeline: [
-        { $match: { createdAt: { $gte: start } } },
         {
-          $group: {
-            _id: { y: { $year: "$createdAt" }, m: { $month: "$createdAt" } },
-            count: { $sum: 1 },
+          $addFields: {
+            ym: {
+              $add: [
+                { $multiply: [{ $year: "$createdAt" }, 100] },
+                { $month: "$createdAt" },
+              ],
+            },
           },
         },
-        { $sort: { "_id.y": 1, "_id.m": 1 } },
+        { $match: { ym: { $gte: startYM } } },
+        { $group: { _id: "$ym", count: { $sum: 1 } } },
+        {
+          $project: {
+            _id: 0,
+            y: { $floor: { $divide: ["$_id", 100] } },
+            m: { $mod: ["$_id", 100] },
+            count: 1,
+          },
+        },
+        { $sort: { y: 1, m: 1 } },
       ],
-    })) as unknown as Array<{ _id: { y: number; m: number }; count: number }>;
+    });
+
+    type AggRow = { y: number; m: number; count: number };
+    const patientsAgg: AggRow[] = Array.isArray(patientsAggRaw)
+      ? (patientsAggRaw as Record<string, unknown>[]).map((r) => ({
+          y: Number(r.y),
+          m: Number(r.m),
+          count: Number(r.count),
+        }))
+      : [];
 
     const patientMap = new Map<string, number>();
     for (const r of patientsAgg) {
-      const key = `${r._id.y}-${String(r._id.m).padStart(2, "0")}`;
+      const key = `${r.y}-${String(r.m).padStart(2, "0")}`;
       patientMap.set(key, r.count);
     }
-    const patientsMonthly = keys.map((k) => patientMap.get(k) ?? 0);
+    const totalPatientsMonthly = keys.map((k) => patientMap.get(k) ?? 0);
 
-    // Monthly medical opinions counts (last 12 months)
-    const opinionsAgg = (await prisma.medicalOpinion.aggregateRaw({
+    // ---- medical opinions per month (last 12) using numeric ym
+    const opinionsAggRaw: unknown = await prisma.medicalOpinion.aggregateRaw({
       pipeline: [
-        { $match: { createdAt: { $gte: start } } },
         {
-          $group: {
-            _id: { y: { $year: "$createdAt" }, m: { $month: "$createdAt" } },
-            count: { $sum: 1 },
+          $addFields: {
+            ym: {
+              $add: [
+                { $multiply: [{ $year: "$createdAt" }, 100] },
+                { $month: "$createdAt" },
+              ],
+            },
           },
         },
-        { $sort: { "_id.y": 1, "_id.m": 1 } },
+        { $match: { ym: { $gte: startYM } } },
+        { $group: { _id: "$ym", count: { $sum: 1 } } },
+        {
+          $project: {
+            _id: 0,
+            y: { $floor: { $divide: ["$_id", 100] } },
+            m: { $mod: ["$_id", 100] },
+            count: 1,
+          },
+        },
+        { $sort: { y: 1, m: 1 } },
       ],
-    })) as unknown as Array<{ _id: { y: number; m: number }; count: number }>;
+    });
+
+    const opinionsAgg: AggRow[] = Array.isArray(opinionsAggRaw)
+      ? (opinionsAggRaw as Record<string, unknown>[]).map((r) => ({
+          y: Number(r.y),
+          m: Number(r.m),
+          count: Number(r.count),
+        }))
+      : [];
 
     const opinionsMap = new Map<string, number>();
     for (const r of opinionsAgg) {
-      const key = `${r._id.y}-${String(r._id.m).padStart(2, "0")}`;
+      const key = `${r.y}-${String(r.m).padStart(2, "0")}`;
       opinionsMap.set(key, r.count);
     }
-    const medicalOpinionsMonthly = keys.map((k) => opinionsMap.get(k) ?? 0);
+    const totalMedicalOpinionsMonthly = keys.map(
+      (k) => opinionsMap.get(k) ?? 0
+    );
 
     return NextResponse.json({
       totalPatients,
-      totalPatientsMonthly: patientsMonthly,
+      totalPatientsMonthly,
       totalMedicalOpinions,
-      totalMedicalOpinionsMonthly: medicalOpinionsMonthly,
+      totalMedicalOpinionsMonthly,
       labels: keys,
     });
   } catch (e) {
