@@ -1,133 +1,103 @@
 "use client";
-import React from "react";
-// import Chart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
+import useSWR from "swr";
+import { useMemo } from "react";
+import type { ApexOptions } from "apexcharts";
 import ChartTab from "@/components/common/ChartTab";
 
-// Dynamically import the ReactApexChart component
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
+const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
-export default function StatisticsChart() {
-  const options: ApexOptions = {
-    legend: {
-      show: false, // Hide legend
-      position: "top",
-      horizontalAlign: "left",
-    },
-    colors: ["#465FFF", "#9CB9FF"], // Define line colors
-    chart: {
-      fontFamily: "Outfit, sans-serif",
-      height: 310,
-      type: "line", // Set the chart type to 'line'
-      toolbar: {
-        show: false, // Hide chart toolbar
-      },
-    },
-    stroke: {
-      curve: "straight", // Define the line style (straight, smooth, or step)
-      width: [2, 2], // Line width for each dataset
-    },
+type Api = {
+  labels: string[];
+  data: number[];
+  total: number;
+  monthOverMonthPct: number;
+  year: number;
+};
 
-    fill: {
-      type: "gradient",
-      gradient: {
-        opacityFrom: 0.55,
-        opacityTo: 0,
+const money = (n: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);
+
+export default function PaymentsReceivedChart({ year }: { year?: number }) {
+  const { data } = useSWR<Api>(
+    `/api/admin/payments/summary${year ? `?year=${year}` : ""}`,
+    fetcher
+  );
+
+  const options: ApexOptions = useMemo(
+    () => ({
+      chart: {
+        type: "area",
+        height: 310,
+        toolbar: { show: false },
+        fontFamily: "Outfit, sans-serif",
       },
-    },
-    markers: {
-      size: 0, // Size of the marker points
-      strokeColors: "#fff", // Marker border color
-      strokeWidth: 2,
-      hover: {
-        size: 6, // Marker size on hover
+      colors: ["#F97316"],
+      stroke: { curve: "smooth", width: 2 },
+      dataLabels: { enabled: false },
+      fill: {
+        type: "gradient",
+        gradient: { opacityFrom: 0.5, opacityTo: 0, stops: [0, 90, 100] },
       },
-    },
-    grid: {
+      grid: {
+        borderColor: "#e5e7eb",
+        strokeDashArray: 4,
+        yaxis: { lines: { show: true } },
+        xaxis: { lines: { show: false } },
+      },
       xaxis: {
-        lines: {
-          show: false, // Hide grid lines on x-axis
-        },
+        categories: data?.labels ?? [],
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: { fontSize: "12px", colors: "#9ca3af" } },
+        tooltip: { enabled: false },
       },
       yaxis: {
-        lines: {
-          show: true, // Show grid lines on y-axis
+        labels: {
+          formatter: (v) => (v >= 1000 ? `$${Math.round(v / 1000)}k` : `$${v}`),
+          style: { fontSize: "12px", colors: ["#9ca3af"] },
         },
       },
-    },
-    dataLabels: {
-      enabled: false, // Disable data labels
-    },
-    tooltip: {
-      enabled: true, // Enable tooltip
-      x: {
-        format: "dd MMM yyyy", // Format for x-axis tooltip
-      },
-    },
-    xaxis: {
-      type: "category", // Category-based x-axis
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-      axisBorder: {
-        show: false, // Hide x-axis border
-      },
-      axisTicks: {
-        show: false, // Hide x-axis ticks
-      },
-      tooltip: {
-        enabled: false, // Disable tooltip for x-axis points
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          fontSize: "12px", // Adjust font size for y-axis labels
-          colors: ["#6B7280"], // Color of the labels
-        },
-      },
-      title: {
-        text: "", // Remove y-axis title
-        style: {
-          fontSize: "0px",
-        },
-      },
-    },
-  };
+      tooltip: { y: { formatter: (v) => money(v) } },
+      legend: { show: false },
+    }),
+    [data?.labels]
+  );
 
-  const series = [
-    {
-      name: "Sales",
-      data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
-    },
-    {
-      name: "Revenue",
-      data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
-    },
-  ];
+  const series = useMemo(
+    () => [{ name: "Payments", data: data?.data ?? Array(12).fill(0) }],
+    [data?.data]
+  );
+
   return (
-    <div className="bg-white dark:bg-white/[0.03] px-5 sm:px-6 pt-5 sm:pt-6 pb-5 border border-gray-200 dark:border-gray-800 rounded-2xl">
+    <div className="bg-[#FBF7F3] px-5 sm:px-6 pt-5 sm:pt-6 pb-5 border border-gray-200 rounded-2xl">
       <div className="flex sm:flex-row flex-col sm:justify-between gap-5 mb-6">
         <div className="w-full">
-          <h3 className="font-semibold text-gray-800 dark:text-white/90 text-lg">
-            Statistics
-          </h3>
-          <p className="mt-1 text-gray-500 text-theme-sm dark:text-gray-400">
-            Target you’ve set for each month
+          <div className="flex justify-between items-center">
+            <h3 className="font-semibold text-slate-800 text-lg">
+              Payment Received
+            </h3>
+            <div className="flex items-center gap-3">
+              <div className="font-semibold text-slate-900">
+                {data ? money(data.total) : "—"}
+              </div>
+              {data && (
+                <span className="bg-slate-900/5 px-2 py-1 rounded-full text-slate-700 text-xs">
+                  {data.monthOverMonthPct >= 0 ? "+" : ""}
+                  {Math.round(data.monthOverMonthPct)}%
+                </span>
+              )}
+            </div>
+          </div>
+          <p className="mt-1 text-gray-500 text-theme-sm">
+            Year {data?.year ?? new Date().getFullYear()}
           </p>
         </div>
         <div className="flex sm:justify-end items-start gap-3 w-full">

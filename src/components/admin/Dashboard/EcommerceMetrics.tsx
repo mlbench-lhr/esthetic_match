@@ -96,68 +96,72 @@ function StatCard({
   value,
   sinceLabel = "Since Last Month",
   trend,
-  trendColorVar, // var(--green) or var(--red)
-  lineColorVar, // var(--secondary) etc.
+  trendColorVar,
+  lineColorVar,
   points,
 }: {
   icon: React.ReactNode;
   title: string;
   value: string | number;
   sinceLabel?: string;
-  trend: string; // e.g. "6.97%"
+  trend: string;
   trendColorVar: string; // CSS var string
   lineColorVar: string; // CSS var string
   points: number[];
 }) {
   return (
     <div
-      className="p-5 md:p-6 border rounded-2xl"
+      className="flex flex-col p-5 md:p-6 border rounded-2xl"
       style={{
         background: `var(--secondary_skin)`, // matches screenshot card tone
         borderColor: "rgba(0,0,0,0.06)",
       }}
     >
       {/* icon */}
-      <div
-        className="flex justify-center items-center rounded-full w-10 h-10"
-        style={{ background: "var(--tertiary_skin)" }}
-      >
-        <div className="text-secondary">{icon}</div>
-      </div>
-
-      {/* top row: title + value */}
-      <div className="mt-4">
-        <div className="text-[13px] text-secondary_black/70">{title}</div>
-        <div className="mt-1 font-bold text-black_secondary text-2xl">
-          {value}
+      <div>
+        <div
+          className="flex justify-center items-center rounded-full w-10 h-10"
+          style={{ background: "var(--tertiary_skin)" }}
+        >
+          <div className="text-secondary">{icon}</div>
         </div>
-        <div className="mt-1 text-[12px] text-secondary_black/50">
-          {sinceLabel}
-        </div>
-      </div>
 
-      {/* mid: sparkline */}
-      <div className="mt-4">
-        <div className="w-full overflow-hidden">
-          <div style={{ color: lineColorVar }}>
-            <Sparkline points={points && points.length ? points : [0]} />
+        {/* top row: title + value */}
+        <div className="mt-4">
+          <div className="text-[13px] text-secondary_black/70">{title}</div>
+          <div className="mt-1 font-bold text-black_secondary text-2xl">
+            {value}
+          </div>
+          <div className="mt-1 text-[12px] text-secondary_black/50">
+            {sinceLabel}
           </div>
         </div>
       </div>
 
-      {/* bottom: trend */}
-      <div className="flex justify-end items-center gap-1 mt-2 text-sm">
-        <span
-          className="inline-flex items-center gap-1 font-medium"
-          style={{ color: trendColorVar }}
-        >
-          {trendColorVar === "var(--green)" ? (
-            <ArrowUpRight className="w-4 h-4" />
-          ) : (
-            <ArrowDownRight className="w-4 h-4" />
-          )}
-          {trend}
-        </span>
+      <div>
+        {/* mid: sparkline */}
+        <div className="mt-4">
+          <div className="w-full overflow-hidden">
+            <div style={{ color: lineColorVar }}>
+              <Sparkline points={points && points.length ? points : [0]} />
+            </div>
+          </div>
+        </div>
+
+        {/* bottom: trend */}
+        <div className="flex justify-end items-center gap-1 mt-2 text-sm">
+          <span
+            className="inline-flex items-center gap-1 font-medium"
+            style={{ color: trendColorVar }}
+          >
+            {trendColorVar === "var(--green)" ? (
+              <ArrowUpRight className="w-4 h-4" />
+            ) : (
+              <ArrowDownRight className="w-4 h-4" />
+            )}
+            {trend}
+          </span>
+        </div>
       </div>
     </div>
   );
