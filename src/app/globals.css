@@ -280,14 +280,6 @@ body {
   --z-index-999999: 999999;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -366,7 +358,6 @@ body {
 }
 
 @utility no-scrollbar {
-  /* Chrome, Safari and Opera */
   &::-webkit-scrollbar {
     display: none;
   }
@@ -393,7 +384,6 @@ body {
 }
 
 @layer utilities {
-  /* For Remove Date Icon */
   input[type="date"]::-webkit-inner-spin-button,
   input[type="time"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -403,7 +393,6 @@ body {
   }
 }
 
-/* third-party libraries CSS */
 .apexcharts-legend-text {
   @apply !text-gray-700 dark:!text-gray-400;
 }
@@ -839,7 +828,7 @@ span.flatpickr-weekday,
 }
 
 .task {
-  transition: all 0.2s ease; /* Smooth transition for visual effects */
+  transition: all 0.2s ease;
 }
 
 .task {
@@ -847,14 +836,13 @@ span.flatpickr-weekday,
   box-shadow: 0 1px 3px 0 rgba(16, 24, 40, 0.1),
     0 1px 2px 0 rgba(16, 24, 40, 0.06);
   opacity: 0.8;
-  cursor: grabbing; /* Changes the cursor to indicate dragging */
+  cursor: grabbing;
 }
 
-/* Apex tooltip – force light text */
 .apexcharts-tooltip,
 .apexcharts-xaxistooltip,
 .apexcharts-yaxistooltip {
-  background: #111827 !important; /* or any dark bg */
+  background: #111827 !important;
   color: #fff !important;
   border: 0 !important;
 }
