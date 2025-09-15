@@ -849,3 +849,15 @@ span.flatpickr-weekday,
   opacity: 0.8;
   cursor: grabbing; /* Changes the cursor to indicate dragging */
 }
+
+/* Apex tooltip – force light text */
+.apexcharts-tooltip,
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+  background: #111827 !important; /* or any dark bg */
+  color: #fff !important;
+  border: 0 !important;
+}
+.apexcharts-tooltip * {
+  color: #fff !important;
+}
