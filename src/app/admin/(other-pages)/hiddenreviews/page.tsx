@@ -23,8 +23,7 @@ export default function HiddenReviewsPage() {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
-
-  const [openId, setOpenId] = useState<string | null>(null); // modal review id
+  const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
     let cancel = false;
@@ -57,7 +56,7 @@ export default function HiddenReviewsPage() {
 
   async function onDelete(id: string) {
     const prev = rows;
-    setRows(prev.filter((r) => r.id !== id)); // optimistic
+    setRows(prev.filter((r) => r.id !== id));
     try {
       const res = await fetch(`/api/admin/hidden-reviews/${id}`, {
         method: "DELETE",
@@ -67,26 +66,41 @@ export default function HiddenReviewsPage() {
         throw new Error(j?.error || "Delete failed");
       }
     } catch (e: unknown) {
-      setRows(prev); // rollback
+      setRows(prev);
       alert(e instanceof Error ? e.message : "Delete failed");
     }
   }
 
+  async function onShow(id: string) {
+    const prev = rows;
+    setRows(prev.filter((r) => r.id !== id));
+    try {
+      const res = await fetch(`/api/admin/hidden-reviews/${id}/show`, {
+        method: "PATCH",
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j?.error || "Failed to show review");
+      }
+    } catch (e: unknown) {
+      setRows(prev);
+      alert(e instanceof Error ? e.message : "Failed to show review");
+    }
+  }
+
   if (loading) {
-    return <div className="p-6 text-[var(--secondary_black)]/70">Loading…</div>;
+    return <div className="p-6 text-secondary_black/70">Loading…</div>;
   }
-
   if (err) {
-    return <div className="p-6 text-[var(--red)]">Error: {err}</div>;
+    return <div className="p-6 text-red-600">Error: {err}</div>;
   }
-
   if (rows.length === 0) {
     return (
       <div className="p-6">
-        <h1 className="mb-4 font-semibold text-[var(--black_secondary)] text-2xl">
+        <h1 className="mb-4 font-semibold text-black_secondary text-2xl">
           Hidden Reviews
         </h1>
-        <div className="bg-[var(--secondary_skin)] p-8 rounded-xl text-[var(--secondary_black)]/70 text-center">
+        <div className="bg-secondary_skin p-8 rounded-xl text-secondary_black/70 text-center">
           No hidden reviews.
         </div>
       </div>
@@ -95,10 +109,9 @@ export default function HiddenReviewsPage() {
 
   return (
     <div className="p-0 sm:p-2">
-      <h1 className="mb-4 font-semibold text-[var(--black_secondary)] text-2xl">
+      <h1 className="mb-4 font-semibold text-black_secondary text-2xl">
         Hidden Reviews
       </h1>
-
       <div className="bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.06] rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <Table>
@@ -136,7 +149,6 @@ export default function HiddenReviewsPage() {
                 </TableCell>
               </TableRow>
             </TableHeader>
-
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.06]">
               {rows.map((r) => (
                 <TableRow key={r.id}>
@@ -149,7 +161,13 @@ export default function HiddenReviewsPage() {
                     {r.patientName}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-700 text-theme-sm text-start">
-                    <span className="line-clamp-1">{r.comment}</span>
+                    <span
+                      className="hover:text-blue-600 line-clamp-1 cursor-pointer"
+                      onClick={() => setOpenId(r.id)}
+                      title="Click to view full comment"
+                    >
+                      {r.comment}
+                    </span>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-700 text-theme-sm text-start">
                     {new Date(r.createdAt).toLocaleDateString()}
@@ -158,15 +176,14 @@ export default function HiddenReviewsPage() {
                     <div className="flex items-center gap-2">
                       <Button
                         onClick={() => onDelete(r.id)}
-                        className="flex items-center gap-2 bg-red/10 border-1 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-red md:text-[14px] leading-none" // <= tight line-height
+                        className="flex items-center gap-2 bg-red/10 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-red md:text-[14px] leading-none"
                       >
                         <Trash2 className="w-4 h-4" />
                         <span>Delete</span>
                       </Button>
-
                       <Button
-                        onClick={() => setOpenId(r.id)}
-                        className="flex items-center gap-2 bg-secondary/10 border-1 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-black_secondary md:text-[14px] leading-none"
+                        onClick={() => onShow(r.id)}
+                        className="flex items-center gap-2 bg-green-500/10 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-green-600 md:text-[14px] leading-none"
                       >
                         <Eye className="w-4 h-4" />
                         <span>Show</span>
@@ -175,23 +192,10 @@ export default function HiddenReviewsPage() {
                   </TableCell>
                 </TableRow>
               ))}
-
-              {rows.length === 0 && (
-                <TableRow>
-                  <TableCell
-                    colSpan={5}
-                    className="px-5 py-10 text-gray-500 text-theme-sm text-center"
-                  >
-                    No Hidden Reviews
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </div>
       </div>
-
-      {/* Modal */}
       {openRow && (
         <div
           className="z-[999] fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm"
@@ -201,26 +205,24 @@ export default function HiddenReviewsPage() {
             if (e.target === e.currentTarget) setOpenId(null);
           }}
         >
-          <div className="bg-[var(--white_primary)] shadow p-5 rounded-2xl w-full max-w-lg">
+          <div className="bg-white_primary shadow p-5 rounded-2xl w-full max-w-lg">
             <div className="flex justify-between items-center">
-              <h3 className="font-semibold text-[var(--black_secondary)] text-lg">
+              <h3 className="font-semibold text-black_secondary text-lg">
                 Reviews
               </h3>
               <button
                 onClick={() => setOpenId(null)}
-                className="hover:bg-[var(--tertiary_skin)] p-1 rounded-full"
+                className="hover:bg-tertiary_skin p-1 rounded-full"
                 aria-label="Close"
               >
                 ✕
               </button>
             </div>
-
             <hr
               className="my-4 border-t"
               style={{ borderColor: "rgba(0,0,0,0.08)" }}
             />
-
-            <div className="text-[var(--black_secondary)] text-sm whitespace-pre-line">
+            <div className="text-black_secondary text-sm whitespace-pre-line">
               {openRow.comment}
             </div>
           </div>

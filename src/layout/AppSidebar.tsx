@@ -78,7 +78,7 @@ const navItems: NavItem[] = [
   {
     icon: (
       <Image
-        src="/images/sidebar/promocode.svg"
+        src="/images/sidebar/service.svg"
         alt="Promo Code"
         width={24}
         height={24}
@@ -86,14 +86,14 @@ const navItems: NavItem[] = [
     ),
     iconActive: (
       <Image
-        src="/images/sidebar/active/promocode.svg"
+        src="/images/sidebar/active/service.svg"
         alt="Promo Code Active"
         width={24}
         height={24}
       />
     ),
-    name: "Promo Code",
-    path: "/admin/promocode",
+    name: "Medical Services",
+    path: "/admin/medicalservices",
   },
   {
     icon: (
@@ -159,13 +159,6 @@ const AppSidebar: React.FC = () => {
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  // const isActive = useCallback(
-  //   (path: string) => {
-  //     if (!path) return false;
-  //     return pathname === path || pathname === `${path}/`;
-  //   },
-  //   [pathname]
-  // );
   const isActive = useCallback(
     (path: string, includeChildren = false) => {
       if (!path) return false;
@@ -269,30 +262,6 @@ const AppSidebar: React.FC = () => {
             </button>
           ) : (
             nav.path && (
-              // <Link
-              //   href={nav.path}
-              //   onClick={handleLinkClick}
-              //   className={`group flex items-center gap-4 w-full p-3 transition-colors rounded-lg ${
-              //     !isExpanded && !isHovered && !isMobileOpen
-              //       ? "lg:justify-center"
-              //       : "lg:justify-start"
-              //   } hover:bg-secondary ${
-              //     isActive(nav.path) ? "bg-primary/5" : ""
-              //   }`}
-              // >
-              //   <span className="transition-all duration-200">
-              //     {isActive(nav.path) ? nav.iconActive : nav.icon}
-              //   </span>
-              //   {(isExpanded || isHovered || isMobileOpen) && (
-              //     <span
-              //       className={`font-medium transition-colors ${
-              //         isActive(nav.path) ? "text-primary" : "text-primary_skin"
-              //       }`}
-              //     >
-              //       {nav.name}
-              //     </span>
-              //   )}
-              // </Link>
               <Link
                 href={nav.path}
                 onClick={handleLinkClick}

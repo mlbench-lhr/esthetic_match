@@ -3,6 +3,9 @@
 import Image from "next/image";
 import Text from "@/components/ui/TextUser";
 import { cn } from "@/utils";
+import Button from "@/components/ui/ButtonUser";
+import { MoveLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export type PatientHeaderProps = {
   name: string;
@@ -35,6 +38,7 @@ export default function PatientHeaderCard({
     day: "2-digit",
     year: "numeric",
   });
+  const router = useRouter();
 
   // show DOB as DD-MM-YYYY like your mock
   const dobStr = (() => {
@@ -54,6 +58,16 @@ export default function PatientHeaderCard({
         className
       )}
     >
+      <div className="">
+        <Button
+          type="button"
+          onClick={() => router.back()}
+          aria-label="Go Back"
+          className="inline-flex items-center px-3 py-2 rounded-lg text-gray-700 hover:text-gray-900 transition-colors"
+        >
+          <MoveLeft size={24} />
+        </Button>
+      </div>
       <div
         className={cn(
           "items-center grid w-full",

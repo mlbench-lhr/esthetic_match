@@ -71,6 +71,23 @@ export default function HiddenReviewsPage() {
     }
   }
 
+  async function onShow(id: string) {
+    const prev = rows;
+    setRows(prev.filter((r) => r.id !== id));
+    try {
+      const res = await fetch(`/api/admin/hidden-reviews/${id}/show`, {
+        method: "PATCH",
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j?.error || "Failed to show review");
+      }
+    } catch (e: unknown) {
+      setRows(prev);
+      alert(e instanceof Error ? e.message : "Failed to show review");
+    }
+  }
+
   if (loading) {
     return <div className="p-6 text-secondary_black/70">Loading…</div>;
   }
@@ -144,7 +161,13 @@ export default function HiddenReviewsPage() {
                     {r.patientName}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-700 text-theme-sm text-start">
-                    <span className="line-clamp-1">{r.comment}</span>
+                    <span
+                      className="hover:text-blue-600 line-clamp-1 cursor-pointer"
+                      onClick={() => setOpenId(r.id)}
+                      title="Click to view full comment"
+                    >
+                      {r.comment}
+                    </span>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-700 text-theme-sm text-start">
                     {new Date(r.createdAt).toLocaleDateString()}
@@ -159,8 +182,8 @@ export default function HiddenReviewsPage() {
                         <span>Delete</span>
                       </Button>
                       <Button
-                        onClick={() => setOpenId(r.id)}
-                        className="flex items-center gap-2 bg-secondary/10 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-black_secondary md:text-[14px] leading-none"
+                        onClick={() => onShow(r.id)}
+                        className="flex items-center gap-2 bg-green-500/10 rounded-full min-w-[90px] max-h-[28px] text-[12px] text-green-600 md:text-[14px] leading-none"
                       >
                         <Eye className="w-4 h-4" />
                         <span>Show</span>

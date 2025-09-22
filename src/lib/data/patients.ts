@@ -108,24 +108,39 @@ export async function getPatientBookings({
   const skip = Math.max(0, (page - 1) * pageSize);
 
   // Using MedicalOpinion as booking source
-  const [total, opinions] = await Promise.all([
-    prisma.medicalOpinion.count({ where: { userId: patientId } }),
-    prisma.medicalOpinion.findMany({
-      where: { userId: patientId },
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: pageSize,
-      select: {
-        id: true,
-        createdAt: true,
-        status: true,
-        procedure: true,
-        doctor: { select: { firstName: true, lastName: true } },
-      },
-    }),
-  ]);
+  // First, let's get all medical opinions for this user
+  const allOpinions = await prisma.medicalOpinion.findMany({
+    where: { userId: patientId },
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      createdAt: true,
+      status: true,
+      procedure: true,
+      doctorId: true,
+    },
+  });
 
-  const rows: PatientBookingRow[] = opinions.map((o) => ({
+  const total = allOpinions.length;
+  const paginatedOpinions = allOpinions.slice(skip, skip + pageSize);
+
+  // Now get doctor details for the paginated opinions
+  const opinionsWithDoctors = await Promise.all(
+    paginatedOpinions.map(async (opinion) => {
+      try {
+        const doctor = await prisma.doctor.findUnique({
+          where: { id: opinion.doctorId },
+          select: { firstName: true, lastName: true },
+        });
+        return { ...opinion, doctor };
+      } catch {
+        // If doctor not found, return with null doctor
+        return { ...opinion, doctor: null };
+      }
+    })
+  );
+
+  const rows: PatientBookingRow[] = opinionsWithDoctors.map((o) => ({
     id: o.id,
     type: "Medical Opinion", // static label
     procedure: o.procedure || null,

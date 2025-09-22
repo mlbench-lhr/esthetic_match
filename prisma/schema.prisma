@@ -79,14 +79,34 @@ model Doctor {
   resetPasswordAllowed   Boolean? @default(false)
   emailVerified          Boolean? @default(false)
   verified               Int       @default(0) // your data shows 0/1
-  clicks                 Int       @default(5)
-  isSubscribed           Boolean   @default(true)
-  subscriptionType       String    @default("pay_as_you_go")
+  
+  // Click management fields
+  pay_clicks             Int       @default(0)
+  pay_clicks_left        Int       @default(0)
+  sub_clicks             Int       @default(5)
+  sub_clicks_left        Int       @default(5)
+  
+  // Financial fields
+  withdrawable           Float     @default(0)
+  total_earning          Float     @default(0)
+  
+  // Subscription fields
+  isSubscribed           Boolean   @default(false)
+  subscriptionType       String?   @default("pay_as_you_go")
+  
+  // Stripe integration
+  stripeCustomerId       String?
+  stripeAccountId        String?
+  
+  // OTP fields
   otp                    String?
   otpExpires             DateTime?
   otpPurpose             String?
+  
+  // Admin fields (for rejection handling)
   rejectionReason        String?
   rejectedAt             DateTime?
+  
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
 

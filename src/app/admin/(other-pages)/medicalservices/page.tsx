@@ -16,7 +16,7 @@ export default function page() {
   return (
     <div>
       <Text as="h1" className="text-primary_black">
-        Discount Codes
+        Discount Codes Medical Services
       </Text>
       <PageBreadcrumb pageTitle="Basic Table" />
       <div className="space-y-6">
