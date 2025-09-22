@@ -35,7 +35,7 @@ export default function RevenueRecords() {
   const { token } = useAuth();
 
   const key: Key | null = token
-    ? (["/api/admin/totalrevenue/records?page=1&pageSize=9", token] as const)
+    ? (["/api/admin/revenue/records?page=1&pageSize=3", token] as const)
     : null;
 
   // ⬇️ note: only 2 generics; lets SWR pick the overload that accepts `null`

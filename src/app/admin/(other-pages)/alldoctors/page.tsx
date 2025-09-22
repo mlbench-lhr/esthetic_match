@@ -34,7 +34,7 @@ export default function Page({
       d.createdAt instanceof Date
         ? d.createdAt.toISOString()
         : String(d.createdAt),
-    clicks: d.clicks ?? 0,
+    clicks: (d.sub_clicks ?? 0) + (d.pay_clicks ?? 0),
   }));
 
   const base = new URLSearchParams({ page: "1", pageSize: String(pageSize) });

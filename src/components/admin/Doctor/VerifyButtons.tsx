@@ -6,7 +6,13 @@ import { useRouter } from "next/navigation";
 import RejectReasonModal from "@/components/admin/Doctor/RejectReasonModal";
 import { useAuth } from "@/context/AuthContext";
 
-export default function VerifyButtons({ id }: { id: string }) {
+export default function VerifyButtons({
+  id,
+  disabled = false,
+}: {
+  id: string;
+  disabled?: boolean;
+}) {
   const router = useRouter();
   const { token } = useAuth();
   const [openReject, setOpenReject] = useState(false);
@@ -52,15 +58,24 @@ export default function VerifyButtons({ id }: { id: string }) {
         <Button
           type="button"
           onClick={accept}
-          disabled={savingAccept}
-          className="bg-black_secondary hover:bg-black_tertiary rounded-md w-full min-w-[100px] text-primary"
+          disabled={savingAccept || disabled}
+          className={
+            disabled
+              ? "bg-gray-300 cursor-not-allowed rounded-md w-full min-w-[100px] text-gray-500"
+              : "bg-black_secondary hover:bg-black_tertiary rounded-md w-full min-w-[100px] text-primary"
+          }
         >
           {savingAccept ? "Saving..." : "Accept"}
         </Button>
         <Button
           type="button"
           onClick={() => setOpenReject(true)}
-          className="bg-red hover:bg-red/80 rounded-md w-full min-w-[100px] text-primary"
+          disabled={disabled}
+          className={
+            disabled
+              ? "bg-gray-300 cursor-not-allowed rounded-md w-full min-w-[100px] text-gray-500"
+              : "bg-red hover:bg-red/80 rounded-md w-full min-w-[100px] text-primary"
+          }
         >
           Reject
         </Button>

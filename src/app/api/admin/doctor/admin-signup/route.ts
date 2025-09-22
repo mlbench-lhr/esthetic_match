@@ -39,11 +39,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const { firstName, lastName, email, password } = (await req.json()) as {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      location,
+      lat,
+      lng,
+      clinicName,
+    } = (await req.json()) as {
       firstName: string;
       lastName: string;
       email: string;
       password: string;
+      location?: string;
+      lat?: number;
+      lng?: number;
+      clinicName?: string;
     };
 
     if (
@@ -73,6 +86,10 @@ export async function POST(req: NextRequest) {
           email: email.trim(),
           password: hashedPassword,
           emailVerified: true,
+          location: location?.trim() || null,
+          lat: lat || null,
+          lng: lng || null,
+          clinicName: clinicName?.trim() || null,
         },
       });
     }

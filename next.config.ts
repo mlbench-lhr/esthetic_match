@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     locales: ["en", "fr"],
   },
   images: { domains: ["res.cloudinary.com"] },
+
+  env: {
+    NEXT_PUBLIC_PLACES_API_KEY: process.env.PLACES_API_KEY,
+  },
 };
 
 export default nextConfig;

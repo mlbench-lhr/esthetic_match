@@ -8,6 +8,7 @@ import VerifyButtons from "./VerifyButtons";
 import EditNameModal from "./EditNameModal";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, MoveLeft } from "lucide-react";
 
 export type DoctorHeaderProps = {
   id: string;
@@ -96,6 +97,18 @@ export default function DoctorHeaderCard({
         className
       )}
     >
+      {/* Back Button */}
+      <div className="">
+        <Button
+          type="button"
+          onClick={() => router.back()}
+          aria-label="Go Back"
+          className="inline-flex items-center px-3 py-2 rounded-lg text-gray-700 hover:text-gray-900 transition-colors"
+        >
+          <MoveLeft size={24} />
+        </Button>
+      </div>
+
       <div
         className={cn(
           "items-center grid w-full",
@@ -190,6 +203,23 @@ export default function DoctorHeaderCard({
                 />
               </Button>
               <VerifyButtons id={id} />
+            </div>
+          ) : verified === 0 || verified === 3 ? (
+            <div className="flex md:flex-row flex-col items-center gap-3">
+              <Button
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-label="Edit Profile"
+                className="inline-flex justify-center items-center bg-secondary hover:bg-secondary/90 rounded-md w-[100px] h-9 text-white_primary"
+              >
+                <Image
+                  src="/images/admin/doctor/edit.svg"
+                  alt="Edit"
+                  width={18}
+                  height={18}
+                />
+              </Button>
+              <VerifyButtons id={id} disabled />
             </div>
           ) : (
             <Button
