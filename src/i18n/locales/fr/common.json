@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "title": "Trouvez l’expert esthétique idéal pour vos objectifs",
+    "subtitle": "Découvrez des cliniques de confiance, comparez les traitements et voyez des résultats réels — le tout dans une seule application.",
+    "download": "TÉLÉCHARGER MAINTENANT"
+  },
+  "about": {
+    "title": "Dites-nous ce dont vous avez besoin",
+    "subtitle": "Nous trouverons l’expert qui vous correspond",
+    "description": "Esthetic Match va au-delà de la recherche traditionnelle. Nos filtres intelligents permettent aux patients d’indiquer facilement leurs préoccupations esthétiques et besoins spécifiques. L’algorithme les associe ensuite à des procédures pertinentes — non invasives et chirurgicales — et affiche les praticiens correspondants. Les patients peuvent explorer les praticiens, consulter des photos avant/après, enregistrer leurs favoris, demander des avis médicaux en ligne et prendre rendez-vous lorsqu’ils sont prêts.",
+    "download_button": "TÉLÉCHARGER L’APPLICATION",
+    "patient": {
+      "title": "Pour les patients",
+      "line1": "Trouvez l’expert esthétique adapté à vos préoccupations uniques",
+      "line2": "Comparez, explorez les photos avant/après, estimez les prix et demandez des avis en ligne — tout en un seul endroit."
+    },
+    "practitioner": {
+      "title": "Pour les praticiens",
+      "line1": "Mettez en valeur vos techniques uniques et démarquez-vous par ce que vous faites de mieux.",
+      "line2": "Vous connecter aux patients qui recherchent activement exactement ce que vous proposez."
+    }
+  },
+  "features": {
+    "header": {
+      "smalltitle": "Pourquoi Esthetic Match ?",
+      "title": "Tout ce dont vous avez besoin pour choisir le bon expert esthétique",
+      "subtitle": "Une nouvelle génération de mise en relation esthétique, propulsée par des fonctionnalités intelligentes"
+    },
+    "features": {
+      "feature1": {
+        "title": "Filtres ultra-précis",
+        "description": "Découvrez l’univers complet de la médecine esthétique — avec des filtres intelligents qui prennent en compte chaque technique, marque et technologie du secteur."
+      },
+      "feature2": {
+        "title": "Swipe, Match & Géolocalisation",
+        "description": "Une interface basée sur le swipe avec géolocalisation vous aide à trouver les meilleurs praticiens près de chez vous. Les connexions sont rapides, simples et personnalisées."
+      },
+      "feature3": {
+        "title": "Profils riches des praticiens",
+        "description": "Accédez à des profils détaillés de cliniques, techniques signatures, interventions phares, galeries avant/après, avis vérifiés et plus encore — le tout en un seul endroit."
+      },
+      "feature4": {
+        "title": "Avis médical en ligne",
+        "description": "Demandez un avis médical à distance avant de réserver — pour gagner en clarté, poser vos questions et confirmer votre choix idéal en toute confiance."
+      }
+    },
+    "buttons": {
+      "google": {
+        "topText": "DISPONIBLE SUR",
+        "bottomText": "Google Play"
+      },
+      "apple": {
+        "topText": "Télécharger dans l’",
+        "bottomText": "App Store"
+      }
+    }
+  },
+  "services": {
+    "header": "Tous les univers esthétiques dans une seule application",
+    "words": {
+      "details": "Détails",
+      "treatments": "TRAITEMENTS"
+    },
+    "treatments": {
+      "1": {
+        "title": "Médecine Esthétique",
+        "detail": "Soins du visage, du corps et intimes pour l’embellissement et le rajeunissement — des injectables aux skin boosters et aux technologies avancées basées sur l’énergie."
+      },
+      "2": {
+        "title": "Chirurgie Esthétique",
+        "detail": "Interventions chirurgicales conçues pour restaurer l’harmonie entre le corps et l’esprit — renforçant la confiance en soi grâce au remodelage corporel personnalisé, à la chirurgie mammaire, à la rhinoplastie et plus encore."
+      },
+      "3": {
+        "title": "Perte de Poids & Santé Métabolique",
+        "detail": "Des traitements médicaux pour la perte de poids et les thérapies régulatrices d’appétit à l’accompagnement par des diététiciens et la chirurgie bariatrique — tout pour des résultats durables."
+      },
+      "4": {
+        "title": "Thérapie IV & Boosts de Bien-être",
+        "detail": "Thérapies de réhydratation, vitamines, antioxydants et soutien immunitaire — conçues pour rétablir l’équilibre, l’énergie et le bien-être global."
+      },
+      "5": {
+        "title": "Dentisterie Esthétique",
+        "detail": "Des sourires transformés facilement : facettes, blanchiment des dents, aligneurs invisibles et plus encore — tout pour vous aider à sourire avec confiance."
+      },
+      "6": {
+        "title": "Restauration Capillaire & Santé du Cuir Chevelu",
+        "detail": "Greffes de cheveux, traitements anti-chute et thérapies régénératives pour stimuler la croissance — adaptés aussi bien aux hommes qu’aux femmes."
+      },
+      "7": {
+        "title": "Épilation Laser",
+        "detail": "Réduction permanente des poils du visage, du corps et de la ligne capillaire — grâce aux dernières technologies adaptées à chaque type de peau."
+      },
+      "8": {
+        "title": "Remodelage Corporel & Tonification Musculaire",
+        "detail": "Sculptez votre corps grâce aux technologies non invasives de stimulation musculaire — pour une silhouette plus ferme et définie, sans passer par la salle de sport."
+      }
+    }
+  },
+  "testimonials": {
+    "list": [
+      {
+        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "author": "Mme. Zoé Colbert",
+        "subtitle": "Notre Communauté",
+        "image": "/images/reviews/pic1.svg"
+      },
+      {
+        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "author": "Mme. Sarah Johnson",
+        "subtitle": "Notre Communauté",
+        "image": "/images/reviews/pic1.svg"
+      },
+      {
+        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "author": "Mme. Emma Thompson",
+        "subtitle": "Notre Communauté",
+        "image": "/images/reviews/pic1.svg"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Préoccupations que nous couvrons chez Esthetic Match",
+    "subtitle": "Vous ne trouvez pas ce que vous cherchez ?",
+    "contact": "CONTACTEZ-NOUS ICI",
+    "items": [
+      {
+        "question": "Les praticiens sont-ils vérifiés ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "Puis-je suivre mes progrès ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "L'application est-elle gratuite ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "Quels types de préoccupations puis-je traiter ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "Puis-je reprogrammer ou annuler une réservation ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "Mes données personnelles sont-elles sécurisées ?",
+        "answer": "Oui"
+      },
+      {
+        "question": "Comment savoir quel traitement est fait pour moi ?",
+        "answer": "Oui"
+      }
+    ]
+  },
+  "footer": {
+    "title": "Des choix intelligents, des résultats magnifiques.",
+    "subtitle": "Connectez-vous avec des experts et prenez le contrôle de votre parcours de soin de la peau — le tout dans une application intelligente.",
+    "buttons": {
+      "google": {
+        "topText": "DISPONIBLE SUR",
+        "bottomText": "Google Play"
+      },
+      "apple": {
+        "topText": "Télécharger sur",
+        "bottomText": "App Store"
+      }
+    },
+    "app": {
+      "title": "Application",
+      "learn": "Apprendre",
+      "links": {
+        "faqs": "FAQs",
+        "about": "À propos"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "Email : help@estheticmatch.com",
+      "location": "Localisation : New York, NY"
+    },
+    "logo": {
+      "alt": "logo",
+      "text": "ESTHETIC MATCH"
+    },
+    "copyright": "© Esthetic Match Inc, tous droits réservés."
+  },
+  "navbar": {
+    "logo": {
+      "text": "ESTHETIC MATCH",
+      "alt": "logo esthétique"
+    },
+    "downloadButton": "Télécharger l’application",
+    "links": [
+      { "name": "ACCUEIL", "id": "home" },
+      { "name": "À PROPOS", "id": "about" },
+      { "name": "SERVICES", "id": "services" },
+      { "name": "FAQ", "id": "faqs" }
+    ]
+  }
+}

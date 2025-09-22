@@ -10,14 +10,17 @@ import { TestimonialContent } from "./types/testimonial";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useTranslation } from "react-i18next";
 
-interface TestimonialSliderProps {
-  testimonials: TestimonialContent[];
-}
 
-const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
-  testimonials,
-}) => {
+
+const TestimonialSlider = () => {
+  const { t } = useTranslation();
+
+  const testimonials = t("testimonials.list", {
+    returnObjects: true,
+  }) as TestimonialContent[];
+
   return (
     <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary">
       <Swiper

@@ -1,17 +1,21 @@
+"use client";
+
+import React from "react";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+
 interface TreatmentCardProps {
   imageSrc: string;
   title: string;
   detail: string;
 }
 
-// components/TreatmentCard.tsx
-import Image from "next/image";
-
 const TreatmentCard: React.FC<TreatmentCardProps> = ({
   imageSrc,
   title,
   detail,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="relative lg:w-[300px] lg:h-[560px] w-[280px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
       <Image src={imageSrc} alt={title} fill className="object-cover" />
@@ -22,7 +26,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       <div className="absolute inset-0 flex flex-col justify-between p-6 text-white group overflow-hidden">
         {/* Top label */}
         <div className="flex flex-col justify-start">
-          <span className="p4 font-bold uppercase">Treatments</span>
+          <span className="p4 font-bold uppercase"> {t("services.words.treatments")}</span>
           <div className="space-y-4">
             <div className="text-[30px] font-light">
               <h3 className="leading-tight">{title}</h3>
@@ -42,7 +46,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       "
           >
             <p className="text-sm font-semibold uppercase tracking-widest">
-              Details
+              {t("services.words.details")}
             </p>
             <div className="text-xs hidden group-hover:block transition-opacity duration-500">
               {detail}

@@ -1,7 +1,10 @@
 "use client";
+
 import React from "react";
+import { useTranslation } from "react-i18next";
 import TreatmentCarousel from "./TreatmentCarousel";
 import NavigationButton from "./NavigationButton";
+
 interface Treatment {
   id: number;
   imageSrc: string;
@@ -10,54 +13,57 @@ interface Treatment {
 }
 
 function Services() {
+  const { t } = useTranslation();
+
+  // Build treatments array dynamically from translations
   const treatments: Treatment[] = [
     {
       id: 1,
-      imageSrc: "/images/services/image1.webp", // Replace with actual image paths
-      title: "Aesthetic Medicine",
-      detail: "Facial, body, and intimate treatments for beautification and rejuvenation — from injectables to skin boosters and advanced energy-based technologies."
+      imageSrc: "/images/services/image1.webp",
+      title: t("services.treatments.1.title"),
+      detail: t("services.treatments.1.detail"),
     },
     {
       id: 2,
       imageSrc: "/images/services/image2.webp",
-      title: "Aesthetic Surgery",
-      detail: "Surgical procedures designed to restore harmony between body and mind — boosting self-confidence through personalized body contouring, breast surgery, rhinoplasty, and more."
+      title: t("services.treatments.2.title"),
+      detail: t("services.treatments.2.detail"),
     },
     {
       id: 3,
       imageSrc: "/images/services/image3.webp",
-      title: "Weight Loss & Metabolic Health",
-      detail: "From medical weight-loss treatments and appetite-regulating therapies to access to dietitians and bariatric surgery guidance — everything to support sustainable results."
+      title: t("services.treatments.3.title"),
+      detail: t("services.treatments.3.detail"),
     },
     {
       id: 4,
       imageSrc: "/images/services/image4.webp",
-      title: "IV Therapy & Wellness Boosts",
-      detail: "From medical weight-loss treatments and appetite-regulating therapies to access to dietitians and bariatric surgery guidance — everything to support sustainable results."
+      title: t("services.treatments.4.title"),
+      detail: t("services.treatments.4.detail"),
     },
     {
       id: 5,
       imageSrc: "/images/services/image5.webp",
-      title: "Aesthetic Dentistry",
-      detail: "Smile makeovers made easy: veneers, teeth whitening, invisible aligners, and more — all to help you smile with confidence."
+      title: t("services.treatments.5.title"),
+      detail: t("services.treatments.5.detail"),
     },
     {
       id: 6,
       imageSrc: "/images/services/image6.webp",
-      title: "Hair Restoration & Scalp Health",
-      detail: "Hair transplants, anti-hair loss treatments, and regenerative therapies for hair growth — tailored to both men and women."
+      title: t("services.treatments.6.title"),
+      detail: t("services.treatments.6.detail"),
     },
     {
       id: 7,
       imageSrc: "/images/services/image7.webp",
-      title: "Laser Hair Removal",
-      detail: "Permanent hair reduction for face, body, and hairline sculpting — using the latest technologies suited to every skin type."
+      title: t("services.treatments.7.title"),
+      detail: t("services.treatments.7.detail"),
     },
     {
       id: 8,
       imageSrc: "/images/services/image8.webp",
-      title: "Body Shaping & Muscle Toning",
-      detail: "Sculpt your body with non-invasive muscle stimulation technologies — for a stronger, more defined physique without the gym."
+      title: t("services.treatments.8.title"),
+      detail: t("services.treatments.8.detail"),
     },
   ];
 
@@ -67,7 +73,7 @@ function Services() {
         {/* Header */}
         <div className="mb-16 flex lg:flex-row flex-col justify-between items-center">
           <h1 className="h1 font-light text-black_primary mb-4">
-            All Aesthetic Universes in one App
+            {t("services.header")}
           </h1>
           <div className="flex gap-2">
             <NavigationButton
