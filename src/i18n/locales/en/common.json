@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "title": "Match with the right aesthetic expert for your goals",
+    "subtitle": "Explore trusted clinics, compare treatments, and see real results—all in one app.",
+    "download": "DOWNLOAD NOW"
+  },
+  "about": {
+    "title": "Tell us what you need",
+    "subtitle": "We’ll find the expert who gets it",
+    "description": "Esthetic Match goes beyond traditional search. Our intelligent filters let patients easily input their aesthetic concerns and specific needs. The algorithm then matches them with relevant procedures — both non-invasive and surgical and show associated practitioners. Patients can explore practitioners, check before/afters photos, save favorites, request online medical opinions, and book appointments when ready.",
+    "download_button": "DOWNLOAD THE APP",
+    "patient": {
+      "title": "For Patient",
+      "line1": "Get matched with the right aesthetic expert for your unique concerns",
+      "line2": "Compare, explore before/afters, estimate prices, and request online opinions — all in one place."
+    },
+    "practitioner": {
+      "title": "For Practitioners",
+      "line1": "Showcase your signature techniques and stand out for what you do best.",
+      "line2": "Connecting you to patients who are actively seeking exactly what you offer"
+    }
+  },
+  "features": {
+    "header": {
+      "smalltitle": "Why Esthetic Match?",
+      "title": "Everything You Need to Choose the Right Aesthetic Expert",
+      "subtitle": "Next-Gen Aesthetic Matching, Powered by Smart Features"
+    },
+    "features": {
+      "feature1": {
+        "title": "Ultra-Precise Filters",
+        "description": "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry."
+      },
+      "feature2": {
+        "title": "Swipe, Match & Geolocate",
+        "description": "A swipe-based interface with geolocation helps you find the best practitioners near you. Connections are — fast, easy, and personalized."
+      },
+      "feature3": {
+        "title": "Rich Practitioner Profiles",
+        "description": "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place."
+      },
+      "feature4": {
+        "title": "Online Medical Opinion",
+        "description": "Request a remote medical opinion before booking — to gain clarity, ask questions, and confirm your perfect match with confidence."
+      }
+    },
+    "buttons": {
+      "google": {
+        "topText": "GET IT ON",
+        "bottomText": "Google Play"
+      },
+      "apple": {
+        "topText": "Download on the",
+        "bottomText": "App Store"
+      }
+    }
+  },
+  "services": {
+    "header": "All Aesthetic Universes in one App",
+    "words": {
+      "details": "Details",
+      "treatments": "Treatments"
+    },
+    "treatments": {
+      "1": {
+        "title": "Aesthetic Medicine",
+        "detail": "Facial, body, and intimate treatments for beautification and rejuvenation — from injectables to skin boosters and advanced energy-based technologies."
+      },
+      "2": {
+        "title": "Aesthetic Surgery",
+        "detail": "Surgical procedures designed to restore harmony between body and mind — boosting self-confidence through personalized body contouring, breast surgery, rhinoplasty, and more."
+      },
+      "3": {
+        "title": "Weight Loss & Metabolic Health",
+        "detail": "From medical weight-loss treatments and appetite-regulating therapies to access to dietitians and bariatric surgery guidance — everything to support sustainable results."
+      },
+      "4": {
+        "title": "IV Therapy & Wellness Boosts",
+        "detail": "Replenishing therapies for hydration, vitamins, antioxidants, and immunity support — designed to restore balance, energy, and overall wellness."
+      },
+      "5": {
+        "title": "Aesthetic Dentistry",
+        "detail": "Smile makeovers made easy: veneers, teeth whitening, invisible aligners, and more — all to help you smile with confidence."
+      },
+      "6": {
+        "title": "Hair Restoration & Scalp Health",
+        "detail": "Hair transplants, anti-hair loss treatments, and regenerative therapies for hair growth — tailored to both men and women."
+      },
+      "7": {
+        "title": "Laser Hair Removal",
+        "detail": "Permanent hair reduction for face, body, and hairline sculpting — using the latest technologies suited to every skin type."
+      },
+      "8": {
+        "title": "Body Shaping & Muscle Toning",
+        "detail": "Sculpt your body with non-invasive muscle stimulation technologies — for a stronger, more defined physique without the gym."
+      }
+    }
+  },
+  "testimonials": {
+    "list": [
+      {
+        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "author": "Ms. Zoe Colbert",
+        "subtitle": "Our Community",
+        "image": "/images/reviews/pic1.svg"
+      },
+      {
+        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "author": "Ms. Sarah Johnson",
+        "subtitle": "Our Community",
+        "image": "/images/reviews/pic1.svg"
+      },
+      {
+        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "author": "Ms. Emma Thompson",
+        "subtitle": "Our Community",
+        "image": "/images/reviews/pic1.svg"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Concerns We Cover at Esthetic Match",
+    "subtitle": "Can't find what you're looking for?",
+    "contact": "CONTACT US HERE",
+    "items": [
+      {
+        "question": "Are the practitioners verified?",
+        "answer": "Yes"
+      },
+      {
+        "question": "Can I track my progress?",
+        "answer": "Yes"
+      },
+      {
+        "question": "Is the app free to use?",
+        "answer": "Yes"
+      },
+      {
+        "question": "What types of concerns can I get treated?",
+        "answer": "Yes"
+      },
+      {
+        "question": "Can I reschedule or cancel a booking?",
+        "answer": "Yes"
+      },
+      {
+        "question": "Is my personal data secure?",
+        "answer": "Yes"
+      },
+      {
+        "question": "How do I know which treatment is right for me?",
+        "answer": "Yes"
+      }
+    ]
+  },
+  "footer": {
+    "title": "Smart Choices, Beautiful Results.",
+    "subtitle": "Connect with experts and take control of your skin journey — all in one smart app.",
+    "buttons": {
+      "google": {
+        "topText": "GET IT ON",
+        "bottomText": "Google Play"
+      },
+      "apple": {
+        "topText": "Download on the",
+        "bottomText": "App Store"
+      }
+    },
+    "app": {
+      "title": "App",
+      "learn": "Learn",
+      "links": {
+        "faqs": "FAQs",
+        "about": "About"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "Email: help@estheticmatch.com",
+      "location": "Location: New York, NY"
+    },
+    "logo": {
+      "alt": "logo",
+      "text": "ESTHETIC MATCH"
+    },
+    "copyright": "© Esthetic Match Inc, all rights reserved."
+  },
+  "navbar": {
+    "logo": {
+      "text": "ESTHETIC MATCH",
+      "alt": "esthetic-logo"
+    },
+    "downloadButton": "Download App",
+    "links": [
+      { "name": "HOME", "id": "home" },
+      { "name": "ABOUT", "id": "about" },
+      { "name": "SERVICES", "id": "services" },
+      { "name": "FAQS", "id": "faqs" }
+    ]
+  }
+}

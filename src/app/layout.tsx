@@ -6,6 +6,7 @@ import { Geist, Geist_Mono, Raleway } from "next/font/google";
 import { NotificationProvider } from "@/context/NotificationContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import I18nProvider from "@/i18n/I18nProvider";
 // import "antd/dist/reset.css";
 
 export const metadata: Metadata = {
@@ -37,18 +38,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <SidebarProvider>
-        <NotificationProvider>
-          <AuthProvider>
-            <body
-              className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} antialiased`}
-            >
-              <ToastContainer />
-              {children}
-            </body>
-          </AuthProvider>
-        </NotificationProvider>
-      </SidebarProvider>
+      <I18nProvider>
+        <SidebarProvider>
+          <NotificationProvider>
+            <AuthProvider>
+              <body
+                className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} antialiased`}
+              >
+                <ToastContainer />
+                {children}
+              </body>
+            </AuthProvider>
+          </NotificationProvider>
+        </SidebarProvider>
+      </I18nProvider>
     </html>
   );
 }

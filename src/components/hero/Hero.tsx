@@ -1,7 +1,10 @@
+'use client'
 import DownloadButton from './DownloadButton'
 import PhoneWithScroll from './PhoneWithScroll'
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
+    const { t } = useTranslation();
     return (
         <div id="home" className="relative lg:h-screen lg:min-h-[1240px] min-h-screen bg-white">
             {/* Background Medical Scene Image */}
@@ -19,15 +22,14 @@ export default function Hero() {
                 {/* Left Content */}
                 <div className="w-full  pr-0 lg:pr-16 text-center">
                     <h2 className="h2 text-black_primary leading-tight mb-6">
-                        Match with the right aesthetic expert for your goals
+                        {t("hero.title")}
                     </h2>
 
                     <p className="p1 mb-8 leading-relaxed text-black_primary max-w-4xl mx-auto">
-                        Explore trusted clinics, compare treatments, and
-                        see real results—all in one app.
+                      {t("hero.subtitle")}
                     </p>
 
-                    <DownloadButton text={"DOWNLOAD NOW"} className='py-4 items-center rounded-full'/>
+                    <DownloadButton text={t("hero.download")} className='py-4 items-center rounded-full'/>
                     {/* <PhoneWithScroll /> */}
                 </div>
             </div>

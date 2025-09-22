@@ -4,7 +4,6 @@ import FooterIndex from "@/components/footer/FooterIndex";
 import Hero from "@/components/hero/Hero";
 import Navbarin from "@/components/Navbar";
 import Need from "@/components/need/Need";
-import { testimonialsData } from "@/components/Review/data/testimonialContent";
 import TestimonialSlider from "@/components/Review/TestimonialSlider";
 import Services from "@/components/services/Services";
 
@@ -16,7 +15,7 @@ export default function Home() {
       <Need />
       <FeatureIndex />
       <Services />
-      <TestimonialSlider testimonials={testimonialsData} />
+      <TestimonialSlider />
       <FAQSection />
       <FooterIndex />
     </div>

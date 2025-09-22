@@ -1,39 +1,44 @@
-import Image from 'next/image'
+"use client";
 
-const leftFeatures = [
-  {
-    icon: "/images/features/filter.webp",
-    title: "Ultra-Precise Filters",
-    description: "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry.",
-    className: "lg:items-start text-center lg:text-left items-center"
-  },
-  {
-    icon: "/images/features/hand.svg",
-    title: "Swipe, Match & Geolocate",
-    description: "A swipe-based interface with geolocation helps you find the best practitioners near you. Connections are — fast, easy, and personalized.",
-    className: "lg:items-start lg:text-left text-center items-center"
-  }
-]
-
-const rightFeatures = [
-  {
-    icon: "/images/features/users.webp",
-    title: "Rich Practitioner Profiles",
-    description: "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place.",
-    className: "lg:text-right lg:items-end text-center items-center lg:mt-30 mt-10"
-  },
-  {
-    icon: "/images/features/shield.webp",
-    title: "Online Medical Opinion",
-    description: "Request a remote medical opinion before booking — to gain clarity, ask questions, and confirm your perfect match with confidence.",
-    className: "lg:text-right lg:items-end text-center items-center"
-  }
-]
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function Features() {
+  const { t } = useTranslation();
+
+  const leftFeatures = [
+    {
+      icon: "/images/features/filter.webp",
+      title: t("features.features.feature1.title"),
+      description: t("features.features.feature1.description"),
+      className: "lg:items-start text-center lg:text-left items-center",
+    },
+    {
+      icon: "/images/features/hand.svg",
+      title: t("features.features.feature2.title"),
+      description: t("features.features.feature2.description"),
+      className: "lg:items-start lg:text-left text-center items-center",
+    },
+  ];
+
+  const rightFeatures = [
+    {
+      icon: "/images/features/users.webp",
+      title: t("features.features.feature3.title"),
+      description: t("features.features.feature3.description"),
+      className:
+        "lg:text-right lg:items-end text-center items-center lg:mt-30 mt-10",
+    },
+    {
+      icon: "/images/features/shield.webp",
+      title: t("features.features.feature4.title"),
+      description: t("features.features.feature4.description"),
+      className: "lg:text-right lg:items-end text-center items-center",
+    },
+  ];
+
   return (
     <div className="relative flex lg:flex-row flex-col justify-center lg:items-start items-center w-full max-w-7xl mx-auto ">
-
       {/* Left side features */}
       <div className="lg:absolute left-0 top-0 lg:space-y-16 space-y-10 w-80 flex flex-col items-center lg:block">
         {leftFeatures.map((feature, index) => (
@@ -42,7 +47,9 @@ export default function Features() {
             icon={feature.icon}
             title={feature.title}
             description={feature.description}
-            className={`${feature.className ?? ""} ${index === 1 ? "lg:mt-24" : ""}`}
+            className={`${feature.className ?? ""} ${
+              index === 1 ? "lg:mt-24" : ""
+            }`}
           />
         ))}
       </div>
@@ -72,15 +79,25 @@ export default function Features() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-function FeatureCard({ icon, title, description, className = "" }:{ icon: string, title: string, description: string, className?: string }) {
+function FeatureCard({
+  icon,
+  title,
+  description,
+  className = "",
+}: {
+  icon: string;
+  title: string;
+  description: string;
+  className?: string;
+}) {
   return (
     <div className={`flex flex-col space-x-4 ${className} max-w-[250px]`}>
       <div className="mt-1">
-        <div className="w-full h-full  bg-opacity-20 rounded flex items-center ">
-          <Image src={icon} alt="" width={40} height={40} className="" />
+        <div className="w-full h-full bg-opacity-20 rounded flex items-center ">
+          <Image src={icon} alt="" width={40} height={40} />
         </div>
       </div>
       <div>
@@ -90,5 +107,5 @@ function FeatureCard({ icon, title, description, className = "" }:{ icon: string
         </p>
       </div>
     </div>
-  )
+  );
 }
