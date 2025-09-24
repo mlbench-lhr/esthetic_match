@@ -10,7 +10,7 @@ function Need() {
           <Left />
         </div>
         {/* Give Right component enough space and ensure it doesn't get clipped */}
-        <div className='flex-1 relative'>
+        <div className='flex-1 relative flex justify-end'>
           <Right />
         </div>
       </div>

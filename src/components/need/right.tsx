@@ -16,10 +16,9 @@ function Right() {
       </div>
 
       {/* Mobile App Screenshot - Responsive positioning */}
-      <div className="absolute rounded-3xl p-2 hidden xl:block z-10
-                      
-                      xl:-left-20 xl:-bottom-38 xl:w-55 xl:h-[28rem]
-                      2xl:-right-32 2xl:-bottom-48 2xl:w-80 2xl:h-[37rem]">
+      <div className="absolute rounded-3xl p-2 hidden xl:block z-10                      
+                      xl:-left-20 xl:-bottom-28 xl:w-55 xl:h-[28rem]
+                      2xl:-right-32 2xl:-bottom-32 2xl:w-70 2xl:h-[34rem]">
         <div className="relative w-full h-full">
           <Image
             src="/images/need/mobile.webp"

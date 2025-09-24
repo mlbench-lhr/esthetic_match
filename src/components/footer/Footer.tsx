@@ -15,8 +15,8 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="text-white max-w-[1230px] mx-auto">
-      <div className="container mx-auto px-6 py-5">
+    <footer className="text-white max-w-7xl mx-auto">
+      <div className="container mx-auto py-5">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* App Section */}
           <div>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative mt-16 mb-8 lg:px-6 max-w-screen-xl mx-auto grid lg:grid-cols-3 items-center">
+        <div className="relative mt-16 mb-8  max-w-screen-xl mx-auto grid lg:grid-cols-3 items-center">
           {/* Left placeholder */}
           <div></div>
 

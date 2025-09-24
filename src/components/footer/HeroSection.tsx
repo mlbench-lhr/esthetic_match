@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="relative">
-      <div className="relative z-10 container py-20 px-6 max-w-[1230px] mx-auto">
+      <div className="relative z-10 container py-20 max-w-7xl mx-auto">
         <div className="lg:h-full ">
           {/* Hero Image Container */}
           <div className="relative rounded-3xl overflow-hidden mb-8 shadow-2xl h-[400px] lg:h-full">

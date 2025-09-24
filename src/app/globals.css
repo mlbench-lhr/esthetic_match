@@ -56,11 +56,11 @@ body {
 
 @layer components {
   .h1 {
-    @apply font-bold text-[42px] lg:text-[37px] xl:text-[40px] 2xl:text-[46px];
+    @apply font-bold text-[28px] lg:text-[37px] xl:text-[40px] 2xl:text-[46px];
   }
 
   .h2 {
-    @apply font-bold text-[36px] md:text-[43px];
+    @apply font-bold text-[24px] sm:text-[36px] md:text-[43px];
   }
 
   .h3 {

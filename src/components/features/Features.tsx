@@ -47,9 +47,8 @@ export default function Features() {
             icon={feature.icon}
             title={feature.title}
             description={feature.description}
-            className={`${feature.className ?? ""} ${
-              index === 1 ? "lg:mt-24" : ""
-            }`}
+            className={`${feature.className ?? ""} ${index === 1 ? "lg:mt-24" : ""
+              }`}
           />
         ))}
       </div>
@@ -59,15 +58,17 @@ export default function Features() {
         <Image
           src="/images/features/mobile.webp"
           alt="Aesthetic Match App Interface"
-          width={350}
-          height={700}
+          width={250}
+          height={300}
           className="relative z-10"
           priority
         />
       </div>
 
       {/* Right side features */}
-      <div className="lg:absolute right-0 top-0 lg:space-y-16 space-y-10 w-80 flex flex-col items-center lg:block">
+      <div className="lg:absolute right-0 top-0
+      lg:space-y-16 space-y-10 
+                flex flex-col items-end w-fit">
         {rightFeatures.map((feature, index) => (
           <FeatureCard
             key={`right-${index}`}
@@ -78,7 +79,7 @@ export default function Features() {
           />
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 

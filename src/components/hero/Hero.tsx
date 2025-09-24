@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export default function Hero() {
     const { t } = useTranslation();
     return (
-        <div id="home" className="relative lg:h-screen lg:min-h-[1240px] min-h-screen bg-white">
+        <div id="home" className="relative lg:h-screen lg:min-h-[1200px] min-h-screen bg-white">
             {/* Background Medical Scene Image */}
             <div
                 className="absolute inset-0  bg-center bg-no-repeat opacity-60 z-0"
