@@ -16,7 +16,7 @@ export default function Home() {
       <FeatureIndex />
       <Services />
       <TestimonialSlider />
-      <FAQSection />
+      {/* <FAQSection /> */}
       <FooterIndex />
     </div>
   );

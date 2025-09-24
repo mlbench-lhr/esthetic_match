@@ -9,10 +9,10 @@ import StoreButtons from "./StoreButtons";
 export default function Hero() {
   const { t } = useTranslation();
   return (
-    <div className="relative w-full min-h-[1140px]">
+    <div className="relative w-full">
       <BackgroundElements />
 
-      <div className="relative z-10 flex flex-col items-center justify-start pt-20 px-8 h-full">
+      <div className="relative z-10 flex flex-col items-center justify-start pt-20 px-8">
         <HeaderSection />
         <Features />
         <div className="flex flex-row gap-4 lg:mt-0 mt-10">

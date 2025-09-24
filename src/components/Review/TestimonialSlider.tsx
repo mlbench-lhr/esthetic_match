@@ -22,29 +22,31 @@ const TestimonialSlider = () => {
   }) as TestimonialContent[];
 
   return (
-    <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={0}
-        slidesPerView={1}
-        pagination={{
-          clickable: true,
-          el: '.swiper-pagination',
-        }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        className="testimonial-swiper"
-      >
-        {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index}>
-            <TestimonialSlide content={testimonial} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="swiper-pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10 w-full"></div>
-      <style jsx global>{`
+    <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary pt-10 px-8" >
+      <div className=" max-w-7xl mx-auto">
+        <p className="h1 text-white mb-5">Testimonials</p>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={0}
+          slidesPerView={1}
+          pagination={{
+            clickable: true,
+            el: '.swiper-pagination',
+          }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          className="testimonial-swiper"
+        >
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <TestimonialSlide content={testimonial} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="swiper-pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10 w-full"></div>
+        <style jsx global>{`
         .swiper-pagination {
           position: absolute !important;
           bottom: 32px !important;
@@ -74,6 +76,8 @@ const TestimonialSlider = () => {
 
         
       `}</style>
+      </div>
+
     </div>
   );
 };
