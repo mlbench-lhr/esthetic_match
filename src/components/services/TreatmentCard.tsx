@@ -21,7 +21,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       <Image src={imageSrc} alt={title} fill className="object-cover" />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 transition-opacity group-hover:opacity-70" />
+      <div className="absolute inset-0 bg-black/50 transition-opacity " />
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-between p-6 text-white group overflow-hidden">
         {/* Top label */}

@@ -11,7 +11,7 @@ const TestimonialSlide: React.FC<TestimonialSlideProps> = ({ content }) => {
   return (
     <div className=" flex items-center justify-between">
       <div className="w-full flex lg:flex-row flex-col items-center justify-between gap-16">
-        <div className="flex-1">
+        <div className="flex-2">
           <TestimonialText 
             quote={content.quote}
             author={content.author}

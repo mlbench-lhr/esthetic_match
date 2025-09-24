@@ -8,7 +8,7 @@ interface TestimonialTextProps {
 
 const TestimonialText: React.FC<TestimonialTextProps> = ({ quote, author, subtitle }) => {
   return (
-    <div className="flex flex-col justify-between h-full max-w-md text-grey_primary">
+    <div className="flex flex-col justify-between h-full max-w-lg text-grey_primary">
       <div>
         <p className="h5 font-base leading-relaxed mb-8">
           {quote}
