@@ -55,7 +55,7 @@ export default function Features() {
       </div>
 
       {/* Center phone mockup */}
-      <div className="relative z-20 hidden lg:block">
+      <div className="relative z-20 hidden lg:block mb-10">
         <Image
           src="/images/features/mobile.webp"
           alt="Aesthetic Match App Interface"
