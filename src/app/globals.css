@@ -56,7 +56,7 @@ body {
 
 @layer components {
   .h1 {
-    @apply font-bold text-[42px] md:text-[56px];
+    @apply font-bold text-[42px] lg:text-[37px] xl:text-[40px] 2xl:text-[46px];
   }
 
   .h2 {
@@ -64,7 +64,7 @@ body {
   }
 
   .h3 {
-    @apply text-[24px] md:text-[32px];
+    @apply text-[24px] md:text-[24px] xl:text-[28px] 2xl:text-[32px];
   }
 
   .h4 {
@@ -80,7 +80,7 @@ body {
   }
 
   .p2 {
-    @apply text-[14px] md:text-[18px];
+    @apply text-[14px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px];
   }
 
   .p3 {
