@@ -3,7 +3,7 @@ import Hero from './Hero'
 
 function FeatureIndex() {
     return (
-        <div className='bg-[#0C1C2E] pb-10'>
+        <div className='bg-[#0C1C2E] pb-16'>
             <Hero />
         </div>
     )

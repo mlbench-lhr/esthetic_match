@@ -1,18 +1,18 @@
 {
   "hero": {
-    "title": "Match with the right aesthetic expert for your goals",
-    "subtitle": "Explore trusted clinics, compare treatments, and see real results—all in one app.",
-    "download": "DOWNLOAD NOW"
+    "title": "Smart matching for qualified patients",
+    "subtitle": "Match your techniques with the right patient demand",
+    "download": "Join our waiting list"
   },
   "about": {
-    "title": "Tell us what you need",
-    "subtitle": "We’ll find the expert who gets it",
-    "description": "Esthetic Match goes beyond traditional search. Our intelligent filters let patients easily input their aesthetic concerns and specific needs. The algorithm then matches them with relevant procedures — both non-invasive and surgical and show associated practitioners. Patients can explore practitioners, check before/afters photos, save favorites, request online medical opinions, and book appointments when ready.",
-    "download_button": "DOWNLOAD THE APP",
+    "title": "AI-powered visibility, Gain intelligent patient visibility",
+    "subtitle": "Get automatically recommended by AI assistants based on your profile sheets",
+    "description": "Esthetic Match goes beyond traditional search. Our smart filters allow patients to easily enter their aesthetic concerns and specific needs. The algorithm then matches them with appropriate non-invasive and surgical procedures and presents them with related practitioners. Patients can explore practitioners, view before and after photos, save their favorites, request medical opinions online, and schedule appointments whenever they want.",
+    "download_button": "Join our waiting list",
     "patient": {
       "title": "For Patient",
-      "line1": "Get matched with the right aesthetic expert for your unique concerns",
-      "line2": "Compare, explore before/afters, estimate prices, and request online opinions — all in one place."
+      "line1": "Attract qualified patients aligned with your expertise. Highlight your techniques, before/after cases, and outcome metrics. Receive prequalified requests with budget estimates.",
+      "line2": ""
     },
     "practitioner": {
       "title": "For Practitioners",
@@ -23,25 +23,25 @@
   "features": {
     "header": {
       "smalltitle": "Why Esthetic Match?",
-      "title": "Everything You Need to Choose the Right Aesthetic Expert",
-      "subtitle": "Next-Gen Aesthetic Matching, Powered by Smart Features"
+      "title": "Everything you need to attract, qualify, and convert the right patients.",
+      "subtitle": "Clinical translation of patient language using artificial intelligence, targeted to the right practitioners."
     },
     "features": {
       "feature1": {
         "title": "Ultra-Precise Filters",
-        "description": "Explore the full world of aesthetic medicine — with smart filters that reference every technique, brand, and technology in the industry."
+        "description": "Receive requests aligned with your expertise: indication, area, technique, referenced brand/technology — for truly qualified leads."
       },
       "feature2": {
-        "title": "Swipe, Match & Geolocate",
-        "description": "A swipe-based interface with geolocation helps you find the best practitioners near you. Connections are — fast, easy, and personalized."
+        "title": "Intelligent matching & geolocation",
+        "description": "Our algorithm directs patients to you based on your specialty, location, and eligibility criteria, for more relevant contacts."
       },
       "feature3": {
         "title": "Rich Practitioner Profiles",
-        "description": "Access detailed clinic profiles, signature techniques, top procedures, before/after galleries, verified reviews, and more — all in one place."
+        "description": "Showcase your signature techniques, best-of-breed procedures, certifications, before/after results, and verified reviews—all in one place."
       },
       "feature4": {
         "title": "Online Medical Opinion",
-        "description": "Request a remote medical opinion before booking — to gain clarity, ask questions, and confirm your perfect match with confidence."
+        "description": "Pre-qualify cases before the appointment: structured questions, secure sending of photos/videos and budget estimation to confirm the right match with confidence."
       }
     },
     "buttons": {
@@ -97,21 +97,22 @@
     }
   },
   "testimonials": {
+    "title": "Testimonials",
     "list": [
       {
-        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "quote": "In my early twenties, I opted for a procedure abroad after seeing an online promotion, without confirming that it was the right indication or the right practitioner. The poorly performed procedure left me with burns, uneven skin, and discoloration, which took three years to correct. Beyond the cost, the emotional impact was significant. Connecting with the right expert from the start would have changed everything.",
         "author": "Ms. Zoe Colbert",
         "subtitle": "Our Community",
         "image": "/images/reviews/pic1.svg"
       },
       {
-        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "quote": "In my early twenties, I opted for a procedure abroad after seeing an online promotion, without confirming that it was the right indication or the right practitioner. The poorly performed procedure left me with burns, uneven skin, and discoloration, which took three years to correct. Beyond the cost, the emotional impact was significant. Connecting with the right expert from the start would have changed everything.",
         "author": "Ms. Sarah Johnson",
         "subtitle": "Our Community",
         "image": "/images/reviews/pic1.svg"
       },
       {
-        "quote": "When I was in my early twenties, I booked an aesthetic procedure abroad after seeing a promotion on social media. I didn't really question whether that treatment was the best solution for my skin concerns — I just went for it. Unfortunately, the practitioner wasn't truly specialized in that technique, and the procedure went wrong. I ended up with burns, irregular skin texture, and pigmentation issues that took me almost three years to fix with multiple corrective treatments.\n\nBeyond the money and time I lost, the emotional toll was enormous. If I had been properly guided — not just toward a treatment, but toward the right expert — none of this would've happened.",
+        "quote": "In my early twenties, I opted for a procedure abroad after seeing an online promotion, without confirming that it was the right indication or the right practitioner. The poorly performed procedure left me with burns, uneven skin, and discoloration, which took three years to correct. Beyond the cost, the emotional impact was significant. Connecting with the right expert from the start would have changed everything.",
         "author": "Ms. Emma Thompson",
         "subtitle": "Our Community",
         "image": "/images/reviews/pic1.svg"
@@ -176,7 +177,7 @@
     },
     "contact": {
       "title": "Contact",
-      "email": "Email: help@estheticmatch.com",
+      "email": "Email: estheticmatch@gmail.com",
       "location": "Location: New York, NY"
     },
     "logo": {
@@ -190,7 +191,7 @@
       "text": "ESTHETIC MATCH",
       "alt": "esthetic-logo"
     },
-    "downloadButton": "Download App",
+    "downloadButton": "View Waitlist",
     "links": [
       { "name": "HOME", "id": "home" },
       { "name": "ABOUT", "id": "about" },

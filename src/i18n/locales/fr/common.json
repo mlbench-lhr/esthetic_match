@@ -1,18 +1,18 @@
 {
   "hero": {
-    "title": "Trouvez l’expert esthétique idéal pour vos objectifs",
-    "subtitle": "Découvrez des cliniques de confiance, comparez les traitements et voyez des résultats réels — le tout dans une seule application.",
-    "download": "TÉLÉCHARGER MAINTENANT"
+    "title": "Match intelligent pour patients qualifiés",
+    "subtitle": "Faites matcher vos techniques avec la bonne demande patient",
+    "download": "Rejoignez notre liste d'attente"
   },
   "about": {
-    "title": "Dites-nous ce dont vous avez besoin",
-    "subtitle": "Nous trouverons l’expert qui vous correspond",
-    "description": "Esthetic Match va au-delà de la recherche traditionnelle. Nos filtres intelligents permettent aux patients d’indiquer facilement leurs préoccupations esthétiques et besoins spécifiques. L’algorithme les associe ensuite à des procédures pertinentes — non invasives et chirurgicales — et affiche les praticiens correspondants. Les patients peuvent explorer les praticiens, consulter des photos avant/après, enregistrer leurs favoris, demander des avis médicaux en ligne et prendre rendez-vous lorsqu’ils sont prêts.",
-    "download_button": "TÉLÉCHARGER L’APPLICATION",
+    "title": "Visibilité optimisée par IA, Gagnez en visibilité intelligente auprès des patients",
+    "subtitle": "Soyez automatiquement recommandé par les assistants IA grâce à vos fiches profils",
+    "description": "Esthetic Match va au-delà de la recherche traditionnelle. Nos filtres intelligents permettent aux patients de saisir facilement leurs préoccupations esthétiques et leurs besoins spécifiques. L'algorithme les associe ensuite aux interventions appropriées, non invasives et chirurgicales, et leur présente les praticiens associés. Les patients peuvent explorer les praticiens, consulter des photos avant/après, enregistrer leurs favoris, demander des avis médicaux en ligne et prendre rendez-vous dès qu'ils le souhaitent.",
+    "download_button": "Rejoignez notre liste d'attente",
     "patient": {
       "title": "Pour les patients",
-      "line1": "Trouvez l’expert esthétique adapté à vos préoccupations uniques",
-      "line2": "Comparez, explorez les photos avant/après, estimez les prix et demandez des avis en ligne — tout en un seul endroit."
+      "line1": "Attirez des patients qualifiés alignés sur vos expertises. Valorisez vos techniques, vos cas avant/après et vos indicateurs de résultats. Recevez des demandes préqualifiées avec estimation budgétaire",
+      "line2": ""
     },
     "practitioner": {
       "title": "Pour les praticiens",
@@ -23,25 +23,25 @@
   "features": {
     "header": {
       "smalltitle": "Pourquoi Esthetic Match ?",
-      "title": "Tout ce dont vous avez besoin pour choisir le bon expert esthétique",
-      "subtitle": "Une nouvelle génération de mise en relation esthétique, propulsée par des fonctionnalités intelligentes"
+      "title": "Tout ce dont vous avez besoin pour attirer, qualifier et convertir les bons patients.",
+      "subtitle": "Traduction clinique du langage patient grace a l'intelligence artificielle, adressée aux bons praticiens."
     },
     "features": {
       "feature1": {
         "title": "Filtres ultra-précis",
-        "description": "Découvrez l’univers complet de la médecine esthétique — avec des filtres intelligents qui prennent en compte chaque technique, marque et technologie du secteur."
+        "description": "Recevez des demandes alignées sur vos expertises : indication, zone, technique, marque/technologie référencées — pour des leads réellement qualifiés."
       },
       "feature2": {
-        "title": "Swipe, Match & Géolocalisation",
-        "description": "Une interface basée sur le swipe avec géolocalisation vous aide à trouver les meilleurs praticiens près de chez vous. Les connexions sont rapides, simples et personnalisées."
+        "title": "Matching & géolocalisation intelligents",
+        "description": "Notre algorithme oriente les patients vers vous selon votre spécialité, votre localisation et vos critères d’éligibilité, pour des prises de contact plus pertinentes."
       },
       "feature3": {
         "title": "Profils riches des praticiens",
-        "description": "Accédez à des profils détaillés de cliniques, techniques signatures, interventions phares, galeries avant/après, avis vérifiés et plus encore — le tout en un seul endroit."
+        "description": "Mettez en valeur vos techniques signature, procédures phares, certifications, résultats (avant/après) et avis vérifiés — tout au même endroit."
       },
       "feature4": {
-        "title": "Avis médical en ligne",
-        "description": "Demandez un avis médical à distance avant de réserver — pour gagner en clarté, poser vos questions et confirmer votre choix idéal en toute confiance."
+        "title": "Demande d’avis médical à distance",
+        "description": "Préqualifiez les cas avant le rendez-vous : questions structurées, envoi sécurisé de photos/vidéos et estimation budgétaire afin de confirmer la bonne correspondance en toute confiance."
       }
     },
     "buttons": {
@@ -97,21 +97,22 @@
     }
   },
   "testimonials": {
+    "title": "Témoignages",
     "list": [
       {
-        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "quote": "Au début de ma vingtaine, j’ai choisi une intervention à l’étranger après une promotion en ligne, sans confirmer que c’était la bonne indication ni le bon praticien. L’acte, mal maîtrisé, m’a laissé des brûlures, une peau irrégulière et des dyschromies, corrigées au prix de trois ans de soins. Au-delà du coût, l’impact émotionnel a été lourd. Une mise en relation avec le bon expert dès le départ aurait tout changé..",
         "author": "Mme. Zoé Colbert",
         "subtitle": "Notre Communauté",
         "image": "/images/reviews/pic1.svg"
       },
       {
-        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "quote": "Au début de ma vingtaine, j’ai choisi une intervention à l’étranger après une promotion en ligne, sans confirmer que c’était la bonne indication ni le bon praticien. L’acte, mal maîtrisé, m’a laissé des brûlures, une peau irrégulière et des dyschromies, corrigées au prix de trois ans de soins. Au-delà du coût, l’impact émotionnel a été lourd. Une mise en relation avec le bon expert dès le départ aurait tout changé.",
         "author": "Mme. Sarah Johnson",
         "subtitle": "Notre Communauté",
         "image": "/images/reviews/pic1.svg"
       },
       {
-        "quote": "Au début de ma vingtaine, j’ai réservé une procédure esthétique à l’étranger après avoir vu une promotion sur les réseaux sociaux. Je ne me suis pas vraiment demandé si ce traitement était la meilleure solution pour mes problèmes de peau — j’y suis juste allée. Malheureusement, le praticien n’était pas réellement spécialisé dans cette technique, et l’intervention a mal tourné. J’ai fini avec des brûlures, une texture de peau irrégulière et des problèmes de pigmentation qui m’ont pris presque trois ans à corriger avec de multiples traitements.\n\nAu-delà de l’argent et du temps perdus, l’impact émotionnel a été énorme. Si j’avais été correctement orientée — non seulement vers un traitement, mais surtout vers le bon expert — rien de tout cela ne serait arrivé.",
+        "quote": "Au début de ma vingtaine, j’ai choisi une intervention à l’étranger après une promotion en ligne, sans confirmer que c’était la bonne indication ni le bon praticien. L’acte, mal maîtrisé, m’a laissé des brûlures, une peau irrégulière et des dyschromies, corrigées au prix de trois ans de soins. Au-delà du coût, l’impact émotionnel a été lourd. Une mise en relation avec le bon expert dès le départ aurait tout changé.",
         "author": "Mme. Emma Thompson",
         "subtitle": "Notre Communauté",
         "image": "/images/reviews/pic1.svg"
@@ -176,7 +177,7 @@
     },
     "contact": {
       "title": "Contact",
-      "email": "Email : help@estheticmatch.com",
+      "email": "Email : estheticmatch@gmail.com",
       "location": "Localisation : New York, NY"
     },
     "logo": {
@@ -190,7 +191,7 @@
       "text": "ESTHETIC MATCH",
       "alt": "logo esthétique"
     },
-    "downloadButton": "Télécharger l’application",
+    "downloadButton": "S'inscrire",
     "links": [
       { "name": "ACCUEIL", "id": "home" },
       { "name": "À PROPOS", "id": "about" },

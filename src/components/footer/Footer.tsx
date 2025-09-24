@@ -45,6 +45,33 @@ const Footer: React.FC = () => {
               <p className="p2">{t("footer.contact.email")}</p>
               <p className="p2">{t("footer.contact.location")}</p>
             </div>
+            {/* Social Media Icons */}
+            <div className="flex lg:justify-start gap-6 mt-2 -ml-2">
+              {[
+                { name: "instagram", url: " https://www.instagram.com/estheticmatch?" },
+                // { name: "twitter", url: "https://twitter.com/yourprofile" },
+                // { name: "facebook", url: "https://facebook.com/yourprofile" },
+                // { name: "youtube", url: "https://youtube.com/yourchannel" },
+                // { name: "tiktok", url: "https://www.tiktok.com/@yourprofile" },
+              ].map((platform) => (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 hover:opacity-70 transition-opacity"
+                  aria-label={platform.name}
+                >
+                  <Image
+                    src={`/images/footer/${platform.name}.webp`}
+                    alt={platform.name}
+                    width={32}
+                    height={32}
+                    className="w-full h-full"
+                  />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Logo Section */}
@@ -69,30 +96,37 @@ const Footer: React.FC = () => {
           {/* Left placeholder */}
           <div></div>
 
-          {/* Social Media Icons */}
+          {/* Social Media Icons
           <div className="flex lg:justify-center gap-6">
-            {["instagram", "twitter", "facebook", "youtube", "tiktok"].map(
-              (platform) => (
-                <a
-                  key={platform}
-                  href="#"
-                  className="w-8 h-8 hover:opacity-70 transition-opacity"
-                  aria-label={platform}
-                >
-                  <Image
-                    src={`/images/footer/${platform}.webp`}
-                    alt={platform}
-                    width={32}
-                    height={32}
-                    className="w-full h-full"
-                  />
-                </a>
-              )
-            )}
-          </div>
+            {[
+              { name: "instagram", url: " https://www.instagram.com/estheticmatch?" },
+              // { name: "twitter", url: "https://twitter.com/yourprofile" },
+              // { name: "facebook", url: "https://facebook.com/yourprofile" },
+              // { name: "youtube", url: "https://youtube.com/yourchannel" },
+              // { name: "tiktok", url: "https://www.tiktok.com/@yourprofile" },
+            ].map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 hover:opacity-70 transition-opacity"
+                aria-label={platform.name}
+              >
+                <Image
+                  src={`/images/footer/${platform.name}.webp`}
+                  alt={platform.name}
+                  width={32}
+                  height={32}
+                  className="w-full h-full"
+                />
+              </a>
+            ))}
+          </div> */}
+
 
           {/* Copyright */}
-          <div className="lg:text-right lg:mt-0 mt-5">
+          <div className="lg:text-center lg:mt-0 mt-5">
             <p className="text-sm whitespace-nowrap">
               {t("footer.copyright")}
             </p>

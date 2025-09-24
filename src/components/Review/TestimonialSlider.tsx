@@ -24,7 +24,7 @@ const TestimonialSlider = () => {
   return (
     <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary pt-10 px-8" >
       <div className=" max-w-7xl mx-auto">
-        <p className="h1 text-white mb-5">Testimonials</p>
+        <p className="h1 text-white mb-5">{t("testimonials.title")}</p>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={0}
@@ -37,7 +37,7 @@ const TestimonialSlider = () => {
             delay: 5000,
             disableOnInteraction: false,
           }}
-          className="testimonial-swiper"
+          className="testimonial-swiper mb-5"
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
@@ -45,19 +45,18 @@ const TestimonialSlider = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="swiper-pagination absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10 w-full"></div>
+        <div className="swiper-pagination absolute bottom-8 w-full"></div>
         <style jsx global>{`
         .swiper-pagination {
-          position: absolute !important;
-          bottom: 32px !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
-          width: auto !important;
-          display: flex !important;
-          justify-content: center !important;
-          gap: 8px !important;
-          z-index: 10 !important;
-        }
+  position: absolute !important;
+  bottom: 32px !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  z-index: 10 !important;
+}
 
         .swiper-pagination-bullet {
           width: 12px !important;

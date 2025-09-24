@@ -8,14 +8,13 @@ import fr from "./locales/fr/common.json";
 
 // Configure language detector to use cookies
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
       en: { translation: en },
       fr: { translation: fr },
     },
-    fallbackLng: "en",
+    fallbackLng: "fr",
     interpolation: {
       escapeValue: false, // react already escapes
     },
