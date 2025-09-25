@@ -20,8 +20,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* App Section */}
           <div>
-            <h3 className="h2 font-light">{t("footer.app.title")}</h3>
-            <h4 className="h2 font-light mb-8">{t("footer.app.learn")}</h4>
+            <h3 className="h3 font-light">{t("footer.app.title")}</h3>
+            <h4 className="h3 font-light mb-8">{t("footer.app.learn")}</h4>
             <div className="space-y-4 flex flex-col">
               <span
                 onClick={() => scrollToSection("faqs")}
@@ -84,8 +84,10 @@ const Footer: React.FC = () => {
                   width={50}
                   height={50}
                 />
-                <span className="h4 font-extrabold">
-                  {t("footer.logo.text")}
+                <span className="h5 font-extrabold">
+                  <h5>
+                    {t("footer.logo.text")}
+                  </h5>
                 </span>
               </div>
             </div>

@@ -54,29 +54,35 @@ body {
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
+
 @layer components {
-  .h1 {
-    @apply font-bold text-[28px] lg:text-[37px] xl:text-[40px] 2xl:text-[46px];
+  h1 {
+    @apply  
+      text-[38px] sm:text-[42px] md:text-[46px] lg:text-[50px] xl:text-[56px] 2xl:text-[60px];
   }
 
-  .h2 {
-    @apply font-bold text-[24px] sm:text-[36px] md:text-[43px];
+  h2 {
+    @apply  
+      text-[32px] sm:text-[36px] md:text-[40px] lg:text-[44px] xl:text-[48px] 2xl:text-[52px];
   }
 
-  .h3 {
-    @apply text-[24px] md:text-[24px] xl:text-[28px] 2xl:text-[32px];
+  h3 {
+    @apply  
+      text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[42px] 2xl:text-[46px];
   }
 
-  .h4 {
-    @apply font-semibold text-[20px] md:text-[30px];
+  h4 {
+    @apply  
+      text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[34px];
   }
 
-  .h5 {
-    @apply font-semibold text-[14px] md:text-[20px];
+  h5 {
+    @apply 
+      text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] xl:text-[30px] 2xl:text-[32px];
   }
 
   .p1 {
-    @apply font-light text-[18px] md:text-[36px];
+    @apply font-light text-[18px] md:text-[30px];
   }
 
   .p2 {
@@ -89,6 +95,38 @@ body {
 
   .p4 {
     @apply text-[12px];
+  }
+
+  .text-36 {
+    @apply text-[24px] sm:text-[28px] md:text-[30px] lg:text-[32px] xl:text-[36px] 2xl:text-[38px];
+  }
+
+  .text-38 {
+    @apply text-[26px] sm:text-[30px] md:text-[32px] lg:text-[34px] xl:text-[38px] 2xl:text-[40px];
+  }
+
+  .text-30 {
+    @apply text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] xl:text-[30px] 2xl:text-[32px];
+  }
+
+  .text-21 {
+    @apply text-[14px] sm:text-[16px] md:text-[17px] lg:text-[19px] xl:text-[21px] 2xl:text-[22px];
+  }
+
+  .text-22 {
+    @apply text-[15px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[24px];
+  }
+
+  .text-18 {
+    @apply text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[18px] 2xl:text-[19px];
+  }
+
+  .text-16 {
+    @apply text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[17px];
+  }
+
+  .text-14 {
+    @apply text-[11px] sm:text-[12px] md:text-[13px] lg:text-[13.5px] xl:text-[14px] 2xl:text-[15px];
   }
 
   .btn-text {

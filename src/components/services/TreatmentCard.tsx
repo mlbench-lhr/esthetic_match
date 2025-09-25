@@ -28,8 +28,8 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         <div className="flex flex-col justify-start">
           <span className="p4 font-bold uppercase"> {t("services.words.treatments")}</span>
           <div className="space-y-4">
-            <div className="text-[30px] font-light">
-              <h3 className="leading-tight">{title}</h3>
+            <div className="text-30 font-normal">
+              <p className="leading-tight">{title}</p>
             </div>
           </div>
         </div>
@@ -45,10 +45,10 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         px-2 space-y-2
       "
           >
-            <p className="text-sm font-semibold uppercase tracking-widest">
+            <p className="text-14 font-semibold uppercase tracking-widest">
               {t("services.words.details")}
             </p>
-            <div className="text-xs hidden group-hover:block transition-opacity duration-500">
+            <div className="text-16 hidden group-hover:block transition-opacity duration-500">
               {detail}
             </div>
           </div>
