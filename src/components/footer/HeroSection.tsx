@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
               </h1>
 
               <div className="flex lg:flex-row flex-col justify-between w-full">
-                <p className="text-white tp2 max-w-lg font-normal">
+                <p className="text-white text-18 max-w-lg font-normal">
                   {t("footer.subtitle")}
                 </p>
 

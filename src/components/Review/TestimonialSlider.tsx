@@ -24,7 +24,7 @@ const TestimonialSlider = () => {
   return (
     <div className="relative lg:min-h-[800px] md:min-h-[1400px] min-h-[1000px] bg-black_primary pt-10 px-8" >
       <div className=" max-w-7xl mx-auto">
-        <p className="h1 text-white mb-5">{t("testimonials.title")}</p>
+        <h3 className="h3 font-bold text-white mb-5">{t("testimonials.title")}</h3>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={0}

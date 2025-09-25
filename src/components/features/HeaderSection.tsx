@@ -11,13 +11,13 @@ export default function HeaderSection() {
         {t("features.header.smalltitle")}
       </p>
 
-      <h1 className="text-white h3 font-bold leading-tight max-w-6xl mx-auto mb-4">
+      <h4 className="text-white h4 font-bold leading-tight max-w-6xl mx-auto mb-4">
         {t("features.header.title")}
-      </h1>
+      </h4>
 
-      <p className="text-white h3 font-light opacity-90 max-w-6xl mx-auto">
+      <h4 className="text-white h4 font-normal opacity-90 max-w-6xl mx-auto">
         {t("features.header.subtitle")}
-      </p>
+      </h4>
     </div>
   );
 }

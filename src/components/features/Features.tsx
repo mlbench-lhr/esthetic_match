@@ -102,8 +102,8 @@ function FeatureCard({
         </div>
       </div>
       <div>
-        <h5 className="h5 text-white_primary font-semibold mb-3">{title}</h5>
-        <p className="p3 text-white_secondary font-normal leading-relaxed">
+        <p className="text-21 text-white_primary font-bold mb-3">{title}</p>
+        <p className="text-14 text-white_secondary font-normal leading-relaxed">
           {description}
         </p>
       </div>

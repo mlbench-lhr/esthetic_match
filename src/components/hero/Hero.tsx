@@ -21,11 +21,11 @@ export default function Hero() {
             <div className="relative z-10 flex items-start h-full max-w-6xl mx-auto pt-40 ">
                 {/* Left Content */}
                 <div className="w-full  pr-0 lg:pr-16 text-center">
-                    <h2 className="h2 text-black_primary leading-tight mb-6">
+                    <h2 className="h2 font-bold text-black_primary leading-tight mb-6">
                         {t("hero.title")}
                     </h2>
 
-                    <p className="p1 mb-8 leading-relaxed text-black_primary max-w-4xl mx-auto">
+                    <p className="text-36 mb-8 leading-relaxed text-black_primary max-w-4xl mx-auto">
                       {t("hero.subtitle")}
                     </p>
 
