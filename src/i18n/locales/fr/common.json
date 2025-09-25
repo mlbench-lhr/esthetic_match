@@ -195,8 +195,7 @@
     "links": [
       { "name": "ACCUEIL", "id": "home" },
       { "name": "À PROPOS", "id": "about" },
-      { "name": "SERVICES", "id": "services" },
-      { "name": "FAQ", "id": "faqs" }
+      { "name": "SERVICES", "id": "services" }
     ]
   }
 }
