@@ -195,8 +195,7 @@
     "links": [
       { "name": "HOME", "id": "home" },
       { "name": "ABOUT", "id": "about" },
-      { "name": "SERVICES", "id": "services" },
-      { "name": "FAQS", "id": "faqs" }
+      { "name": "SERVICES", "id": "services" }
     ]
   }
 }
