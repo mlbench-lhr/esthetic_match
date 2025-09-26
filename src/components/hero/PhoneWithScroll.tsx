@@ -3,24 +3,24 @@ import Image from "next/image";
 
 const PhoneWithScroll = () => {
     return (
-        <div className="relative lg:w-[500px] w-[250px] lg:h-[800px] h-[500px] mx-auto overflow-hidden">
+        <div className="relative w-[130px] h-[150px] sm:w-[190px] sm:h-[150px] 2xl:w-[170px] xl:h-[140px] xl:w-[170px] 2xl:h-[150px]   mx-auto">
             {/* Phone hand image as background */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                <Image
+            <div className="absolute bottom-0 left-0 w-full flex justify-center z-30 pointer-events-none">
+                <img
                     src="/images/hero/hand.svg"
                     alt="Phone Frame"
-                    width={300}
-                    height={700}
+                    
                     className="object-contain"
-                    priority
+                    // priority
                 />
             </div>
+
 
 
             {/* Scrollable screen area */}
             {/* Try different positioning values */}
             <div
-                className="absolute bottom-1  lg:left-[130px] left-[65px] lg:w-[240px] lg:h-[495px] w-[120px] h-[245px] overflow-y-scroll lg:rounded-4xl rounded-2xl z-20 scrollbar-hidden"
+                className="absolute bottom-1 2xl:left-[5px] 2xl:w-[160px] 2xl:h-[335px] xl:left-[5px] xl:w-[160px] xl:h-[335px] lg:left-[5px] lg:w-[180px] lg:h-[380px] md:left-[5px] md:w-[180px] md:h-[375px] sm:left-[5px] sm:w-[180px] sm:h-[375px] left-[5px] w-[120px] h-[255px] overflow-y-scroll lg:rounded-4xl rounded-2xl z-20 scrollbar-hidden"
             >
                 <div className="w-full h-full ">
                     <Image

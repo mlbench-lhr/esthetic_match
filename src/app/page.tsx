@@ -9,7 +9,7 @@ import Services from "@/components/services/Services";
 
 export default function Home() {
   return (
-    <div className="max-w-[1440px] mx-auto ">
+    <div className=" mx-auto ">
       <Navbarin />
       <Hero />
       <Need />

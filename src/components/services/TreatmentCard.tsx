@@ -45,9 +45,9 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         px-2 space-y-2
       "
           >
-            <p className="text-14 font-semibold uppercase tracking-widest">
+            {/* <p className="text-14 font-semibold uppercase tracking-widest">
               {t("services.words.details")}
-            </p>
+            </p> */}
             <div className="text-16 hidden group-hover:block transition-opacity duration-500">
               {detail}
             </div>

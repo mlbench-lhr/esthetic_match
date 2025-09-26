@@ -71,7 +71,7 @@ const Navbar = () => {
     }, [t]); // Re-run when translation changes
 
     return (
-        <div className="fixed top-6 z-50 max-w-[1440px] mx-auto w-full flex items-center justify-center px-4">
+        <div className="fixed top-6 z-50  mx-auto w-full flex items-center justify-center px-4">
             <div className="bg-white shadow-md rounded-full w-full lg:max-w-7xl max-w-5xl">
                 <div className="px-4 lg:px-8">
                     <div className="relative flex items-center justify-between">
@@ -92,7 +92,7 @@ const Navbar = () => {
 
                             {/* Links */}
                             <div className="hidden lg:block ml-4 xl:ml-20 flex-1">
-                                <div className="flex items-center justify-center space-x-2 xl:space-x-4">
+                                <div className="flex items-center justify-end me-10 space-x-2 xl:space-x-4">
                                     {navigation.map((item) => (
                                         <span
                                             key={item.name}
