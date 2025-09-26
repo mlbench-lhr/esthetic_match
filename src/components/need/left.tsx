@@ -7,7 +7,7 @@ function Left() {
   const { t } = useTranslation();
 
   return (
-    <div className="xl:max-w-[630px]  text-center xl:text-left">
+    <div className="xl:max-w-[590px] 2xl:max-w-[760px]  text-center xl:text-left">
       <div>
         <div className="text-black-secondary">
           <h1 className="h1 font-bold">{t("about.title")}</h1>

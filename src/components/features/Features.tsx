@@ -27,7 +27,7 @@ export default function Features() {
       title: t("features.features.feature3.title"),
       description: t("features.features.feature3.description"),
       className:
-        "lg:text-right lg:items-end text-center items-center lg:mt-30 mt-10",
+        "lg:text-right lg:items-end text-center items-center",
     },
     {
       icon: "/images/features/shield.webp",

@@ -58,7 +58,7 @@ body {
 @layer components {
   h1 {
     @apply  
-      text-[36px] sm:text-[42px] md:text-[46px] lg:text-[50px] xl:text-[56px] 2xl:text-[60px];
+      text-[36px] sm:text-[42px] md:text-[46px] lg:text-[50px] xl:text-[50px] 2xl:text-[50px];
   }
 
   h2 {
