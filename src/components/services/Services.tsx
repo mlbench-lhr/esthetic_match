@@ -68,10 +68,10 @@ function Services() {
   ];
 
   return (
-    <div id="services" className=" bg-gray-50 py-20">
+    <div id="services" className=" bg-gray-50 lg:py-20 py-10">
       <div className="max-w-[1480px] mx-auto px-8">
         {/* Header */}
-        <div className="mb-16 flex lg:flex-row flex-col justify-between items-center">
+        <div className="lg:mb-16 mb-10 flex lg:flex-row flex-col justify-between items-center">
           <h1 className="h1 font-light text-black_primary mb-4">
             {t("services.header")}
           </h1>

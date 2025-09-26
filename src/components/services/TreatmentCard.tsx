@@ -17,7 +17,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="relative lg:w-[300px] lg:h-[420px] w-[280px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
+    <div className="relative lg:w-[300px] lg:h-[420px] w-[280px] h-[300px] rounded-2xl overflow-hidden group cursor-pointer">
       <Image src={imageSrc} alt={title} fill className="object-cover" />
 
       {/* Overlay */}

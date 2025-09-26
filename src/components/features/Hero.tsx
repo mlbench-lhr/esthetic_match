@@ -12,7 +12,7 @@ export default function Hero() {
     <div className="relative w-full">
       <BackgroundElements />
 
-      <div className="relative z-10 flex flex-col items-center justify-start pt-20 px-8">
+      <div className="relative z-10 flex flex-col items-center justify-start lg:pt-20 pt-10 px-8">
         <HeaderSection />
         <Features />
         <div className="flex flex-row gap-4 lg:mt-0 mt-10">

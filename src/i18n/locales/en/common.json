@@ -50,7 +50,7 @@
         "bottomText": "Google Play"
       },
       "apple": {
-        "topText": "Download on the",
+        "topText": "DOWNLOAD ON THE",
         "bottomText": "App Store"
       }
     }
@@ -163,7 +163,7 @@
         "bottomText": "Google Play"
       },
       "apple": {
-        "topText": "Download on the",
+        "topText": "DOWNLOAD ON THE",
         "bottomText": "App Store"
       }
     },
@@ -191,7 +191,7 @@
       "text": "ESTHETIC MATCH",
       "alt": "esthetic-logo"
     },
-    "downloadButton": "View Waitlist",
+    "downloadButton": "SUBSCRIBE",
     "links": [
       { "name": "HOME", "id": "home" },
       { "name": "ABOUT", "id": "about" },
