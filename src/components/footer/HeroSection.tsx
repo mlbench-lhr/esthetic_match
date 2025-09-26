@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
                   {t("footer.subtitle")}
                 </p>
 
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row gap-4 mt-2 lg:mt-0">
                   <StoreButtons
                     href="#"
                     icon="/images/features/playstore.webp"

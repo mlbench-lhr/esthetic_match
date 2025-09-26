@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 function FooterIndex() {
   return (
-    <div className="bg-black_primary">
+    <div className="bg-black_primary px-8">
       <HeroSection />
       <Footer />
     </div>
